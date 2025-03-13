@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox fx:id="vboxRootNode" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.vanier.template.controllers.StartPageController">
    <children>
-      <Label fx:id="labeTitle" contentDisplay="CENTER" lineSpacing="2.0" prefHeight="45.0" prefWidth="234.0" style="-fx-font-family: Serif; -fx-font-size: 40; -fx-font-weight: Bold;" text="Super Sphere" textFill="#196fb5" />
+      <Label fx:id="labelTitle" contentDisplay="CENTER" lineSpacing="2.0" prefHeight="45.0" prefWidth="234.0" style="-fx-font-family: Serif; -fx-font-size: 40; -fx-font-weight: Bold;" text="Super Sphere" textFill="#196fb5" />
       <Button fx:id="buttonStart" lineSpacing="2.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="87.0" scaleX="1.1" scaleY="1.1" style="-fx-background-color: transparent; -fx-font-size: 20; -fx-font-weight: Bolder; -fx-font-family: Garo;" text="Start" textFill="#e1984b">
          <font>
             <Font name="Baloo Da 2 ExtraBold" size="13.0" />
