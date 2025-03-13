@@ -1,12 +1,120 @@
-08:06:06.928  [INFO ] e.v.t.u.MainApp msg: Bootstrapping the application...
-08:06:07.470  [INFO ] e.v.t.c.MainAppFXMLController msg: Initializing MainAppController...
-08:06:09.607  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
-08:06:10.991  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
-08:06:11.184  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
-08:06:11.366  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
-08:06:12.055  [INFO ] e.v.t.c.SecondaryFXMLController msg: Initializing MainAppController...
-08:06:12.057  [INFO ] e.v.t.c.MainAppFXMLController msg: Loaded the secondary scene...
-08:06:12.826  [INFO ] e.v.t.c.SecondaryFXMLController msg: Loaded the primary scene...
-08:06:13.488  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
-08:06:13.671  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
-08:06:13.846  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
+12:08:24.382  [INFO ] e.v.t.u.MainApp msg: Bootstrapping the application...
+12:08:25.370  [INFO ] e.v.t.c.MainAppFXMLController msg: Initializing MainAppController...
+12:08:27.788  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
+12:08:28.397  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
+12:08:29.052  [INFO ] e.v.t.c.SecondaryFXMLController msg: Initializing MainAppController...
+12:08:29.053  [INFO ] e.v.t.c.MainAppFXMLController msg: Loaded the secondary scene...
+12:08:29.678  [INFO ] e.v.t.c.SecondaryFXMLController msg: Loaded the primary scene...
+12:08:30.173  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
+12:08:30.604  [INFO ] e.v.t.c.MainAppFXMLController msg: Loaded the secondary scene...
+12:08:31.268  [INFO ] e.v.t.c.SecondaryFXMLController msg: Loaded the primary scene...
+12:08:31.828  [INFO ] e.v.t.c.MainAppFXMLController msg: Play button has been clicked...
+12:11:14.336  [INFO ] e.v.t.u.MainApp msg: Bootstrapping the application...
+12:11:14.679  [ERROR] e.v.t.u.MainApp msg: Controller value already specified.
+/C:/Users/letua/Downloads/super-spheres/build/resources/main/fxml/StartPage_layout.fxml:9
+
+javafx.fxml.LoadException: Controller value already specified.
+/C:/Users/letua/Downloads/super-spheres/build/resources/main/fxml/StartPage_layout.fxml:9
+
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2723)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:927)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$InstanceDeclarationElement.processAttribute(FXMLLoader.java:983)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$Element.processStartElement(FXMLLoader.java:230)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$ValueElement.processStartElement(FXMLLoader.java:757)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.processStartElement(FXMLLoader.java:2858)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2654)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2568)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2536)
+	at edu.vanier.template.helpers.FxUIHelper.loadFXML(FxUIHelper.java:50)
+	at edu.vanier.template.ui.MainApp.start(MainApp.java:47)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:839)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:483)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+12:14:41.159  [INFO ] e.v.t.u.MainApp msg: Bootstrapping the application...
+12:14:41.361  [ERROR] e.v.t.u.MainApp msg: Controller value already specified.
+/C:/Users/letua/Downloads/super-spheres/build/resources/main/fxml/StartPage_layout.fxml:9
+
+javafx.fxml.LoadException: Controller value already specified.
+/C:/Users/letua/Downloads/super-spheres/build/resources/main/fxml/StartPage_layout.fxml:9
+
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2723)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:927)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$InstanceDeclarationElement.processAttribute(FXMLLoader.java:983)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$Element.processStartElement(FXMLLoader.java:230)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$ValueElement.processStartElement(FXMLLoader.java:757)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.processStartElement(FXMLLoader.java:2858)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2654)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2568)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2536)
+	at edu.vanier.template.helpers.FxUIHelper.loadFXML(FxUIHelper.java:50)
+	at edu.vanier.template.ui.MainApp.start(MainApp.java:48)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:839)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:483)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+12:18:53.659  [INFO ] e.v.t.u.MainApp msg: Bootstrapping the application...
+12:18:53.869  [ERROR] e.v.t.u.MainApp msg: Controller value already specified.
+/C:/Users/letua/Downloads/super-spheres/build/resources/main/fxml/StartPage_layout.fxml:9
+
+javafx.fxml.LoadException: Controller value already specified.
+/C:/Users/letua/Downloads/super-spheres/build/resources/main/fxml/StartPage_layout.fxml:9
+
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2723)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:927)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$InstanceDeclarationElement.processAttribute(FXMLLoader.java:983)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$Element.processStartElement(FXMLLoader.java:230)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$ValueElement.processStartElement(FXMLLoader.java:757)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.processStartElement(FXMLLoader.java:2858)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2654)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2568)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2536)
+	at edu.vanier.template.helpers.FxUIHelper.loadFXML(FxUIHelper.java:50)
+	at edu.vanier.template.ui.MainApp.start(MainApp.java:49)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:839)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:483)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+12:23:29.068  [INFO ] e.v.t.u.MainApp msg: Bootstrapping the application...
+12:23:29.280  [ERROR] e.v.t.u.MainApp msg: Controller value already specified.
+/C:/Users/letua/Downloads/super-spheres/build/resources/main/fxml/StartPage_layout.fxml:9
+
+javafx.fxml.LoadException: Controller value already specified.
+/C:/Users/letua/Downloads/super-spheres/build/resources/main/fxml/StartPage_layout.fxml:9
+
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2723)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$ValueElement.processAttribute(FXMLLoader.java:927)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$InstanceDeclarationElement.processAttribute(FXMLLoader.java:983)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$Element.processStartElement(FXMLLoader.java:230)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader$ValueElement.processStartElement(FXMLLoader.java:757)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.processStartElement(FXMLLoader.java:2858)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2654)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2568)
+	at javafx.fxml@22.0.2/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2536)
+	at edu.vanier.template.helpers.FxUIHelper.loadFXML(FxUIHelper.java:50)
+	at edu.vanier.template.ui.MainApp.start(MainApp.java:49)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:839)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:483)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.2/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.2/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+12:24:16.908  [INFO ] e.v.t.u.MainApp msg: Bootstrapping the application...

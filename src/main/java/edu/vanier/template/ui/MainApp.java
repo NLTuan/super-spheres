@@ -3,6 +3,7 @@ package edu.vanier.template.ui;
 import edu.vanier.template.controllers.MainAppFXMLController;
 import edu.vanier.template.controllers.SceneController;
 import edu.vanier.template.controllers.SecondaryFXMLController;
+import edu.vanier.template.controllers.StartPageController;
 import edu.vanier.template.helpers.FxUIHelper;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -25,7 +26,8 @@ import org.slf4j.LoggerFactory;
 public class MainApp extends Application {
 
     // The FXML file name of the primary scene.
-    public static final String MAINAPP_SCENE = "MainApp_layout";
+    public static final String START_SCENE = "StartPage_layout";
+    public static final String MAIN_SCENE = "MainApp_layout";
     // The FXML file name of the secondary scene.
     public static final String SECONDARY_SCENE = "secondary_layout";
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
@@ -44,11 +46,11 @@ public class MainApp extends Application {
         try {
             logger.info("Bootstrapping the application...");
             // Load the scene of the primary stage.
-            Parent root = FxUIHelper.loadFXML(MAINAPP_SCENE, new MainAppFXMLController());
+            Parent root = FxUIHelper.loadFXML(START_SCENE, new StartPageController());
             scene = new Scene(root, 640, 480);
             // Add the primary scene to the scene-switching controller.
             sceneController = new SceneController(scene);
-            sceneController.addScene(MAINAPP_SCENE, root);
+            sceneController.addScene(START_SCENE, root);
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
             primaryStage.setTitle("An FX Project Template!");
@@ -74,7 +76,7 @@ public class MainApp extends Application {
      */
     public static void switchScene(String fxmlFileName) {
         try {
-            if (fxmlFileName.equals(MAINAPP_SCENE)) {
+            if (fxmlFileName.equals(START_SCENE)) {
                 // No need to register the primary scene as it 
                 // was already done in the start method.                
                 sceneController.activateScene(fxmlFileName);

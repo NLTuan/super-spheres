@@ -28,7 +28,7 @@ public class SecondaryFXMLController {
     }
 
     private void loadPrimaryScene(Event e) {
-        MainApp.switchScene(MainApp.MAINAPP_SCENE);
+        MainApp.switchScene(MainApp.MAIN_SCENE);
         logger.info("Loaded the primary scene...");
     }
 }
