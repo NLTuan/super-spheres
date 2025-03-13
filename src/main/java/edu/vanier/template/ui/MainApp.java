@@ -91,6 +91,13 @@ public class MainApp extends Application {
                 }
                 // The scene has been previously added, we active it.
                 sceneController.activateScene(fxmlFileName);
+            } else if (fxmlFileName.equals(MAIN_SCENE)) {
+                if (!sceneController.sceneExists(fxmlFileName)) {
+                    MainAppFXMLController controller = new MainAppFXMLController();
+                    Parent root = FxUIHelper.loadFXML(fxmlFileName, controller);
+                    sceneController.addScene(MAIN_SCENE, root);
+                }
+                sceneController.activateScene(fxmlFileName);
             }
             //TODO: You can register or activate additional scenes here, 
             //      based on the logic used to add the secondary scene (as shown above).            

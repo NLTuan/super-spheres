@@ -1,5 +1,6 @@
 package edu.vanier.template.controllers;
 
+import edu.vanier.template.ui.MainApp;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
@@ -23,6 +24,8 @@ public class StartPageController {
     // I'm not sure but here its probably going to be with the scene controller to change scene
     public  void handleStartButton(){
         // we add logic here
+        System.out.println("hello");
+        MainApp.switchScene(MainApp.SECONDARY_SCENE);
     }
 
 }
