@@ -14,7 +14,7 @@
                <children>
                   <StackPane prefHeight="160.0" prefWidth="150.0">
                      <children>
-                        <ImageView fx:id="emptySystemImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
+                        <ImageView fx:id="emptySystemImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true">
                            <image>
                               <Image url="@../EmptySystem.jpg" />
                            </image>
@@ -24,7 +24,7 @@
                   </StackPane>
                   <Label text="Empty" textFill="WHITE">
                      <font>
-                        <Font name="Dubai Light" size="12.0" />
+                        <Font name="Dubai Light" size="15.0" />
                      </font>
                   </Label>
                </children>
@@ -43,7 +43,7 @@
                   </StackPane>
                   <Label text="Asteroid Belt" textFill="WHITE">
                      <font>
-                        <Font name="Dubai Light" size="12.0" />
+                        <Font name="Dubai Light" size="15.0" />
                      </font>
                   </Label>
                </children>
@@ -62,7 +62,7 @@
                   </StackPane>
                   <Label text="Solar System" textFill="WHITE">
                      <font>
-                        <Font name="Dubai Light" size="12.0" />
+                        <Font name="Dubai Light" size="15.0" />
                      </font>
                   </Label>
                </children>
@@ -93,9 +93,9 @@
                   <Insets right="40.0" />
                </StackPane.margin>
                <children>
-                  <Button fx:id="returnToStart" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" text="Return to Start Page" textFill="WHITE">
+                  <Button fx:id="returnToStart" mnemonicParsing="false" prefHeight="35.0" prefWidth="157.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" text="Return to Start Page" textFill="WHITE">
                      <font>
-                        <Font name="Dubai Regular" size="12.0" />
+                        <Font name="Dubai Regular" size="14.0" />
                      </font>
                   </Button>
                </children>
