@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <center>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+        <HBox alignment="CENTER" prefHeight="167.0" prefWidth="593.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER">
                <children>
                   <StackPane prefHeight="160.0" prefWidth="150.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="emptySystemImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Template_Background.jpg" />
+                              <Image url="@../EmptySystem.jpg" />
                            </image>
-                        </ImageView>                                
+                        </ImageView>
                                 <Button fx:id="btnSwitchScene" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text=" " />
                      </children>
                   </StackPane>
@@ -33,15 +33,15 @@
                <children>
                   <StackPane prefHeight="160.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../Template_Background.jpg" />
+                              <Image url="@../AsteroidBelt.jpeg" />
                            </image>
                         </ImageView>
                         <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text=" " />
                      </children>
                   </StackPane>
-                  <Label text="Empty" textFill="WHITE">
+                  <Label text="Asteroid Belt" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
@@ -52,15 +52,15 @@
                <children>
                   <StackPane prefHeight="160.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../Template_Background.jpg" />
+                              <Image url="@../SolarSystem.jpg" />
                            </image>
                         </ImageView>
                         <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
                      </children>
                   </StackPane>
-                  <Label text="Empty" textFill="WHITE">
+                  <Label text="Solar System" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
@@ -69,22 +69,38 @@
             </VBox>
          </children>
         </HBox>
-    </center>
+   </center>
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="570.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="80.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="26.0" prefWidth="125.0" text="Pick a Template" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="125.0" prefWidth="560.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <Label prefHeight="26.0" prefWidth="169.0" text="Pick a Template" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <StackPane.margin>
+                  <Insets left="40.0" />
+               </StackPane.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <StackPane.margin>
+                  <Insets right="40.0" />
+               </StackPane.margin>
+               <children>
+                  <Button fx:id="returnToStart" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #333333;" text="Return to Start Page" textFill="WHITE">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <BorderPane.margin>
-            <Insets left="30.0" />
-         </BorderPane.margin>
-      </HBox>
+      </StackPane>
    </top>
 </BorderPane>
