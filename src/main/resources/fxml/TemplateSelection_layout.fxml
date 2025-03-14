@@ -19,12 +19,12 @@
                               <Image url="@../EmptySystem.jpg" />
                            </image>
                         </ImageView>
-                                <Button fx:id="btnSwitchScene" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text=" " />
+                                <Button fx:id="btnTemplateSelection" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text=" " />
                      </children>
                   </StackPane>
                   <Label text="Empty" textFill="WHITE">
                      <font>
-                        <Font name="System Bold Italic" size="12.0" />
+                        <Font name="Dubai Light" size="12.0" />
                      </font>
                   </Label>
                </children>
@@ -43,7 +43,7 @@
                   </StackPane>
                   <Label text="Asteroid Belt" textFill="WHITE">
                      <font>
-                        <Font name="System Bold Italic" size="12.0" />
+                        <Font name="Dubai Light" size="12.0" />
                      </font>
                   </Label>
                </children>
@@ -62,7 +62,7 @@
                   </StackPane>
                   <Label text="Solar System" textFill="WHITE">
                      <font>
-                        <Font name="System Bold Italic" size="12.0" />
+                        <Font name="Dubai Light" size="12.0" />
                      </font>
                   </Label>
                </children>
@@ -71,7 +71,7 @@
         </HBox>
    </center>
    <top>
-      <StackPane prefHeight="80.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #171717;" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="125.0" prefWidth="560.0">
                <opaqueInsets>
@@ -80,7 +80,7 @@
                <children>
                   <Label prefHeight="26.0" prefWidth="169.0" text="Pick a Template" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="17.0" />
+                        <Font name="Dubai Bold" size="17.0" />
                      </font>
                   </Label>
                </children>
@@ -93,9 +93,9 @@
                   <Insets right="40.0" />
                </StackPane.margin>
                <children>
-                  <Button fx:id="returnToStart" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #333333;" text="Return to Start Page" textFill="WHITE">
+                  <Button fx:id="returnToStart" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" text="Return to Start Page" textFill="WHITE">
                      <font>
-                        <Font name="System Italic" size="12.0" />
+                        <Font name="Dubai Regular" size="12.0" />
                      </font>
                   </Button>
                </children>

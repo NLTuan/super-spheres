@@ -20,7 +20,7 @@ public class TemplateSelectionController {
     @FXML
     BorderPane borderPane;
     @FXML
-    Button btnSwitchScene;
+    Button btnTemplateSelection;
     @FXML
     Button returnToStart;
     @FXML
@@ -29,7 +29,7 @@ public class TemplateSelectionController {
     @FXML
     public void initialize() {
         logger.info("Initializing MainAppController...");
-        btnSwitchScene.setOnAction(this::loadPrimaryScene);
+        btnTemplateSelection.setOnAction(this::loadPrimaryScene);
         returnToStart.setOnAction(this::returnToStart);
         emptySystemImage.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.5));
     }
