@@ -4,6 +4,7 @@ import edu.vanier.template.ui.MainApp;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import org.slf4j.Logger;
@@ -24,14 +25,35 @@ public class TemplateSelectionController {
     @FXML
     Button returnToStart;
     @FXML
+    Button btnTemplateSelection2;
+    @FXML
+    Button btnTemplateSelection3;
+    @FXML
     ImageView emptySystemImage;
+    @FXML
+    ImageView asteroidSystemImage;
+    @FXML
+    ImageView solarSystemImage;
 
     @FXML
     public void initialize() {
         logger.info("Initializing MainAppController...");
         btnTemplateSelection.setOnAction(this::loadPrimaryScene);
         returnToStart.setOnAction(this::returnToStart);
-        emptySystemImage.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.5));
+        emptySystemImage.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.25));
+        asteroidSystemImage.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.25));
+        solarSystemImage.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.25));
+        emptySystemImage.fitHeightProperty().bind(borderPane.heightProperty().multiply(0.4));
+        asteroidSystemImage.fitHeightProperty().bind(borderPane.heightProperty().multiply(0.4));
+        solarSystemImage.fitHeightProperty().bind(borderPane.heightProperty().multiply(0.4));
+
+
+        btnTemplateSelection.prefWidthProperty().bind(emptySystemImage.fitWidthProperty());
+        btnTemplateSelection2.prefWidthProperty().bind(asteroidSystemImage.fitWidthProperty());
+        btnTemplateSelection3.prefWidthProperty().bind(solarSystemImage.fitWidthProperty());
+        btnTemplateSelection.prefHeightProperty().bind(emptySystemImage.fitHeightProperty());
+        btnTemplateSelection2.prefHeightProperty().bind(asteroidSystemImage.fitHeightProperty());
+        btnTemplateSelection3.prefHeightProperty().bind(solarSystemImage.fitHeightProperty());
     }
 
     private void loadPrimaryScene(Event e) {

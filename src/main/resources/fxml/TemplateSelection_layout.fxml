@@ -14,7 +14,7 @@
                <children>
                   <StackPane prefHeight="160.0" prefWidth="150.0">
                      <children>
-                        <ImageView fx:id="emptySystemImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="emptySystemImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
                            <image>
                               <Image url="@../EmptySystem.jpg" />
                            </image>
@@ -33,12 +33,12 @@
                <children>
                   <StackPane prefHeight="160.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true">
+                        <ImageView fx:id="asteroidSystemImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true">
                            <image>
                               <Image url="@../AsteroidBelt.jpeg" />
                            </image>
                         </ImageView>
-                        <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text=" " />
+                        <Button fx:id="btnTemplateSelection2" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text=" " />
                      </children>
                   </StackPane>
                   <Label text="Asteroid Belt" textFill="WHITE">
@@ -52,12 +52,12 @@
                <children>
                   <StackPane prefHeight="160.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true">
+                        <ImageView fx:id="solarSystemImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true">
                            <image>
                               <Image url="@../SolarSystem.jpg" />
                            </image>
                         </ImageView>
-                        <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
+                        <Button fx:id="btnTemplateSelection3" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
                      </children>
                   </StackPane>
                   <Label text="Solar System" textFill="WHITE">
