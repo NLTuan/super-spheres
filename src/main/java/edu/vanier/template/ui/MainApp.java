@@ -2,7 +2,7 @@ package edu.vanier.template.ui;
 
 import edu.vanier.template.controllers.MainAppFXMLController;
 import edu.vanier.template.controllers.SceneController;
-import edu.vanier.template.controllers.SecondaryFXMLController;
+import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.controllers.StartPageController;
 import edu.vanier.template.helpers.FxUIHelper;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class MainApp extends Application {
     public static final String START_SCENE = "StartPage_layout";
     public static final String MAIN_SCENE = "MainApp_layout";
     // The FXML file name of the secondary scene.
-    public static final String SECONDARY_SCENE = "secondary_layout";
+    public static final String TEMPLATE_SELECTION_LAYOUT = "TemplateSelection_layout";
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
     private static Scene scene;
     private static SceneController sceneController;
@@ -81,13 +81,13 @@ public class MainApp extends Application {
                 // was already done in the start method.                
                 sceneController.activateScene(fxmlFileName);
 
-            } else if (fxmlFileName.equals(SECONDARY_SCENE)) {
+            } else if (fxmlFileName.equals(TEMPLATE_SELECTION_LAYOUT)) {
                 if (!sceneController.sceneExists(fxmlFileName)) {
                     // Instantiate the corresponding FXML controller if the 
                     // specified scene is being loaded for the frist time.
-                    SecondaryFXMLController controller = new SecondaryFXMLController();
+                    TemplateSelectionController controller = new TemplateSelectionController();
                     Parent root = FxUIHelper.loadFXML(fxmlFileName, controller);
-                    sceneController.addScene(SECONDARY_SCENE, root);
+                    sceneController.addScene(TEMPLATE_SELECTION_LAYOUT, root);
                 }
                 // The scene has been previously added, we active it.
                 sceneController.activateScene(fxmlFileName);

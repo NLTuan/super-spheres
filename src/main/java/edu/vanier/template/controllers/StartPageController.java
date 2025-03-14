@@ -23,7 +23,7 @@ public class StartPageController {
     }
     // I'm not sure but here its probably going to be with the scene controller to change scene
     public  void handleStartButton(){
-        MainApp.switchScene(MainApp.SECONDARY_SCENE);
+        MainApp.switchScene(MainApp.TEMPLATE_SELECTION_LAYOUT);
     }
 
 }

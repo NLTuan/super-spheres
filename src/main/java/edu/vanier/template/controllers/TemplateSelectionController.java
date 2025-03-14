@@ -1,8 +1,6 @@
 package edu.vanier.template.controllers;
 
 import edu.vanier.template.ui.MainApp;
-import java.io.IOException;
-import java.util.logging.Level;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,9 +14,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author frostybee
  */
-public class SecondaryFXMLController {
+public class TemplateSelectionController {
 
-    private final static Logger logger = LoggerFactory.getLogger(SecondaryFXMLController.class);
+    private final static Logger logger = LoggerFactory.getLogger(TemplateSelectionController.class);
     @FXML
     BorderPane borderPane;
     @FXML

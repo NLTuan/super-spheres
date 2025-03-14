@@ -38,7 +38,7 @@ public class MainAppFXMLController {
     }
 
     private void loadSecondaryScene(Event e) {
-        MainApp.switchScene(MainApp.SECONDARY_SCENE);
+        MainApp.switchScene(MainApp.TEMPLATE_SELECTION_LAYOUT);
         logger.info("Loaded the secondary scene...");
     }
 
