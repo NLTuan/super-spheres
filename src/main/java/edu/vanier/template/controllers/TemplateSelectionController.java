@@ -4,7 +4,6 @@ import edu.vanier.template.ui.MainApp;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import org.slf4j.Logger;
@@ -39,7 +38,22 @@ public class TemplateSelectionController {
     public void initialize() {
         logger.info("Initializing MainAppController...");
         btnTemplateSelection.setOnAction(this::loadPrimaryScene);
-        returnToStart.setOnAction(this::returnToStart);
+        btnTemplateSelection2.setOnAction(this::loadPrimaryScene);
+        btnTemplateSelection3.setOnAction(this::loadPrimaryScene);
+        returnToStart.setOnAction(this::handleReturnToStartButton);
+        initializeBinding();
+    }
+
+    private void loadPrimaryScene(Event e) {
+        MainApp.switchScene(MainApp.MAIN_SCENE);
+        logger.info("Loaded the primary scene...");
+    }
+
+    private void handleReturnToStartButton(Event e) {
+        MainApp.switchScene(MainApp.START_SCENE);
+    }
+
+    private void initializeBinding() {
         emptySystemImage.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.25));
         asteroidSystemImage.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.25));
         solarSystemImage.fitWidthProperty().bind(borderPane.widthProperty().multiply(0.25));
@@ -54,14 +68,5 @@ public class TemplateSelectionController {
         btnTemplateSelection.prefHeightProperty().bind(emptySystemImage.fitHeightProperty());
         btnTemplateSelection2.prefHeightProperty().bind(asteroidSystemImage.fitHeightProperty());
         btnTemplateSelection3.prefHeightProperty().bind(solarSystemImage.fitHeightProperty());
-    }
-
-    private void loadPrimaryScene(Event e) {
-        MainApp.switchScene(MainApp.MAIN_SCENE);
-        logger.info("Loaded the primary scene...");
-    }
-
-    private void returnToStart(Event e) {
-        MainApp.switchScene(MainApp.START_SCENE);
     }
 }
