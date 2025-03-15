@@ -14,4 +14,11 @@ public class SimulationPage {
     private SubScene subSceneSimulation;
     private Button buttonAdd;
     private HBox hBoxRootNode;
+
+    /**
+     * This method will build the empty template each template has a method  logic (for pre assets)
+     */
+    public void buildEmptySimulationPage(){
+
+    }
 }
