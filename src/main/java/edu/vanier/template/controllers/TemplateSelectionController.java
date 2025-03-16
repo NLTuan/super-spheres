@@ -45,8 +45,8 @@ public class TemplateSelectionController {
     }
 
     private void loadPrimaryScene(Event e) {
-       // MainApp.switchScene(MainApp.MAIN_SCENE);
-        MainApp.switchScene(MainApp.SIMULATION_PAGE_LAYOUT);
+        MainApp.switchScene(MainApp.MAIN_SCENE);
+       // MainApp.switchScene(MainApp.SIMULATION_PAGE_LAYOUT);
         logger.info("Loaded the primary scene...");
     }
 
