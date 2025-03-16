@@ -1,11 +1,6 @@
 package edu.vanier.template.ui;
 
-import edu.vanier.template.controllers.MainAppFXMLController;
-import edu.vanier.template.controllers.SceneController;
-import edu.vanier.template.controllers.TemplateSelectionController;
-import edu.vanier.template.controllers.VoidSimulationController;
-import edu.vanier.template.controllers.CreatePlanetController;
-import edu.vanier.template.controllers.StartPageController;
+import edu.vanier.template.controllers.*;
 import edu.vanier.template.helpers.FxUIHelper;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -36,6 +31,8 @@ public class MainApp extends Application {
     public static final String VOID_SIMULATION_LAYOUT = "VoidSimulation_layout";
     //declare the FXML file for the planet creation scene
     public static final String CREATE_PLANET_LAYOUT = "CreatePlanet_layout";
+
+    public static  final String SIMULATIONS_LAYOUT = "Simulations_layout";
 
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
     private static Scene scene;
@@ -121,7 +118,15 @@ public class MainApp extends Application {
                     sceneController.addScene(CREATE_PLANET_LAYOUT, root);
                 }
                 sceneController.activateScene(fxmlFileName);
+            } else if (fxmlFileName.equals(SIMULATIONS_LAYOUT)) {
+                if(!sceneController.sceneExists(fxmlFileName)){
+                    SimulationsController controller = new SimulationsController();
+                    Parent root = FxUIHelper.loadFXML(fxmlFileName, controller);
+                    sceneController.addScene(SIMULATIONS_LAYOUT, root);
+                }
+                sceneController.activateScene(fxmlFileName);
             }
+
 
             //TODO: You can register or activate additional scenes here, 
             //      based on the logic used to add the secondary scene (as shown above).            
