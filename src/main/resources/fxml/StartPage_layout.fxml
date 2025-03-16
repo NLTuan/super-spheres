@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="vboxRootNode" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-image: url('SpaceBackground.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="vboxRootNode" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-image: url('SpaceBackground.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/22.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="labelTitle" contentDisplay="CENTER" lineSpacing="2.0" prefHeight="72.0" prefWidth="251.0" style="-fx-font-family: 'Dubai Medium'; -fx-font-size: 40; -fx-font-weight: Bold;" text="Super Spheres">
          <font>
