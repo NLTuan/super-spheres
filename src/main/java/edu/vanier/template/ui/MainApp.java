@@ -3,6 +3,8 @@ package edu.vanier.template.ui;
 import edu.vanier.template.controllers.MainAppFXMLController;
 import edu.vanier.template.controllers.SceneController;
 import edu.vanier.template.controllers.TemplateSelectionController;
+import edu.vanier.template.controllers.VoidSimulationController;
+import edu.vanier.template.controllers.CreatePlanetController;
 import edu.vanier.template.controllers.StartPageController;
 import edu.vanier.template.helpers.FxUIHelper;
 import java.io.IOException;
@@ -30,7 +32,11 @@ public class MainApp extends Application {
     public static final String MAIN_SCENE = "MainApp_layout";
     // The FXML file name of the secondary scene.
     public static final String TEMPLATE_SELECTION_LAYOUT = "TemplateSelection_layout";
-    public  static  final  String SIMULATION_PAGE_LAYOUT = "SimulationPage_layout";
+    //declare the FXML file for the void scene
+    public static final String VOID_SIMULATION_LAYOUT = "VoidSimulation_layout";
+    //declare the FXML file for the planet creation scene
+    public static final String CREATE_PLANET_LAYOUT = "CreatePlanet_layout";
+
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
     private static Scene scene;
     private static SceneController sceneController;
@@ -56,7 +62,7 @@ public class MainApp extends Application {
             primaryStage.sizeToScene();
             primaryStage.setTitle("Super Spheres");
             // Request putting this appliation's main window on top of other 
-            // already-opened windows upon launching t he app.
+            // already-opened windows upon launching the app.
             primaryStage.setAlwaysOnTop(true);
             primaryStage.show();
             primaryStage.setAlwaysOnTop(false);
@@ -78,19 +84,19 @@ public class MainApp extends Application {
     public static void switchScene(String fxmlFileName) {
         try {
             if (fxmlFileName.equals(START_SCENE)) {
-                // No need to register the primary scene as it 
-                // was already done in the start method.                
-                sceneController.activateScene(fxmlFileName);
-
-            } else if (fxmlFileName.equals(TEMPLATE_SELECTION_LAYOUT)) {
-                if (!sceneController.sceneExists(fxmlFileName)) {
+                    // No need to register the primary scene as it
+                    // was already done in the start method.
+                    sceneController.activateScene(fxmlFileName);
+            }
+            else if (fxmlFileName.equals(TEMPLATE_SELECTION_LAYOUT)) {
+                    if (!sceneController.sceneExists(fxmlFileName)) {
                     // Instantiate the corresponding FXML controller if the 
-                    // specified scene is being loaded for the frist time.
+                    // specified scene is being loaded for the first time.
                     TemplateSelectionController controller = new TemplateSelectionController();
                     Parent root = FxUIHelper.loadFXML(fxmlFileName, controller);
                     sceneController.addScene(TEMPLATE_SELECTION_LAYOUT, root);
                 }
-                // The scene has been previously added, we active it.
+                // The scene has been previously added, we activate it.
                 sceneController.activateScene(fxmlFileName);
             } else if (fxmlFileName.equals(MAIN_SCENE)) {
                 if (!sceneController.sceneExists(fxmlFileName)) {
@@ -99,14 +105,24 @@ public class MainApp extends Application {
                     sceneController.addScene(MAIN_SCENE, root);
                 }
                 sceneController.activateScene(fxmlFileName);
-            } else if (fxmlFileName.equals(SIMULATION_PAGE_LAYOUT)) {
-                if(!sceneController.sceneExists(SIMULATION_PAGE_LAYOUT)){
-                    MainAppFXMLController mainAppFXMLController = new MainAppFXMLController();
-                    Parent root = FxUIHelper.loadFXML(fxmlFileName,mainAppFXMLController);
-                    sceneController.addScene(SIMULATION_PAGE_LAYOUT,root);
-                }
-               sceneController.activateScene(SIMULATION_PAGE_LAYOUT);
             }
+         else if (fxmlFileName.equals(VOID_SIMULATION_LAYOUT)) {
+            if (!sceneController.sceneExists(fxmlFileName)) {
+                VoidSimulationController controller = new VoidSimulationController();
+                Parent root = FxUIHelper.loadFXML(fxmlFileName, controller);
+                sceneController.addScene(VOID_SIMULATION_LAYOUT, root);
+            }
+            sceneController.activateScene(fxmlFileName);
+        }
+            else if (fxmlFileName.equals(CREATE_PLANET_LAYOUT)) {
+                if (!sceneController.sceneExists(fxmlFileName)) {
+                    CreatePlanetController controller = new CreatePlanetController();
+                    Parent root = FxUIHelper.loadFXML(fxmlFileName, controller);
+                    sceneController.addScene(CREATE_PLANET_LAYOUT, root);
+                }
+                sceneController.activateScene(fxmlFileName);
+            }
+
             //TODO: You can register or activate additional scenes here, 
             //      based on the logic used to add the secondary scene (as shown above).            
         } catch (IOException ex) {
