@@ -25,6 +25,19 @@ public class SimulationPageController {
         // handles the logic of the add button
         buttonAddPlanet.setOnAction(e->{});
     }
+    public void initializeBinding(){
+        // bind the stack pane to the subscene
+        stackPaneRootNode.prefWidthProperty().bind(subSceneSimulationPage.widthProperty());
+        stackPaneRootNode.prefHeightProperty().bind(subSceneSimulationPage.heightProperty());
+
+        // do the reverse thing since I don't have the scene itself
+        subSceneSimulationPage.widthProperty().bind(stackPaneRootNode.widthProperty());
+        subSceneSimulationPage.heightProperty().bind(stackPaneRootNode.heightProperty());
+
+        // make sure the button is at the button right of the screen (change the value if not satisfied)
+        buttonAddPlanet.layoutXProperty().bind(subSceneSimulationPage.widthProperty().multiply(0.90));
+        buttonAddPlanet.layoutYProperty().bind(subSceneSimulationPage.heightProperty().multiply(0.95));
+    }
 
     public  void addPlanet(){
         //add planet logic, this is probably going to a switch scene customization
