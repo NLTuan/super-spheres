@@ -37,7 +37,7 @@ public class TemplateSelectionController {
     @FXML
     public void initialize() {
         logger.info("Initializing MainAppController...");
-        btnTemplateSelection.setOnAction(this::loadPrimaryScene);
+        btnTemplateSelection.setOnAction(this::loadVoidPage);
         btnTemplateSelection2.setOnAction(this::loadPrimaryScene);
         btnTemplateSelection3.setOnAction(this::loadPrimaryScene);
         returnToStart.setOnAction(this::handleReturnToStartButton);
@@ -48,6 +48,10 @@ public class TemplateSelectionController {
         MainApp.switchScene(MainApp.MAIN_SCENE);
        // MainApp.switchScene(MainApp.SIMULATION_PAGE_LAYOUT);
         logger.info("Loaded the primary scene...");
+    }
+    private void loadVoidPage(Event e) {
+        MainApp.switchScene(MainApp.VOID_SIMULATION_LAYOUT);
+        logger.info("Loaded the void page scene...");
     }
 
     private void handleReturnToStartButton(Event e) {
