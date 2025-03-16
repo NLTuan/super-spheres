@@ -24,19 +24,32 @@ public class SimulationPageController {
     public void initialize(){
         // handles the logic of the add button
         buttonAddPlanet.setOnAction(e->{});
+        initializeBinding();
     }
     public void initializeBinding(){
         // bind the stack pane to the subscene
-        stackPaneRootNode.prefWidthProperty().bind(subSceneSimulationPage.widthProperty());
-        stackPaneRootNode.prefHeightProperty().bind(subSceneSimulationPage.heightProperty());
+        //stackPaneRootNode.prefWidthProperty().bind(subSceneSimulationPage.widthProperty());
+        //stackPaneRootNode.prefHeightProperty().bind(subSceneSimulationPage.heightProperty());
 
         // do the reverse thing since I don't have the scene itself
-        subSceneSimulationPage.widthProperty().bind(stackPaneRootNode.widthProperty());
-        subSceneSimulationPage.heightProperty().bind(stackPaneRootNode.heightProperty());
+        //subSceneSimulationPage.widthProperty().bind(stackPaneRootNode.widthProperty());
+        //subSceneSimulationPage.heightProperty().bind(stackPaneRootNode.heightProperty());
+        //subSceneSimulationPage.prefWidth(stackPaneRootNode.getWidth());
+        //subSceneSimulationPage.prefHeight(stackPaneRootNode.getHeight());
+
+
 
         // make sure the button is at the button right of the screen (change the value if not satisfied)
         buttonAddPlanet.layoutXProperty().bind(subSceneSimulationPage.widthProperty().multiply(0.90));
         buttonAddPlanet.layoutYProperty().bind(subSceneSimulationPage.heightProperty().multiply(0.95));
+
+        stackPaneRootNode.heightProperty().addListener(((observable, oldValue, newValue) -> {
+            subSceneSimulationPage.setWidth(newValue.doubleValue());
+        }));
+
+        stackPaneRootNode.heightProperty().addListener(((observable, oldValue, newValue) -> {
+            subSceneSimulationPage.setHeight(newValue.doubleValue());
+        }));
     }
 
     public  void addPlanet(){
