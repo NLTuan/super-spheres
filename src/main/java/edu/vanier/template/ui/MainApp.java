@@ -30,6 +30,7 @@ public class MainApp extends Application {
     public static final String MAIN_SCENE = "MainApp_layout";
     // The FXML file name of the secondary scene.
     public static final String TEMPLATE_SELECTION_LAYOUT = "TemplateSelection_layout";
+    public  static  final  String SIMULATION_PAGE_LAYOUT = "SimulationPage_layout";
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
     private static Scene scene;
     private static SceneController sceneController;
