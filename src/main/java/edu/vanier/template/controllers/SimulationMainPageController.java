@@ -92,7 +92,7 @@ public class SimulationMainPageController {
     public void handlerTitlePaneEvent(){
         this.tiltPanePlanets.expandedProperty().addListener((obs,oldValue,newValue)->{
             if(!newValue){
-                PauseTransition pauseTransition = new PauseTransition(Duration.seconds(0.2));
+                PauseTransition pauseTransition = new PauseTransition(Duration.seconds(0.25));
                 pauseTransition.setOnFinished(s->{
                     tiltPanePlanets.setExpanded(false);
                     hboxRootToolBar.setVisible(false);
