@@ -51,7 +51,7 @@ public class TemplateSelectionController {
     }
     private void loadVoidPage(Event e) {
        // MainApp.switchScene(MainApp.VOID_SIMULATION_LAYOUT);
-        MainApp.switchScene(MainApp.SIMULATIONS_LAYOUT);
+        MainApp.switchScene(MainApp.SIMULATION_MAIN_PAGE_LAYOUT);
         logger.info("Loaded the void page scene...");
     }
 
