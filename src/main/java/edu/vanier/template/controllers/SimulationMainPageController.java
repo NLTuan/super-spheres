@@ -11,13 +11,13 @@ import javafx.scene.paint.Color;
 public class SimulationMainPageController {
     // All the main containers:
     @FXML
-    private VBox vBoxMainRootNode;
+    private VBox vboxMainRootNode;
     @FXML
     private AnchorPane anchorPaneMainRootNode;
 
     //Containers with necessaryComponents:
     @FXML
-    private VBox vBoxAddPlanetButton;
+    private VBox vboxAddPlanetButton;
         //Components:
         @FXML
         private Button buttonAddPlanet;
@@ -67,6 +67,28 @@ public class SimulationMainPageController {
     private Camera camera = new PerspectiveCamera();
 
 
+    public  void  initializeBinding(){
+        if(this.subSceneSimulation == null || this.vboxMainRootNode == null){return;}
+        vboxMainRootNode.sceneProperty().addListener((obs, oldScene, newScene)->{
+
+           // if (newScene != null) {
+
+                this.subSceneSimulation.widthProperty().bind(newScene == null ? oldScene.widthProperty() : newScene.widthProperty());
+                this.subSceneSimulation.heightProperty().bind(newScene == null ? oldScene.heightProperty(): newScene.heightProperty());
+
+               /// this.subSceneSimulation.getRoot().prefWidth(newScene.getWidth());
+                //this.subSceneSimulation.getRoot().prefHeight(newScene.getHeight());
+                this.anchorPaneMainRootNode.setPrefWidth(newScene == null ? oldScene.getWidth() :  newScene.getWidth());
+                this.anchorPaneMainRootNode.setPrefHeight(newScene == null ? oldScene.getHeight() : newScene.getHeight());
+            Scene scene = vboxMainRootNode.getScene();
+           if (newScene != null) {
+               vboxAddPlanetButton.layoutXProperty().bind(scene.widthProperty().subtract(170)); // 50 pixels from right
+
+               vboxAddPlanetButton.layoutYProperty().bind(scene.heightProperty().subtract(180));
+           }
+
+        });
+    }
 
     public  void setSubSceneSimulation(){
         this.subSceneSimulation.setFill(Color.BLACK);
@@ -75,6 +97,7 @@ public class SimulationMainPageController {
     }
     @FXML
     public  void initialize(){
+        initializeBinding();
         setSubSceneSimulation();
     }
 
