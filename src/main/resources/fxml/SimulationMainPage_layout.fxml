@@ -88,7 +88,7 @@
                               <Rectangle arcHeight="5.0" arcWidth="100.0" fill="#7c7c7c" height="54.0" layoutX="20.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="83.0" />
                               <Circle fill="#eeeeee" layoutX="37.0" layoutY="48.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                               <Circle fill="#8e8f90" layoutX="61.0" layoutY="61.0" radius="13.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" />
-                              <Button fx:id="buttonCamera" layoutX="15.0" layoutY="30.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" style="-fx-background-color: transparent;" />
+                              <Button fx:id="buttonCamera" layoutX="15.0" layoutY="30.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="108.0" style="-fx-background-color: transparent;" />
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ababab" height="4.0" layoutX="53.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="16.0" />
                            </children>
                         </AnchorPane>

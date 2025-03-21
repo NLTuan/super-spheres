@@ -1,15 +1,18 @@
 package edu.vanier.template.controllers;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
+import javafx.util.Duration;
 
 public class SimulationMainPageController {
     // All the main containers:
@@ -56,7 +59,13 @@ public class SimulationMainPageController {
             private Label labelStatisticVelocityValue;
             @FXML
             private Label labelStatisticPlanetName;
-
+    @FXML
+    private VBox vboxCameraControls;
+        //Components(essentials):
+        @FXML
+        private Button buttonSetBackOrigin;
+        @FXML
+        private TextField textFieldCameraSpeed;
 
 
 
@@ -81,23 +90,42 @@ public class SimulationMainPageController {
 
     }
     public void handlerTitlePaneEvent(){
-
         this.tiltPanePlanets.expandedProperty().addListener((obs,oldValue,newValue)->{
-
             if(!newValue){
-                tiltPanePlanets.setExpanded(false);
+                PauseTransition pauseTransition = new PauseTransition(Duration.seconds(0.2));
+                pauseTransition.setOnFinished(s->{
+                    tiltPanePlanets.setExpanded(false);
+                    hboxRootToolBar.setVisible(false);
+                    hboxRootToolBar.setManaged(false);
+                    vboxAddPlanetButton.setVisible(true);
+                    vboxAddPlanetButton.setManaged(true);
+                });
+                pauseTransition.play();
 
-                hboxRootToolBar.setVisible(false);
-                hboxRootToolBar.setManaged(false);
-                vboxAddPlanetButton.setVisible(true);
-                vboxAddPlanetButton.setManaged(true);
+
+
             }
         });
+    }
 
+    public void handlerCameraButtonEvent(){
+        //animations logic to be added
+        this.buttonCamera.setOnAction(e->{
+            if(!this.vboxCameraControls.isVisible()) {
+                this.vboxCameraControls.setVisible(true);
+                this.vboxCameraControls.setManaged(true);
+            }else{
+                this.vboxCameraControls.setVisible(false);
+                this.vboxCameraControls.setManaged(false);
+            }
+
+        });
     }
 
     public  void  initializeBinding(){
         this.tiltPanePlanets.setExpanded(false);
+        this.vboxCameraControls.setManaged(false);
+        this.vboxCameraControls.setVisible(false);
         Sphere sphere = new Sphere(30);
         sphere.setMaterial(new PhongMaterial(Color.CORAL));
         this.tilePanePlanets.getChildren().add(sphere);
@@ -114,20 +142,12 @@ public class SimulationMainPageController {
             this.subSceneSimulation.heightProperty().bind(newScene == null ? oldScene.heightProperty(): newScene.heightProperty());
 
             this.hboxRootToolBar.prefWidthProperty().bind(newScene == null ? oldScene.widthProperty() : newScene.widthProperty());
-           // this.hboxRootToolBar.prefHeightProperty().bind(newScene == null ? oldScene.heightProperty(): newScene.heightProperty());
 
-           // this.hboxRootToolBar.setStyle("-fx-border-color: red");
             this.anchorPaneToolBarKit.prefWidthProperty().bind((newScene == null ? oldScene.widthProperty() : newScene.widthProperty()));
            // this.anchorPaneToolBarKit.setStyle("-fx-border-color: blue");
 
             this.tiltPanePlanets.prefWidthProperty().bind(hboxRootToolBar.prefWidthProperty());
             this.tilePanePlanets.prefWidthProperty().bind((hboxRootToolBar.prefWidthProperty()));
-            //this.hboxRootToolBar.layoutYProperty().bind(newScene == null ? oldScene.heightProperty().subtract(hboxRootToolBar.getHeight()): newScene.heightProperty().subtract(hboxRootToolBar.getHeight()));
-
-
-
-
-
 
         });
 
@@ -149,8 +169,10 @@ public class SimulationMainPageController {
     }
     @FXML
     public  void initialize(){
+        // Button events
+        this.buttonAddPlanet.setOnAction(e->{handlerButtonAddPlanetEvent();});
+       handlerCameraButtonEvent();
 
-        buttonAddPlanet.setOnAction(e->{handlerButtonAddPlanetEvent();});
         initializeBinding();
 
         setSubSceneSimulation();
