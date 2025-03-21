@@ -64,7 +64,6 @@ public class SimulationMainPageController {
 
     //Non fxml field members:
     private Group groupRootNode = new Group();
-
     private Camera camera = new PerspectiveCamera();
 
 
@@ -72,10 +71,8 @@ public class SimulationMainPageController {
     public  void setSubSceneSimulation(){
         this.subSceneSimulation.setFill(Color.BLACK);
         this.subSceneSimulation.setCamera(this.camera);
-        this.subSceneSimulation.getRoot().setStyle("-fx-background-color: transparent");
-        this.subSceneSimulation.setCamera(camera);
-        this.subSceneSimulation.getRoot().setStyle("-fx-background-color: transparent");
-
+        this.subSceneSimulation.getRoot().setManaged(false);
+        this.subSceneSimulation.setVisible(false);
     }
     @FXML
     public  void initialize(){
