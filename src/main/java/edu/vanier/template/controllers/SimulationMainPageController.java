@@ -71,8 +71,7 @@ public class SimulationMainPageController {
     public  void setSubSceneSimulation(){
         this.subSceneSimulation.setFill(Color.BLACK);
         this.subSceneSimulation.setCamera(this.camera);
-        this.subSceneSimulation.getRoot().setManaged(false);
-        this.subSceneSimulation.setVisible(false);
+        this.subSceneSimulation.getRoot().setStyle("-fx-background-color: transparent");
     }
     @FXML
     public  void initialize(){
