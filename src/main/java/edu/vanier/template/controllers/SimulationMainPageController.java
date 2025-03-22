@@ -1,5 +1,6 @@
 package edu.vanier.template.controllers;
 
+import edu.vanier.template.sim.CameraControlsHandler;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Sphere;
 import javafx.util.Duration;
 
@@ -77,7 +79,7 @@ public class SimulationMainPageController {
 
     //Non fxml field members:
     private Group groupRootNode = new Group();
-    private Camera camera = new PerspectiveCamera();
+    private PerspectiveCamera camera = new PerspectiveCamera(true);
 
 
     public  void handlerButtonAddPlanetEvent(){
@@ -160,12 +162,46 @@ public class SimulationMainPageController {
             vboxAddPlanetButton.setLayoutY(newHeight.doubleValue() - 150);
             hboxRootToolBar.setLayoutY(newHeight.doubleValue() * 0.88);
         });
+
+    }
+    public  void handleCamera(){
+        Box box = new Box(25,25,20);
+        box.setMaterial(new PhongMaterial(Color.RED));
+
+
+        groupRootNode.getChildren().add(box);
+        this.camera.setFarClip(10000);
+        this.camera.setNearClip(0.0001);
+        this.camera.setTranslateZ(-100);
+        this.camera.setTranslateX(this.subSceneSimulation.getWidth()/2);
+        this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
+
+
+
+       // this.subSceneSimulation.setRoot(groupRootNode);
+        this.subSceneSimulation.setRoot(groupRootNode);
+        this.subSceneSimulation.getRoot().setTranslateX(this.subSceneSimulation.getWidth() / 2);
+        this.subSceneSimulation.getRoot().setTranslateY(this.subSceneSimulation.getHeight() / 2);
+        this.subSceneSimulation.getRoot().setTranslateZ(0);
+        this.subSceneSimulation.setCamera(this.camera);
+        CameraControlsHandler cameraControlsHandler = new CameraControlsHandler(camera);
+
+        this.subSceneSimulation.sceneProperty().addListener((obs, oldScene, newScene)->{
+           // if (oldScene != null || newScene != null){
+
+                cameraControlsHandler.setMovementAllow(true);
+                cameraControlsHandler.handleCamera(subSceneSimulation.getScene());
+           // }
+        });
+
+
+
     }
 
     public  void setSubSceneSimulation(){
         this.subSceneSimulation.setFill(Color.BLACK);
         this.subSceneSimulation.setCamera(this.camera);
-        this.subSceneSimulation.getRoot().setStyle("-fx-background-color: transparent");
+        //this.subSceneSimulation.getRoot().setStyle("-fx-background-color: transparent");
     }
     @FXML
     public  void initialize(){
@@ -177,6 +213,9 @@ public class SimulationMainPageController {
 
         setSubSceneSimulation();
         handlerTitlePaneEvent();
+
+        handleCamera();
+
     }
 
 }

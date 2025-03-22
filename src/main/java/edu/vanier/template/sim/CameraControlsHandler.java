@@ -1,9 +1,13 @@
 package edu.vanier.template.sim;
 
 import edu.vanier.template.math.Vector3D;
+import javafx.animation.AnimationTimer;
 import javafx.scene.Camera;
 import javafx.scene.PerspectiveCamera;
+import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
@@ -16,19 +20,19 @@ import java.util.Vector;
  * @author Josue
  */
 public class CameraControlsHandler {
-    private final Camera camera  = new PerspectiveCamera(true);
+    private PerspectiveCamera camera;
 
 
     //This is for rotations yaw is about the Y axis (left or right) and pitch is a rotation about the X axis (up and down)
     private double yaw = 0;
     private double pitch = 0;
 
-    private  double MAX_SPEED = 0.3;
+    private  double MAX_SPEED = 10;
 
     private double speed = 0;
 
 
-    private  double acceleration = 0.02;
+    private  double acceleration = 0.2;
 
     private  boolean  rightClickedHeld = false;
 
@@ -36,6 +40,12 @@ public class CameraControlsHandler {
 
 
     private  final Set<KeyCode> activeKeys = new HashSet<>();
+
+    private boolean isMovementAllow = false;
+
+    public CameraControlsHandler(PerspectiveCamera camera){
+        this.camera = camera;
+    }
 
     /**
      * This method will help handle the rotations along the axis ( X,Y)
@@ -50,10 +60,11 @@ public class CameraControlsHandler {
 
         // So here what is being done is based on the drag detections we will set a value for the rotations
 
-        yaw -= deltaX * 0.2;
-        pitch -= deltaY * 0.2;
+        yaw += (deltaX/2) * 0.3;
+        pitch += (deltaY/2) * 0.3;
 
-        pitch = Math.max(-89, Math.min(89, pitch) );
+        pitch = Math.max(-49, Math.min(49, pitch) );
+        yaw = Math.max(-89,Math.min(89,yaw));
 
         updateCameraRotation();
 
@@ -120,25 +131,54 @@ public class CameraControlsHandler {
 
 
         //Acceleration effect soon...
-        if(true){
+        if(!activeKeys.isEmpty()){
             if(speed > MAX_SPEED){
                 speed = MAX_SPEED;
             }
             speed += acceleration;
         }else {
             // deceleration maybe
+            speed *= 0.90; // decreasing by 10 percent every frame
         }
 
 
 
-        Vector3D cameraTranslates = new Vector3D(camera.getTranslateX() , camera.getTranslateY(), camera.getTranslateZ());
 
-        Vector3D cameraMovements =new Vector3D(cameraTranslates.getX() + vector3DMoveVector.getX() * speed
-        , cameraTranslates.getY() + vector3DMoveVector.getY() * speed, cameraTranslates.getZ()+ vector3DMoveVector.getZ() * speed);
+        Vector3D cameraMovements = vector3DMoveVector.scaleVector3D(speed);
 
+        camera.setTranslateX( this.camera.getTranslateX() + cameraMovements.getX());
+        camera.setTranslateY(this.camera.getTranslateY() + cameraMovements.getY());
+        camera.setTranslateZ(this.camera.getTranslateZ() + cameraMovements.getZ());
+    }
 
-        camera.setTranslateX(cameraMovements.getX());
-        camera.setTranslateY(cameraMovements.getY());
-        camera.setTranslateZ(cameraMovements.getZ());
+    public void handleCamera(Scene scene){
+        AnimationTimer animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                updateMovement();
+            }
+        };
+        if (isMovementAllow) {
+            scene.setOnMousePressed(event -> {
+                if(event.getButton() == MouseButton.SECONDARY){
+                    rightClickedHeld = true;
+                    lastMouseX = event.getSceneX();
+                    lastMouseY = event.getSceneY();
+                }
+            });
+            animationTimer.start();
+            scene.setOnMouseReleased(event->{if (event.getButton() == MouseButton.SECONDARY ) rightClickedHeld = false;});
+
+            scene.setOnMouseDragged(this::handleMouseLook);
+            scene.setOnKeyPressed(event -> activeKeys.add(event.getCode()));
+            scene.setOnKeyReleased(event -> activeKeys.remove(event.getCode()));
+        }else{
+            animationTimer.stop();
+            return;
+        }
+    }
+
+    public void setMovementAllow(boolean movementAllow) {
+        isMovementAllow = movementAllow;
     }
 }
