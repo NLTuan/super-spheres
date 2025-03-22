@@ -23,7 +23,7 @@ public class CameraControlsHandler {
     private double yaw = 0;
     private double pitch = 0;
 
-    private final double MAX_SPEED = 0.3;
+    private  double MAX_SPEED = 0.3;
 
     private double speed = 0;
 
@@ -81,10 +81,10 @@ public class CameraControlsHandler {
         // this step is crucial since forward is not always forward so we have to get a relative direction
         // just like in roblox where you cant get a look vector, to do that we use our yaw and pitch values
         /*
-        Keep in mind javafx'axis are inverted !
+        Keep in mind javafx's axis are inverted !
          Understand did the trig:
          Math.sin(radYaw) : what it does is essentially take the x and z forward direction
-         Math.pitch(radPitch): take
+         Math.pitch(radPitch):
          */
         Vector3D vector3DForward = new Vector3D(Math.sin(radYaw) * Math.cos(radPitch),-Math.sin(radPitch), Math.cos(radYaw) * Math.cos(radPitch));
 
@@ -92,10 +92,50 @@ public class CameraControlsHandler {
 
         Vector3D vector3DMoveVector = new Vector3D(0,0,0);
 
+        if(activeKeys.contains(KeyCode.W)){
+            vector3DMoveVector.addToCurrentVector3D(vector3DForward);
+        }
+        if(activeKeys.contains(KeyCode.S)){
+            vector3DMoveVector.addToCurrentVector3D(vector3DForward.scaleVector3D(-1));
+        }
+        if(activeKeys.contains(KeyCode.A)){
+        vector3DMoveVector.addToCurrentVector3D(vector3DRight.scaleVector3D(-1));
+
+        }
+        if (activeKeys.contains(KeyCode.D)){
+           vector3DMoveVector.addToCurrentVector3D(vector3DRight);
+        }
+
+        if(activeKeys.contains(KeyCode.SPACE)){
+            vector3DMoveVector.addToCurrentVector3D(new Vector3D(0,-1,0));
+
+        }
+
+        if(activeKeys.contains(KeyCode.SHIFT)){
+            vector3DMoveVector.addToCurrentVector3D(new Vector3D(0,1,0));
+        }
+
+        // one of the thing that they do well in roblox is they normalize the vector for more accurate movement so i will do the same thing
+
+        vector3DMoveVector.normalizeVector3D();
+
+
+        //Acceleration effect soon...
+        if(true){
+            if(speed > MAX_SPEED){
+                speed = MAX_SPEED;
+            }
+            speed += acceleration;
+        }else {
+            // deceleration maybe
+        }
 
 
 
+        Vector3D cameraTranslates = new Vector3D(camera.getTranslateX() , camera.getTranslateY(), camera.getTranslateZ());
 
+        Vector3D cameraMovements =new Vector3D(cameraTranslates.getX() + vector3DMoveVector.getX() * speed
+        , cameraTranslates.getY() + vector3DMoveVector.getY() * speed, cameraTranslates.getZ()+ vector3DMoveVector.getZ() * speed);
 
     }
 }

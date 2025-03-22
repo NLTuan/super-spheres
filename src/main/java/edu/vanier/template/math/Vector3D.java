@@ -22,6 +22,11 @@ public class Vector3D {
         return new Vector3D(this.x + vector3D.x, this.y + vector3D.y, this.z + vector3D.z);
 
     }
+    public void addToCurrentVector3D(Vector3D other){
+        this.x += other.x;
+        this.y += other.y;
+        this.z += other.z;
+    }
 
     public Vector3D scaleVector3D(double scale) {
         return new Vector3D(this.x * scale, this.y * scale, this.z * scale);
