@@ -115,8 +115,7 @@ public class CameraControlsHandler {
             vector3DMoveVector.addToCurrentVector3D(new Vector3D(0,1,0));
         }
 
-        // one of the thing that they do well in roblox is they normalize the vector for more accurate movement so i will do the same thing
-
+        // one of the thing that they do well in roblox is they normalize the vector for more accurate movement so I will do the same thing
         vector3DMoveVector.normalizeVector3D();
 
 
@@ -137,5 +136,9 @@ public class CameraControlsHandler {
         Vector3D cameraMovements =new Vector3D(cameraTranslates.getX() + vector3DMoveVector.getX() * speed
         , cameraTranslates.getY() + vector3DMoveVector.getY() * speed, cameraTranslates.getZ()+ vector3DMoveVector.getZ() * speed);
 
+
+        camera.setTranslateX(cameraMovements.getX());
+        camera.setTranslateY(cameraMovements.getY());
+        camera.setTranslateZ(cameraMovements.getZ());
     }
 }
