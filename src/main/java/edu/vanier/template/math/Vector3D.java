@@ -37,6 +37,7 @@ public class Vector3D {
     }
 
     public void normalizeVector3D() {
+        if (this.getMagnitude() >0) return;
         this.x /= this.getMagnitude();
         this.y /= this.getMagnitude();
         this.z /= this.getMagnitude();
