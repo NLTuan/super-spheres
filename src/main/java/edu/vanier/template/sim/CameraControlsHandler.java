@@ -19,7 +19,7 @@ public class CameraControlsHandler {
     private final Camera camera  = new PerspectiveCamera(true);
 
 
-    //This is for rotations yaw is about the Z axis (left or right) and pitch is a rotation about the X axis (up and down)
+    //This is for rotations yaw is about the Y axis (left or right) and pitch is a rotation about the X axis (up and down)
     private double yaw = 0;
     private double pitch = 0;
 
