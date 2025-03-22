@@ -3,6 +3,7 @@ package edu.vanier.template.sim;
 import javafx.scene.Camera;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,4 +29,12 @@ public class CameraControlsHandler {
 
 
     private  final Set<KeyCode> activeKeys = new HashSet<>();
+
+    /**
+     * This method will help handle the rotations along the axis ( X,Y)
+     * @param event
+     */
+    private void handleMouseLook(MouseEvent event){
+
+    }
 }
