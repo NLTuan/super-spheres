@@ -66,4 +66,8 @@ public class CameraControlsHandler {
 
         camera.getTransforms().setAll(rotation);
     }
+
+    private void  updateMovement(){
+
+    }
 }
