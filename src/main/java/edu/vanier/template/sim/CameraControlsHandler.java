@@ -61,7 +61,7 @@ public class CameraControlsHandler {
         // So here what is being done is based on the drag detections we will set a value for the rotations
 
         yaw += (deltaX/2) * 0.3;
-        pitch += (deltaY/2) * 0.3;
+        pitch -= (deltaY/2) * 0.3;
 
         pitch = Math.max(-49, Math.min(49, pitch) );
         yaw = Math.max(-89,Math.min(89,yaw));
@@ -115,6 +115,14 @@ public class CameraControlsHandler {
         }
         if (activeKeys.contains(KeyCode.D)){
            vector3DMoveVector.addToCurrentVector3D(vector3DRight);
+        }
+        
+        if (activeKeys.contains(KeyCode.Q)){
+            vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, 1, 0));
+        }
+        
+        if (activeKeys.contains(KeyCode.E)){
+            vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, -1, 0));
         }
 
         if(activeKeys.contains(KeyCode.SPACE)){
