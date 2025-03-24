@@ -17,6 +17,7 @@ import javafx.scene.shape.Sphere;
 import javafx.util.Duration;
 
 public class SimulationMainPageController {
+
     // All the main containers:
     @FXML
     private VBox vboxMainRootNode;
@@ -26,64 +27,64 @@ public class SimulationMainPageController {
     //Containers with necessaryComponents:
     @FXML
     private VBox vboxAddPlanetButton;
-        //Components:
-        @FXML
-        private Button buttonAddPlanet;
-
-
+    //Components:
+    @FXML
+    private Button buttonAddPlanet;
 
     @FXML
     private HBox hboxRootToolBar;
-        // Components:
-        @FXML
-        private AnchorPane anchorPaneToolBarKit;
-        @FXML
-        private TitledPane tiltPanePlanets;
-        @FXML
-        private TilePane tilePanePlanets;
-        @FXML
-        private VBox vBoxCustomizeButton;
-        @FXML
-        private Button buttonCustomizePlanet;
+    // Components:
+    @FXML
+    private AnchorPane anchorPaneToolBarKit;
+    @FXML
+    private TitledPane tiltPanePlanets;
+    @FXML
+    private TilePane tilePanePlanets;
+    @FXML
+    private VBox vBoxCustomizeButton;
+    @FXML
+    private Button buttonCustomizePlanet;
 
-        @FXML
-        private VBox vboxCameraIcon;
-            //Components(Essential):
-                @FXML
-                private Button buttonCamera;
+    @FXML
+    private VBox vboxCameraIcon;
+    //Components(Essential):
+    @FXML
+    private Button buttonCamera;
 
-        @FXML
-        private  VBox vboxPlanetStatistic;
-            //Components(Essentials):
-            @FXML
-            private Label labelStatisticPositionValue;
-            @FXML
-            private Label labelStatisticVelocityValue;
-            @FXML
-            private Label labelStatisticPlanetName;
+    @FXML
+    private VBox vboxPlanetStatistic;
+    //Components(Essentials):
+    @FXML
+    private Label labelStatisticPositionValue;
+    @FXML
+    private Label labelStatisticVelocityValue;
+    @FXML
+    private Label labelStatisticPlanetName;
     @FXML
     private VBox vboxCameraControls;
-        //Components(essentials):
-        @FXML
-        private Button buttonSetBackOrigin;
-        @FXML
-        private TextField textFieldCameraSpeed;
-
-
-
+    //Components(essentials):
+    @FXML
+    private Button buttonSetBackOrigin;
+    @FXML
+    private TextField textFieldCameraSpeed;
 
     //Subscene simulation
     @FXML
     private SubScene subSceneSimulation;
 
-
     //Non fxml field members:
     private Group groupRootNode = new Group();
     private PerspectiveCamera camera = new PerspectiveCamera(true);
+    private CameraControlsHandler cameraControlsHandler;
+    
+    private AnimationTimer animationTimer;
+    
+    
 
-
-    public  void handlerButtonAddPlanetEvent(){
-        if (!vboxAddPlanetButton.isVisible()){return;}
+    public void handlerButtonAddPlanetEvent() {
+        if (!vboxAddPlanetButton.isVisible()) {
+            return;
+        }
         // animations can be added here
         hboxRootToolBar.setVisible(true);
         vboxAddPlanetButton.setVisible(false);
@@ -91,11 +92,12 @@ public class SimulationMainPageController {
         this.tiltPanePlanets.setExpanded(true);
 
     }
-    public void handlerTitlePaneEvent(){
-        this.tiltPanePlanets.expandedProperty().addListener((obs,oldValue,newValue)->{
-            if(!newValue){
+
+    public void handlerTitlePaneEvent() {
+        this.tiltPanePlanets.expandedProperty().addListener((obs, oldValue, newValue) -> {
+            if (!newValue) {
                 PauseTransition pauseTransition = new PauseTransition(Duration.seconds(0.25));
-                pauseTransition.setOnFinished(s->{
+                pauseTransition.setOnFinished(s -> {
                     tiltPanePlanets.setExpanded(false);
                     hboxRootToolBar.setVisible(false);
                     hboxRootToolBar.setManaged(false);
@@ -104,19 +106,17 @@ public class SimulationMainPageController {
                 });
                 pauseTransition.play();
 
-
-
             }
         });
     }
 
-    public void handlerCameraButtonEvent(){
+    public void handlerCameraButtonEvent() {
         //animations logic to be added
-        this.buttonCamera.setOnAction(e->{
-            if(!this.vboxCameraControls.isVisible()) {
+        this.buttonCamera.setOnAction(e -> {
+            if (!this.vboxCameraControls.isVisible()) {
                 this.vboxCameraControls.setVisible(true);
                 this.vboxCameraControls.setManaged(true);
-            }else{
+            } else {
                 this.vboxCameraControls.setVisible(false);
                 this.vboxCameraControls.setManaged(false);
             }
@@ -124,90 +124,99 @@ public class SimulationMainPageController {
         });
     }
 
-    public  void  initializeBinding(){
+    public void initializeBinding() {
         this.tiltPanePlanets.setExpanded(false);
         this.vboxCameraControls.setManaged(false);
         this.vboxCameraControls.setVisible(false);
         Sphere sphere = new Sphere(30);
         sphere.setMaterial(new PhongMaterial(Color.CORAL));
         this.tilePanePlanets.getChildren().add(sphere);
-        if(this.subSceneSimulation == null || this.vboxMainRootNode == null){return;}
+        if (this.subSceneSimulation == null || this.vboxMainRootNode == null) {
+            return;
+        }
 
-        vboxMainRootNode.sceneProperty().addListener((obs, oldScene, newScene)->{
+        vboxMainRootNode.sceneProperty().addListener((obs, oldScene, newScene) -> {
             this.vboxMainRootNode.prefWidthProperty().bind(newScene == null ? oldScene.widthProperty() : newScene.widthProperty());
-            this.vboxMainRootNode.prefHeightProperty().bind(newScene == null ? oldScene.heightProperty(): newScene.heightProperty());
+            this.vboxMainRootNode.prefHeightProperty().bind(newScene == null ? oldScene.heightProperty() : newScene.heightProperty());
 
             this.anchorPaneMainRootNode.prefWidthProperty().bind(newScene == null ? oldScene.widthProperty() : newScene.widthProperty());
-            this.anchorPaneMainRootNode.prefHeightProperty().bind(newScene == null ? oldScene.heightProperty(): newScene.heightProperty());
+            this.anchorPaneMainRootNode.prefHeightProperty().bind(newScene == null ? oldScene.heightProperty() : newScene.heightProperty());
 
             this.subSceneSimulation.widthProperty().bind(newScene == null ? oldScene.widthProperty() : newScene.widthProperty());
-            this.subSceneSimulation.heightProperty().bind(newScene == null ? oldScene.heightProperty(): newScene.heightProperty());
+            this.subSceneSimulation.heightProperty().bind(newScene == null ? oldScene.heightProperty() : newScene.heightProperty());
 
             this.hboxRootToolBar.prefWidthProperty().bind(newScene == null ? oldScene.widthProperty() : newScene.widthProperty());
 
             this.anchorPaneToolBarKit.prefWidthProperty().bind((newScene == null ? oldScene.widthProperty() : newScene.widthProperty()));
-           // this.anchorPaneToolBarKit.setStyle("-fx-border-color: blue");
+            // this.anchorPaneToolBarKit.setStyle("-fx-border-color: blue");
 
             this.tiltPanePlanets.prefWidthProperty().bind(hboxRootToolBar.prefWidthProperty());
             this.tilePanePlanets.prefWidthProperty().bind((hboxRootToolBar.prefWidthProperty()));
 
         });
 
-        vboxMainRootNode.widthProperty().addListener((obs,oldWidth,newWidth)->{
+        vboxMainRootNode.widthProperty().addListener((obs, oldWidth, newWidth) -> {
             vboxAddPlanetButton.setLayoutX(newWidth.doubleValue() - 150);
 
-
         });
-        vboxMainRootNode.heightProperty().addListener((obs,oldHeight,newHeight)->{
+        vboxMainRootNode.heightProperty().addListener((obs, oldHeight, newHeight) -> {
             vboxAddPlanetButton.setLayoutY(newHeight.doubleValue() - 150);
             hboxRootToolBar.setLayoutY(newHeight.doubleValue() * 0.88);
         });
 
     }
-    public  void handleCamera(){
-        Box box = new Box(25,25,20);
-        box.setMaterial(new PhongMaterial(Color.RED));
 
+    public void handleCamera() {
+        Box box = new Box(25, 25, 20);
+        box.setMaterial(new PhongMaterial(Color.RED));
 
         groupRootNode.getChildren().add(box);
         this.camera.setFarClip(10000);
         this.camera.setNearClip(0.0001);
         this.camera.setTranslateZ(-100);
-        this.camera.setTranslateX(this.subSceneSimulation.getWidth()/2);
+        this.camera.setTranslateX(this.subSceneSimulation.getWidth() / 2);
         this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
 
-
-
-       // this.subSceneSimulation.setRoot(groupRootNode);
+        // this.subSceneSimulation.setRoot(groupRootNode);
         this.subSceneSimulation.setRoot(groupRootNode);
         this.subSceneSimulation.getRoot().setTranslateX(this.subSceneSimulation.getWidth() / 2);
         this.subSceneSimulation.getRoot().setTranslateY(this.subSceneSimulation.getHeight() / 2);
         this.subSceneSimulation.getRoot().setTranslateZ(0);
         this.subSceneSimulation.setCamera(this.camera);
-        CameraControlsHandler cameraControlsHandler = new CameraControlsHandler(camera);
+        cameraControlsHandler = new CameraControlsHandler(camera);
 
-        this.subSceneSimulation.sceneProperty().addListener((obs, oldScene, newScene)->{
-           // if (oldScene != null || newScene != null){
+        this.subSceneSimulation.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            // if (oldScene != null || newScene != null){
 
-                cameraControlsHandler.setMovementAllow(true);
-                cameraControlsHandler.handleCamera(subSceneSimulation.getScene());
-           // }
+            cameraControlsHandler.setMovementAllow(true);
+            cameraControlsHandler.handleCamera(subSceneSimulation.getScene());
+            // }
         });
-
-
 
     }
 
-    public  void setSubSceneSimulation(){
+    public void setSubSceneSimulation() {
         this.subSceneSimulation.setFill(Color.BLACK);
         this.subSceneSimulation.setCamera(this.camera);
         //this.subSceneSimulation.getRoot().setStyle("-fx-background-color: transparent");
     }
+    
+    public void setupAnimationTimer() {
+        animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                cameraControlsHandler.updateMovement();
+            }
+        };
+    }
+
     @FXML
-    public  void initialize(){
+    public void initialize() {
         // Button events
-        this.buttonAddPlanet.setOnAction(e->{handlerButtonAddPlanetEvent();});
-       handlerCameraButtonEvent();
+        this.buttonAddPlanet.setOnAction(e -> {
+            handlerButtonAddPlanetEvent();
+        });
+        handlerCameraButtonEvent();
 
         initializeBinding();
 
@@ -216,6 +225,8 @@ public class SimulationMainPageController {
 
         handleCamera();
 
+        setupAnimationTimer();
+        animationTimer.start();
     }
 
 }
