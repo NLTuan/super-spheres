@@ -210,9 +210,8 @@ public class SimulationMainPageController {
     public void setSubSceneSimulation() {
 
         this.subSceneSimulation.setFill(Color.BLACK);
-        this.subSceneSimulation.setDepthTest(DepthTest.ENABLE);
         this.subSceneSimulation.setCamera(this.camera);
-
+        this.subSceneSimulation.setDepthTest(DepthTest.ENABLE);
         //this.subSceneSimulation.getRoot().setStyle("-fx-background-color: transparent");
     }
     
@@ -220,8 +219,8 @@ public class SimulationMainPageController {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                double dt = (now - prevTime) / 1E9 * 10;
-                cameraControlsHandler.updateMovement(dt);
+                double dt = (now - prevTime) / 1E9 * 50;
+                cameraControlsHandler.updateMovement(dt / 50);
                 bodyHandler.update(dt);
                 prevTime = now;
             }
@@ -232,11 +231,11 @@ public class SimulationMainPageController {
         
         bodyHandler = new BodyHandler();
         Planet planet = new Planet(new Vector3D(-100, 0, 0), new Vector3D(0, 0, 10), 100, 100);
-        Planet planet2 = new Planet(new Vector3D(1000, 0, 0), 10000, 50);
+        Planet planet2 = new Planet(new Vector3D(500, 0, 0), 10000, 50);
         
         groupRootNode.getChildren().add(planet);
         groupRootNode.getChildren().add(planet2);
-        
+
         bodyHandler.add(planet);
         bodyHandler.add(planet2);
     }
@@ -247,8 +246,10 @@ public class SimulationMainPageController {
         this.buttonAddPlanet.setOnAction(e -> {
             handlerButtonAddPlanetEvent();
         });
+        
         handlerCameraButtonEvent();
 
+        
         initializeBinding();
 
         setSubSceneSimulation();
