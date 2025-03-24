@@ -68,7 +68,7 @@ public class CameraControlsHandler {
         pitch -= (deltaY / 2) * 0.3;
 
         pitch = Math.max(-49, Math.min(49, pitch));
-        yaw = Math.max(-89, Math.min(89, yaw));
+      //  yaw = Math.max(-89, Math.min(89, yaw));
 
         updateCameraRotation();
 

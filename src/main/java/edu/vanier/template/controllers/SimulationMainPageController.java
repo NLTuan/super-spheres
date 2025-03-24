@@ -181,7 +181,7 @@ public class SimulationMainPageController {
 
         
         this.camera.setFarClip(10000);
-        this.camera.setNearClip(0.0001);
+        this.camera.setNearClip(0.01);
         this.camera.setTranslateZ(-1000);
         this.camera.setTranslateX(this.subSceneSimulation.getWidth() / 2);
         this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
@@ -242,6 +242,10 @@ public class SimulationMainPageController {
 
     @FXML
     public void initialize() {
+
+        groupRootNode.setDepthTest(DepthTest.ENABLE);
+
+
         // Button events
         this.buttonAddPlanet.setOnAction(e -> {
             handlerButtonAddPlanetEvent();
