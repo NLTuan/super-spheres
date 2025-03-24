@@ -1,6 +1,9 @@
 package edu.vanier.template.controllers;
 
+import edu.vanier.template.math.Vector3D;
+import edu.vanier.template.sim.BodyHandler;
 import edu.vanier.template.sim.CameraControlsHandler;
+import edu.vanier.template.sim.Planet;
 import java.util.Calendar;
 import java.util.Date;
 import javafx.animation.AnimationTimer;
@@ -76,13 +79,15 @@ public class SimulationMainPageController {
 
     //Non fxml field members:
     private Group groupRootNode = new Group();
+    
     private PerspectiveCamera camera = new PerspectiveCamera(true);
     private CameraControlsHandler cameraControlsHandler;
     
     private AnimationTimer animationTimer;
-    
     private long prevTime = System.nanoTime();
 
+    private BodyHandler bodyHandler;
+    
     public void handlerButtonAddPlanetEvent() {
         if (!vboxAddPlanetButton.isVisible()) {
             return;
@@ -171,11 +176,13 @@ public class SimulationMainPageController {
     public void handleCamera() {
         Box box = new Box(25, 25, 20);
         box.setMaterial(new PhongMaterial(Color.RED));
-
+        
         groupRootNode.getChildren().add(box);
+
+        
         this.camera.setFarClip(10000);
         this.camera.setNearClip(0.0001);
-        this.camera.setTranslateZ(-100);
+        this.camera.setTranslateZ(-1000);
         this.camera.setTranslateX(this.subSceneSimulation.getWidth() / 2);
         this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
         
@@ -201,8 +208,11 @@ public class SimulationMainPageController {
     }
 
     public void setSubSceneSimulation() {
+
         this.subSceneSimulation.setFill(Color.BLACK);
+        this.subSceneSimulation.setDepthTest(DepthTest.ENABLE);
         this.subSceneSimulation.setCamera(this.camera);
+
         //this.subSceneSimulation.getRoot().setStyle("-fx-background-color: transparent");
     }
     
@@ -210,11 +220,25 @@ public class SimulationMainPageController {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                double dt = (now - prevTime) / 1E9;
+                double dt = (now - prevTime) / 1E9 * 10;
                 cameraControlsHandler.updateMovement(dt);
+                bodyHandler.update(dt);
                 prevTime = now;
             }
         };
+    }
+    
+    public void setupBodies(){
+        
+        bodyHandler = new BodyHandler();
+        Planet planet = new Planet(new Vector3D(-100, 0, 0), new Vector3D(0, 0, 10), 100, 100);
+        Planet planet2 = new Planet(new Vector3D(1000, 0, 0), 10000, 50);
+        
+        groupRootNode.getChildren().add(planet);
+        groupRootNode.getChildren().add(planet2);
+        
+        bodyHandler.add(planet);
+        bodyHandler.add(planet2);
     }
 
     @FXML
@@ -232,6 +256,8 @@ public class SimulationMainPageController {
 
         handleCamera();
 
+        setupBodies();
+        
         setupAnimationTimer();
         animationTimer.start();
     }

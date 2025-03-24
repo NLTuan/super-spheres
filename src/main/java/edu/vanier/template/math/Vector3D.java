@@ -52,7 +52,7 @@ public class Vector3D {
     }
     
     public Vector3D getDirection(Vector3D other){
-        return this.addVector3D(other.scaleVector3D(-1)).normalizeVector3D();
+        return other.addVector3D(this.scaleVector3D(-1)).normalizeVector3D();
     }
 
     public double getX() {

@@ -5,6 +5,7 @@
 package edu.vanier.template.sim;
 
 import edu.vanier.template.math.Vector3D;
+import javafx.scene.DepthTest;
 import javafx.scene.shape.Sphere;
 
 /**
@@ -16,33 +17,49 @@ public abstract class Body extends Sphere{
     private Vector3D position;
     private Vector3D velocity;
     private Vector3D acceleration;
+    private Vector3D force;
     
     private double mass;
-//    private double radius;
 
-    public Body(Vector3D position, Vector3D velocity, Vector3D acceleration, double mass, double radius, int divisions) {
+    public Body(Vector3D position, double mass, double radius) {
+        super(radius);
+        setDepthTest(DepthTest.ENABLE);
+        this.position = position;
+        velocity = new Vector3D(0, 0, 0);
+        acceleration = new Vector3D(0, 0, 0);
+        this.mass = mass;
+    }
+
+    public Body(Vector3D position, Vector3D velocity, double mass, double radius, int divisions) {
         super(radius, divisions);
+        setDepthTest(DepthTest.ENABLE);
         this.position = position;
         this.velocity = velocity;
-        this.acceleration = acceleration;
+        this.acceleration = new Vector3D(0, 0, 0);
         this.mass = mass;
     }
 
-    public Body(Vector3D position, Vector3D velocity, Vector3D acceleration, double mass, double d) {
-        super(d);
+    public Body(Vector3D position, Vector3D velocity, double mass, double radius) {
+        super(radius);
+        setDepthTest(DepthTest.ENABLE);
         this.position = position;
         this.velocity = velocity;
-        this.acceleration = acceleration;
+        this.acceleration = new Vector3D(0, 0, 0);
         this.mass = mass;
     }
-
     
-    
-    
-    public void update(){
+    public void update(double deltaTime){
+        acceleration = force.scaleVector3D(1/mass);
+        velocity.addToCurrentVector3D(acceleration.scaleVector3D(deltaTime));
+        position.addToCurrentVector3D(velocity.scaleVector3D(deltaTime));
         
+        setTranslateX(position.getX());
+        setTranslateY(position.getY());
+        setTranslateZ(position.getZ());
     }
-    
+    public void addForce(Vector3D force){
+        this.force = this.force.addVector3D(force);
+    }
     
     public Vector3D getPosition() {
         return position;
@@ -66,6 +83,14 @@ public abstract class Body extends Sphere{
 
     public void setAcceleration(Vector3D acceleration) {
         this.acceleration = acceleration;
+    }
+
+    public Vector3D getForce() {
+        return force;
+    }
+
+    public void setForce(Vector3D force) {
+        this.force = force;
     }
 
     public double getMass() {
