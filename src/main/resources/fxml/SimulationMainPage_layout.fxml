@@ -17,6 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.SceneAntialiasing?>
 
 <VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -24,10 +25,13 @@
          <children>
             <AnchorPane fx:id="anchorPaneMainRootNode" prefHeight="633.0" prefWidth="884.0">
                <children>
-                  <SubScene fx:id="subSceneSimulation" depthTest="ENABLE" height="721.0" width="1014.0" depthBuffer="true">
+                  <SubScene fx:id="subSceneSimulation" depthTest="ENABLE" height="721.0" width="1014.0" depthBuffer="true" xmlns="http://javafx.com/javafx/12.0.1" xmlns:fx="http://javafx.com/fxml/1">
                      <root>
                         <Region />
                      </root>
+                    <antiAliasing>
+                       <SceneAntialiasing fx:constant="BALANCED"/>
+                    </antiAliasing>
                   </SubScene>
                   <VBox fx:id="vboxAddPlanetButton" alignment="CENTER" layoutX="871.0" layoutY="587.0" prefHeight="96.0" prefWidth="73.0">
                      <children>

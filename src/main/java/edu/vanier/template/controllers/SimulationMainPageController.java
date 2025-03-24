@@ -248,8 +248,6 @@ public class SimulationMainPageController {
         });
         
         handlerCameraButtonEvent();
-
-        
         initializeBinding();
 
         setSubSceneSimulation();
@@ -258,7 +256,6 @@ public class SimulationMainPageController {
         handleCamera();
 
         setupBodies();
-        
         setupAnimationTimer();
         animationTimer.start();
     }
