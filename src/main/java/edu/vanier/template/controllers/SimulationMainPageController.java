@@ -1,6 +1,8 @@
 package edu.vanier.template.controllers;
 
 import edu.vanier.template.sim.CameraControlsHandler;
+import java.util.Calendar;
+import java.util.Date;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -79,7 +81,7 @@ public class SimulationMainPageController {
     
     private AnimationTimer animationTimer;
     
-    
+    private long prevTime = System.nanoTime();
 
     public void handlerButtonAddPlanetEvent() {
         if (!vboxAddPlanetButton.isVisible()) {
@@ -208,7 +210,9 @@ public class SimulationMainPageController {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                cameraControlsHandler.updateMovement();
+                double dt = (now - prevTime) / 1E9;
+                cameraControlsHandler.updateMovement(dt);
+                prevTime = now;
             }
         };
     }

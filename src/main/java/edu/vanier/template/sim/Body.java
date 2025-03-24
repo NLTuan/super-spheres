@@ -18,8 +18,27 @@ public abstract class Body extends Sphere{
     private Vector3D acceleration;
     
     private double mass;
-    private double radius;
+//    private double radius;
 
+    public Body(Vector3D position, Vector3D velocity, Vector3D acceleration, double mass, double radius, int divisions) {
+        super(radius, divisions);
+        this.position = position;
+        this.velocity = velocity;
+        this.acceleration = acceleration;
+        this.mass = mass;
+    }
+
+    public Body(Vector3D position, Vector3D velocity, Vector3D acceleration, double mass, double d) {
+        super(d);
+        this.position = position;
+        this.velocity = velocity;
+        this.acceleration = acceleration;
+        this.mass = mass;
+    }
+
+    
+    
+    
     public void update(){
         
     }
@@ -55,15 +74,5 @@ public abstract class Body extends Sphere{
 
     public void setMass(double mass) {
         this.mass = mass;
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-    
-    
+    }    
 }

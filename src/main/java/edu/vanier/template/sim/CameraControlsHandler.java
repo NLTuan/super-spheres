@@ -27,12 +27,14 @@ public class CameraControlsHandler {
     private double yaw = 0;
     private double pitch = 0;
 
-    private double MAX_SPEED = 10;
+    private double MAX_SPEED = 100;
 
     private double speed = 0;
 
-    private double acceleration = 0.2;
+    private double acceleration = 50;
 
+    private double deceleration = 2.5;
+    
     private boolean rightClickedHeld = false;
 
     private double lastMouseX, lastMouseY;
@@ -41,6 +43,8 @@ public class CameraControlsHandler {
 
     private boolean isMovementAllow = false;
 
+    private Vector3D prevMovementVector = new Vector3D(0, 0, 0);
+    
     public CameraControlsHandler(PerspectiveCamera camera) {
         this.camera = camera;
     }
@@ -85,7 +89,7 @@ public class CameraControlsHandler {
         camera.getTransforms().setAll(rotation);
     }
 
-    public void updateMovement() {
+    public void updateMovement(double deltaTime) {
         double radYaw = Math.toRadians(yaw);
         double radPitch = Math.toRadians(pitch);
 
@@ -133,22 +137,35 @@ public class CameraControlsHandler {
         if (activeKeys.contains(KeyCode.SHIFT)) {
             vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, 1, 0));
         }
-
+        
         // one of the thing that they do well in roblox is they normalize the vector for more accurate movement so I will do the same thing
         vector3DMoveVector.normalizeVector3D();
-
-        //Acceleration effect soon...
+        
+        //Acceleration effect
+        Vector3D cameraMovements;
         if (!activeKeys.isEmpty()) {
+            // TODO: We can vectorize the speed for smoother speed transitions.
             if (speed > MAX_SPEED) {
                 speed = MAX_SPEED;
             }
-            speed += acceleration;
-        } else {
-            // deceleration maybe
-            speed *= 0.90; // decreasing by 10 percent every frame
-        }
+            speed += acceleration * deltaTime;
+            cameraMovements = vector3DMoveVector
+                .scaleVector3D(speed)
+                .scaleVector3D(deltaTime);
+            // Keep the movement state for the deceleration phase
+            prevMovementVector = vector3DMoveVector;
 
-        Vector3D cameraMovements = vector3DMoveVector.scaleVector3D(speed);
+        } else {
+            // deceleration
+            speed -= speed * deceleration * deltaTime; // decreasing by 10 percent every second
+            cameraMovements = prevMovementVector
+                .scaleVector3D(speed)
+                .scaleVector3D(deltaTime);
+            
+            if (Math.abs(speed) <= 0.0001){
+                speed = 0;
+            }
+        }
 
         camera.setTranslateX(this.camera.getTranslateX() + cameraMovements.getX());
         camera.setTranslateY(this.camera.getTranslateY() + cameraMovements.getY());
