@@ -30,7 +30,7 @@ public class CameraTesting extends Application {
         perspectiveCamera.setFarClip(100000);
         perspectiveCamera.setTranslateZ(-10);
 
-        Box box = new Box(10,10,8);
+        Box box = new Box(100,10,8);
 
         root.getChildren().add(box);
 

@@ -176,6 +176,9 @@ public class SimulationMainPageController {
         this.camera.setTranslateZ(-100);
         this.camera.setTranslateX(this.subSceneSimulation.getWidth() / 2);
         this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
+        
+        
+        
 
         // this.subSceneSimulation.setRoot(groupRootNode);
         this.subSceneSimulation.setRoot(groupRootNode);

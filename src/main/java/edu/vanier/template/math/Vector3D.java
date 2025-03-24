@@ -35,16 +35,25 @@ public class Vector3D {
     public double getMagnitude() {
         return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
     }
-
-    public void normalizeVector3D() {
+    
+    public Vector3D normalizeVector3D() {
         double magnitude = this.getMagnitude();
         if (magnitude> 0) {
             this.x /= magnitude;
-            this.y /=magnitude;
+            this.y /= magnitude;
             this.z /= magnitude;
         }
+        
+        return this;
     }
-
+    
+    public double getDistance(Vector3D other){
+        return this.addVector3D(other.scaleVector3D(-1)).getMagnitude();
+    }
+    
+    public Vector3D getDirection(Vector3D other){
+        return this.addVector3D(other.scaleVector3D(-1)).normalizeVector3D();
+    }
 
     public double getX() {
         return x;
