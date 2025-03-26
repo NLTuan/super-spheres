@@ -13,32 +13,37 @@ import java.util.ArrayList;
  * @author letua
  */
 public class BodyHandler {
-    
+
     private ArrayList<Body> bodies;
 
     public BodyHandler() {
         bodies = new ArrayList<>();
     }
-    
+
     public void update(double deltaTime){
-        
+
         for(Body target: bodies){
             target.setForce(new Vector3D(0, 0, 0));
-            
+
             for(Body current: bodies){
                 if(target == current){continue;}
-                target.addForce(Physics.calculateGForce(target, current));
+                Vector3D distanceVector = new Vector3D(
+                        current.getPosition().getX() - target.getPosition().getX(),
+                        current.getPosition().getY() - target.getPosition().getY(),
+                        current.getPosition().getZ() - target.getPosition().getZ()
+                );
+                if  (distanceVector.getMagnitude() > 50) target.addForce(Physics.calculateGForce(target, current));
             }
         }
-        
+
         for(Body target: bodies){
             target.update(deltaTime);
         }
-        
+
     }
-    
+
     public void add(Body body){
         bodies.add(body);
-    } 
-    
+    }
+
 }

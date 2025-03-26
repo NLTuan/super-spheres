@@ -1,11 +1,15 @@
 package edu.vanier.template.controllers;
 
+import edu.vanier.template.helpers.BuildInBodies;
+import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.BodyHandler;
 import edu.vanier.template.sim.CameraControlsHandler;
 import edu.vanier.template.sim.Planet;
 import java.util.Calendar;
 import java.util.Date;
+
+import edu.vanier.template.sim.Star;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -180,9 +184,9 @@ public class SimulationMainPageController {
         groupRootNode.getChildren().add(box);
 
         
-        this.camera.setFarClip(10000);
-        this.camera.setNearClip(0.01);
-        this.camera.setTranslateZ(-1000);
+        this.camera.setFarClip(100000000);
+        this.camera.setNearClip(0.00001);
+        this.camera.setTranslateZ(-2000);
         this.camera.setTranslateX(this.subSceneSimulation.getWidth() / 2);
         this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
         
@@ -226,18 +230,36 @@ public class SimulationMainPageController {
             }
         };
     }
-    
+
     public void setupBodies(){
-        
+        double height = this.subSceneSimulation.getHeight();
+
         bodyHandler = new BodyHandler();
-        Planet planet = new Planet(new Vector3D(-100, 0, 0), new Vector3D(0, 0, 10), 100, 100);
-        Planet planet2 = new Planet(new Vector3D(500, 0, 0), 10000, 50);
-        
+        Planet planet = new Planet(new Vector3D(-100, 0, 0), new Vector3D(0, 0, -1), 900, 10);
+        Planet planet2 = new Planet(new Vector3D(500, 0, 0), new Vector3D(0,0,-2),100, 50);
+
+        Planet planet3 = new Planet(new Vector3D(200, 0, 0), 200, 50);
+        Planet planet4 = new Planet(new Vector3D(-100,height / 2 , 0), 400, 20);
+
+        Star starSun = new Star(new Vector3D(0,0, 0), new Vector3D(0,0,0), 200000,20);
+
+        BuildInBodies buildInBodies = new BuildInBodies(planet);
+        BuildInBodies buildInBodies1 = new BuildInBodies(planet3);
+        buildInBodies.applyTextures("Earth");
+        buildInBodies1.applyTextures("Earth");
+
         groupRootNode.getChildren().add(planet);
         groupRootNode.getChildren().add(planet2);
+        groupRootNode.getChildren().add(planet3);
+        groupRootNode.getChildren().add(planet4);
+        groupRootNode.getChildren().add(starSun);
 
         bodyHandler.add(planet);
         bodyHandler.add(planet2);
+        bodyHandler.add(planet3);
+        bodyHandler.add(planet4);
+        bodyHandler.add(starSun);
+
     }
 
     @FXML

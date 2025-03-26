@@ -27,14 +27,14 @@ public class CameraControlsHandler {
     private double yaw = 0;
     private double pitch = 0;
 
-    private double MAX_SPEED = 100;
+    private double MAX_SPEED = 200;
 
-    private double speed = 0;
+    private double speed = 70;
 
     private double acceleration = 50;
 
     private double deceleration = 2.5;
-    
+
     private boolean rightClickedHeld = false;
 
     private double lastMouseX, lastMouseY;
@@ -44,7 +44,7 @@ public class CameraControlsHandler {
     private boolean isMovementAllow = false;
 
     private Vector3D prevMovementVector = new Vector3D(0, 0, 0);
-    
+
     public CameraControlsHandler(PerspectiveCamera camera) {
         this.camera = camera;
     }
@@ -101,77 +101,74 @@ public class CameraControlsHandler {
          Math.sin(radYaw) : what it does is essentially take the x and z forward direction
          Math.pitch(radPitch):
          */
-        Vector3D vector3DForward = new Vector3D(Math.sin(radYaw) * Math.cos(radPitch), -Math.sin(radPitch), Math.cos(radYaw) * Math.cos(radPitch));
 
-        Vector3D vector3DRight = new Vector3D(Math.cos(radYaw), 0, -Math.sin(radYaw));
 
-        Vector3D vector3DMoveVector = new Vector3D(0, 0, 0);
+            Vector3D vector3DForward = new Vector3D(
+                    Math.sin(radYaw) * Math.cos(radPitch),
+                    -Math.sin(radPitch),
+                    Math.cos(radYaw) * Math.cos(radPitch)
+            );
 
-        if (activeKeys.contains(KeyCode.W)) {
-            vector3DMoveVector.addToCurrentVector3D(vector3DForward);
-        }
-        if (activeKeys.contains(KeyCode.S)) {
-            vector3DMoveVector.addToCurrentVector3D(vector3DForward.scaleVector3D(-1));
-        }
-        if (activeKeys.contains(KeyCode.A)) {
-            vector3DMoveVector.addToCurrentVector3D(vector3DRight.scaleVector3D(-1));
+            Vector3D vector3DRight = new Vector3D(
+                    Math.cos(radYaw),
+                    0,
+                    -Math.sin(radYaw)
+            );
 
-        }
-        if (activeKeys.contains(KeyCode.D)) {
-            vector3DMoveVector.addToCurrentVector3D(vector3DRight);
-        }
+            Vector3D vector3DMoveVector = new Vector3D(0, 0, 0);
 
-        if (activeKeys.contains(KeyCode.Q)) {
-            vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, 1, 0));
-        }
-
-        if (activeKeys.contains(KeyCode.E)) {
-            vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, -1, 0));
-        }
-
-        if (activeKeys.contains(KeyCode.SPACE)) {
-            vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, -1, 0));
-
-        }
-
-        if (activeKeys.contains(KeyCode.SHIFT)) {
-            vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, 1, 0));
-        }
-        
-        // one of the thing that they do well in roblox is they normalize the vector for more accurate movement so I will do the same thing
-        vector3DMoveVector.normalizeVector3D();
-        
-        //Acceleration effect
-        Vector3D cameraMovements;
-        if (!activeKeys.isEmpty()) {
-            // TODO: We can vectorize the speed for smoother speed transitions.
-            if (speed > MAX_SPEED) {
-                speed = MAX_SPEED;
+            if (activeKeys.contains(KeyCode.W)) {
+                vector3DMoveVector.addToCurrentVector3D(vector3DForward);
             }
-            speed += acceleration * deltaTime;
-            cameraMovements = vector3DMoveVector
-                .scaleVector3D(speed)
-                .scaleVector3D(deltaTime);
-            // Keep the movement state for the deceleration phase
-            prevMovementVector = vector3DMoveVector;
-
-        } else {
-            // deceleration
-            speed -= speed * deceleration * deltaTime; // decreasing by 10 percent every second
-            cameraMovements = prevMovementVector
-                .scaleVector3D(speed)
-                .scaleVector3D(deltaTime);
-            
-            if (Math.abs(speed) <= 0.0001){
-                speed = 0;
+            if (activeKeys.contains(KeyCode.S)) {
+                vector3DMoveVector.addToCurrentVector3D(vector3DForward.scaleVector3D(-1));
             }
+            if (activeKeys.contains(KeyCode.A)) {
+                vector3DMoveVector.addToCurrentVector3D(vector3DRight.scaleVector3D(-1));
+            }
+            if (activeKeys.contains(KeyCode.D)) {
+                vector3DMoveVector.addToCurrentVector3D(vector3DRight);
+            }
+            if (activeKeys.contains(KeyCode.Q)) {
+                vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, 1, 0));
+            }
+            if (activeKeys.contains(KeyCode.E)) {
+                vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, -1, 0));
+            }
+            if (activeKeys.contains(KeyCode.SPACE)) {
+                vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, -1, 0));
+            }
+            if (activeKeys.contains(KeyCode.SHIFT)) {
+                vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, 1, 0));
+            }
+
+            vector3DMoveVector.normalizeVector3D();
+
+            Vector3D cameraMovements;
+            if (!activeKeys.isEmpty()) {
+                if (speed > MAX_SPEED) {
+                    speed = MAX_SPEED;
+                }
+                speed += acceleration * deltaTime;
+                cameraMovements = vector3DMoveVector
+                        .scaleVector3D(speed)
+                        .scaleVector3D(deltaTime);
+                prevMovementVector = vector3DMoveVector;
+            } else {
+                speed -= speed * deceleration * deltaTime;
+                cameraMovements = prevMovementVector
+                        .scaleVector3D(speed)
+                        .scaleVector3D(deltaTime);
+
+                if (Math.abs(speed) <= 0.0001) {
+                    speed = 0;
+                }
+            }
+
+            camera.setTranslateX(camera.getTranslateX() + cameraMovements.getX());
+            camera.setTranslateY(camera.getTranslateY() + cameraMovements.getY());
+            camera.setTranslateZ(camera.getTranslateZ() + cameraMovements.getZ());
         }
-
-        camera.setTranslateX(this.camera.getTranslateX() + cameraMovements.getX());
-        camera.setTranslateY(this.camera.getTranslateY() + cameraMovements.getY());
-        camera.setTranslateZ(this.camera.getTranslateZ() + cameraMovements.getZ());
-    }
-
     public void handleCamera(Scene scene) {
         if (isMovementAllow) {
             scene.setOnMousePressed(event -> {
