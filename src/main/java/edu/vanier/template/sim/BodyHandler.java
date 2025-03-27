@@ -32,7 +32,7 @@ public class BodyHandler {
                         current.getPosition().getY() - target.getPosition().getY(),
                         current.getPosition().getZ() - target.getPosition().getZ()
                 );
-                if  (distanceVector.getMagnitude() > 50) target.addForce(Physics.calculateGForce(target, current));
+               if(distanceVector.getMagnitude() > current.getRadius() + target.getRadius())target.addForce(Physics.calculateGForce(target, current));
             }
         }
 

@@ -25,21 +25,50 @@ public class BuildInBodies {
     
     public void applyTextures(String textureName){
         if(textureName.equals("Earth")){
-            Image image = bodyBuildTexture.get("Earth");
-            PhongMaterial phongMaterial = new PhongMaterial(Color.BLUE);
-            phongMaterial.setBumpMap(image);
-            phongMaterial.setSelfIlluminationMap(image);
-            this.body.setMaterial(phongMaterial);
+          this.texturizeBody(bodyBuildTexture.get("Earth"), Color.BLUE);
         } else if (textureName.equals("Mars")) {
-            
+            this.texturizeBody(bodyBuildTexture.get("Mars"), Color.ORANGE);
+        } else if (textureName.equals("Jupiter")) {
+            this.texturizeBody(bodyBuildTexture.get("Jupiter"), Color.ORANGE);
+        } else if (textureName.equals("Sun")) {
+            this.texturizeBody(bodyBuildTexture.get("Sun"), Color.YELLOW);
+        } else if (textureName.equals("Venus")) {
+            this.texturizeBody(bodyBuildTexture.get("Venus"),Color.ORANGE);
+        } else if (textureName.equals("Mercury")) {
+            this.texturizeBody(bodyBuildTexture.get("Mercury"), Color.MEDIUMPURPLE);
         }
+
+    }
+    public  void texturizeBody(Image image , Color color){
+        PhongMaterial phongMaterial = new PhongMaterial(color);
+        phongMaterial.setBumpMap(image);
+        phongMaterial.setDiffuseMap(image);
+        phongMaterial.setSpecularMap(image);
+        phongMaterial.setSelfIlluminationMap(image);
+        this.body.setMaterial(phongMaterial);
     }
 
     public void setTextures(){
         // Earth texture
       // Image image = new Image(getClass().getResource("/BuildInBodiesImages/EarthImage.jpeg").toExternalForm());
-        Image image = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/EarthImage.jpeg");
-        bodyBuildTexture.put("Earth",image);
+        Image imageEarth = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/EarthImage.jpeg");
+        Image imageMars = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/MarsImage.png");
+        Image imageJupiter = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/JupiterImage.jpg");
+        Image imageUranus = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/UranusImage.png");
+        Image imageVenus = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/VenusImage.png");
+        Image imageSun = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/SolarImage.jpg");
+        Image imageMercury= new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/MercuryImage.png");
+
+        bodyBuildTexture.put("Earth",imageEarth);
+        bodyBuildTexture.put("Mars",imageMars);
+        bodyBuildTexture.put("Jupiter",imageJupiter);
+        bodyBuildTexture.put("Uranus",imageUranus);
+        bodyBuildTexture.put("Venus",imageVenus);
+        bodyBuildTexture.put("Sun",imageSun);
+        bodyBuildTexture.put("Mercury",imageMercury);
+
+
+
 
         //
 

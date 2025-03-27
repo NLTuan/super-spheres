@@ -13,6 +13,7 @@ import edu.vanier.template.sim.Star;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.Point3D;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,6 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Sphere;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class SimulationMainPageController {
@@ -91,7 +93,9 @@ public class SimulationMainPageController {
     private long prevTime = System.nanoTime();
 
     private BodyHandler bodyHandler;
-    
+
+    double count = 1.0;
+    double count2 = 1.0;
     public void handlerButtonAddPlanetEvent() {
         if (!vboxAddPlanetButton.isVisible()) {
             return;
@@ -107,7 +111,7 @@ public class SimulationMainPageController {
     public void handlerTitlePaneEvent() {
         this.tiltPanePlanets.expandedProperty().addListener((obs, oldValue, newValue) -> {
             if (!newValue) {
-                PauseTransition pauseTransition = new PauseTransition(Duration.seconds(0.25));
+                PauseTransition pauseTransition = new PauseTransition(Duration.seconds(0.2625));
                 pauseTransition.setOnFinished(s -> {
                     tiltPanePlanets.setExpanded(false);
                     hboxRootToolBar.setVisible(false);
@@ -184,9 +188,9 @@ public class SimulationMainPageController {
         groupRootNode.getChildren().add(box);
 
         
-        this.camera.setFarClip(100000000);
-        this.camera.setNearClip(0.00001);
-        this.camera.setTranslateZ(-2000);
+        this.camera.setFarClip(10000000);
+        this.camera.setNearClip(0.1);
+        this.camera.setTranslateZ(-3000);
         this.camera.setTranslateX(this.subSceneSimulation.getWidth() / 2);
         this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
         
@@ -232,33 +236,55 @@ public class SimulationMainPageController {
     }
 
     public void setupBodies(){
-        double height = this.subSceneSimulation.getHeight();
+
 
         bodyHandler = new BodyHandler();
-        Planet planet = new Planet(new Vector3D(-100, 0, 0), new Vector3D(0, 0, -1), 900, 10);
-        Planet planet2 = new Planet(new Vector3D(500, 0, 0), new Vector3D(0,0,-2),100, 50);
+        Planet planet = new Planet(new Vector3D(-650 , 0, .01), new Vector3D(0, 0, -12.28), 100.0, 10);
 
-        Planet planet3 = new Planet(new Vector3D(200, 0, 0), 200, 50);
-        Planet planet4 = new Planet(new Vector3D(-100,height / 2 , 0), 400, 20);
+        Planet planet2 = new Planet(new Vector3D(0  , 0, 0), new Vector3D(0,0,0),10000, 170);
 
-        Star starSun = new Star(new Vector3D(0,0, 0), new Vector3D(0,0,0), 200000,20);
+        Planet planet3 = new Planet(new Vector3D(0  , 0, 0), new Vector3D(0,0,0),150, 170);
+        Rotate yRotate = new Rotate(0, Rotate.Y_AXIS);
+        Rotate yRotate2 = new Rotate(0, Rotate.Y_AXIS);
+
+        planet.getTransforms().add(yRotate);
+        planet2.getTransforms().add(yRotate2);
+AnimationTimer animationTimer1 = new AnimationTimer() {
+    @Override
+    public void handle(long now) {
+        count += 10;
+        count2 += 0.05;
+        yRotate.setAngle(count);
+        yRotate2.setAngle(count2);
+
+        if (count >= 360 ) count = 0;
+    }
+};
+animationTimer1.start();
+
+   //     Star starSun = new Star(new Vector3D(0,45,0), new Vector3D(0,0,0), 300000,300);
 
         BuildInBodies buildInBodies = new BuildInBodies(planet);
-        BuildInBodies buildInBodies1 = new BuildInBodies(planet3);
-        buildInBodies.applyTextures("Earth");
-        buildInBodies1.applyTextures("Earth");
+        BuildInBodies buildInBodies1 = new BuildInBodies(planet2);
+        //BuildInBodies buildInBodies2 = new BuildInBodies(starSun);
+
+
+
+
+
+        buildInBodies.applyTextures("Mercury");
+        buildInBodies1.applyTextures("Sun");
+      //  buildInBodies2.applyTextures("Sun");
 
         groupRootNode.getChildren().add(planet);
         groupRootNode.getChildren().add(planet2);
-        groupRootNode.getChildren().add(planet3);
-        groupRootNode.getChildren().add(planet4);
-        groupRootNode.getChildren().add(starSun);
+       // groupRootNode.getChildren().add(starSun);
 
-        bodyHandler.add(planet);
+
+       bodyHandler.add(planet);
         bodyHandler.add(planet2);
-        bodyHandler.add(planet3);
-        bodyHandler.add(planet4);
-        bodyHandler.add(starSun);
+      //  bodyHandler.add(starSun);
+
 
     }
 

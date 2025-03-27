@@ -13,6 +13,8 @@ import edu.vanier.template.sim.Body;
 public class Physics {
     
     public static final double G = 9.8;
+
+
     
     /**
      * Calculates the force applied onto the target body by the current body.
@@ -28,7 +30,7 @@ public class Physics {
         double massCurrent = current.getMass();
         
         double scalarForce = G * massTarget * massCurrent / (d * d);
-        Vector3D force = direction.scaleVector3D(scalarForce);
+        Vector3D force = direction.normalizeVector3D().scaleVector3D(scalarForce);
         return force;
     }
     
