@@ -55,7 +55,7 @@
                      <children>
                         <AnchorPane fx:id="anchorPaneToolBarKit" opacity="0.63" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TitledPane fx:id="tiltPanePlanets" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutY="-12.0" opacity="0.65" prefHeight="120.0" prefWidth="866.0" style="-fx-border-color: white;" text="Planets" textAlignment="CENTER">
+                              <TitledPane fx:id="tiltPanePlanets" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutY="-12.0" opacity="0.65" prefHeight="120.0" prefWidth="866.0" style="-fx-border-color: white;" text="Celestial Bodies" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Black" size="14.0" />
                                  </font>

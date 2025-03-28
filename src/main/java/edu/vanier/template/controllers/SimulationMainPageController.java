@@ -146,6 +146,7 @@ public class SimulationMainPageController {
         Sphere sphere = new Sphere(30);
         sphere.setMaterial(new PhongMaterial(Color.CORAL));
         this.tilePanePlanets.getChildren().add(sphere);
+
         if (this.subSceneSimulation == null || this.vboxMainRootNode == null) {
             return;
         }
@@ -206,21 +207,17 @@ public class SimulationMainPageController {
         cameraControlsHandler = new CameraControlsHandler(camera);
 
         this.subSceneSimulation.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            // if (oldScene != null || newScene != null){
 
             cameraControlsHandler.setMovementAllow(true);
             cameraControlsHandler.handleCamera(subSceneSimulation.getScene());
-            // }
         });
 
     }
 
     public void setSubSceneSimulation() {
-
         this.subSceneSimulation.setFill(Color.BLACK);
         this.subSceneSimulation.setCamera(this.camera);
         this.subSceneSimulation.setDepthTest(DepthTest.ENABLE);
-        //this.subSceneSimulation.getRoot().setStyle("-fx-background-color: transparent");
     }
     
     public void setupAnimationTimer() {
@@ -262,11 +259,10 @@ AnimationTimer animationTimer1 = new AnimationTimer() {
 };
 animationTimer1.start();
 
-   //     Star starSun = new Star(new Vector3D(0,45,0), new Vector3D(0,0,0), 300000,300);
 
         BuildInBodies buildInBodies = new BuildInBodies(planet);
         BuildInBodies buildInBodies1 = new BuildInBodies(planet2);
-        //BuildInBodies buildInBodies2 = new BuildInBodies(starSun);
+
 
 
 
