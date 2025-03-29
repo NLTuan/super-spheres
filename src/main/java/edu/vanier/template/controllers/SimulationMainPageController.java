@@ -204,7 +204,6 @@ public class SimulationMainPageController {
     public void handleCamera() {
         Box box = new Box(25, 25, 20);
         box.setMaterial(new PhongMaterial(Color.RED));
-        
         groupRootNode.getChildren().add(box);
 
         
@@ -217,7 +216,7 @@ public class SimulationMainPageController {
         
         
 
-        // this.subSceneSimulation.setRoot(groupRootNode);
+
         this.subSceneSimulation.setRoot(groupRootNode);
         this.subSceneSimulation.getRoot().setTranslateX(this.subSceneSimulation.getWidth() / 2);
         this.subSceneSimulation.getRoot().setTranslateY(this.subSceneSimulation.getHeight() / 2);
@@ -226,11 +225,9 @@ public class SimulationMainPageController {
         cameraControlsHandler = new CameraControlsHandler(camera);
 
         this.subSceneSimulation.sceneProperty().addListener((obs, oldScene, newScene) -> {
-
             cameraControlsHandler.setMovementAllow(true);
             cameraControlsHandler.handleCamera(subSceneSimulation.getScene());
         });
-
     }
 
     public void setSubSceneSimulation() {
@@ -327,8 +324,12 @@ animationTimer1.start();
         System.out.println(cameraControlsHandler.getPrevMovementVector());
     }
 
+    public void setTilePanePlanets(){
+        tilePanePlanets.setPickOnBounds(false);
+    }
     @FXML
     public void initialize() {
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,50));
 
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
