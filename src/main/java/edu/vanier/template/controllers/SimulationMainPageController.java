@@ -331,8 +331,10 @@ animationTimer1.start();
     @FXML
     public void initialize() {
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,50));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
 
-        DragAndDropSystem dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,groupRootNode);
+        DragAndDropSystem dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,groupRootNode,this
+                .subSceneSimulation.getWidth(), this.subSceneSimulation.getHeight(),camera, hboxRootToolBar);
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
         //make sure that the exit button sticks to the top right corner
