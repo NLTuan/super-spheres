@@ -49,6 +49,10 @@ public class CameraControlsHandler {
         this.camera = camera;
     }
 
+    public Vector3D getPrevMovementVector() {
+        return prevMovementVector;
+    }
+
     /**
      * This method will help handle the rotations along the axis ( X,Y)
      *

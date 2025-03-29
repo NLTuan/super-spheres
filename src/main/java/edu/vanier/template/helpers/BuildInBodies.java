@@ -51,13 +51,13 @@ public class BuildInBodies {
     public void setTextures(){
         // Earth texture
       // Image image = new Image(getClass().getResource("/BuildInBodiesImages/EarthImage.jpeg").toExternalForm());
-        Image imageEarth = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/EarthImage.jpeg");
-        Image imageMars = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/MarsImage.png");
-        Image imageJupiter = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/JupiterImage.jpg");
-        Image imageUranus = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/UranusImage.png");
-        Image imageVenus = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/VenusImage.png");
-        Image imageSun = new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/SolarImage.jpg");
-        Image imageMercury= new Image("file:/Users/josue/ProjectSpace/ProjectSpace/src/main/resources/fxml/BuildInBodiesImages/MercuryImage.png");
+        Image imageEarth = new Image("/fxml/BuildInBodiesImages/EarthImage.jpeg");
+        Image imageMars = new Image("/fxml/BuildInBodiesImages/MarsImage.png");
+        Image imageJupiter = new Image("/fxml/BuildInBodiesImages/JupiterImage.jpg");
+        Image imageUranus = new Image("/fxml/BuildInBodiesImages/UranusImage.png");
+        Image imageVenus = new Image("/fxml/BuildInBodiesImages/VenusImage.png");
+        Image imageSun = new Image("/fxml/BuildInBodiesImages/SolarImage.jpg");
+        Image imageMercury= new Image("/fxml/BuildInBodiesImages/MercuryImage.png");
 
         bodyBuildTexture.put("Earth",imageEarth);
         bodyBuildTexture.put("Mars",imageMars);

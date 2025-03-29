@@ -10,10 +10,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 import edu.vanier.template.sim.Star;
+import edu.vanier.template.ui.MainApp;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Point3D;
+import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -63,6 +65,11 @@ public class SimulationMainPageController {
     private Button buttonCamera;
 
     @FXML
+    private Button buttonExit;
+    @FXML
+    private VBox vboxExitButton;
+
+    @FXML
     private VBox vboxPlanetStatistic;
     //Components(Essentials):
     @FXML
@@ -108,6 +115,16 @@ public class SimulationMainPageController {
 
     }
 
+    //add event to exit button
+    public  void handleExitButton(){
+        MainApp.switchScene(MainApp.TEMPLATE_SELECTION_LAYOUT);
+    }
+    public  void handleSelectionButton(){
+        MainApp.switchScene(MainApp.CREATE_PLANET_LAYOUT);
+    }
+
+
+
     public void handlerTitlePaneEvent() {
         this.tiltPanePlanets.expandedProperty().addListener((obs, oldValue, newValue) -> {
             if (!newValue) {
@@ -146,6 +163,8 @@ public class SimulationMainPageController {
         Sphere sphere = new Sphere(30);
         sphere.setMaterial(new PhongMaterial(Color.CORAL));
         this.tilePanePlanets.getChildren().add(sphere);
+
+        //vboxExitButton.setLayoutX(vboxMainRootNode.getLayoutX()-150);
 
         if (this.subSceneSimulation == null || this.vboxMainRootNode == null) {
             return;
@@ -259,14 +278,8 @@ AnimationTimer animationTimer1 = new AnimationTimer() {
 };
 animationTimer1.start();
 
-
         BuildInBodies buildInBodies = new BuildInBodies(planet);
         BuildInBodies buildInBodies1 = new BuildInBodies(planet2);
-
-
-
-
-
 
         buildInBodies.applyTextures("Mercury");
         buildInBodies1.applyTextures("Sun");
@@ -283,18 +296,54 @@ animationTimer1.start();
 
 
     }
+    public void spawnPlanet(double x1,double y1, double z1,double x2,double y2, double z2, int mass, int size,int angle, String texture){
+
+
+        bodyHandler = new BodyHandler();
+        Planet planet = new Planet(new Vector3D(x1 , y1, z1), new Vector3D(x2, y2, x2), mass, size);
+        Rotate yRotate = new Rotate(angle, Rotate.Y_AXIS);
+        planet.getTransforms().add(yRotate);
+        Rotate yRotate2 = new Rotate(0, Rotate.Y_AXIS);
+        AnimationTimer animationTimer1 = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                count += 10;
+                count2 += 0.05;
+                yRotate.setAngle(count);
+                yRotate2.setAngle(count2);
+
+                if (count >= 360 ) count = 0;
+            }
+        };
+        animationTimer1.start();
+        BuildInBodies buildInBodies = new BuildInBodies(planet);
+        buildInBodies.applyTextures(texture);
+        groupRootNode.getChildren().add(planet);
+        bodyHandler.add(planet);
+
+    }
+    public void handleCreationButton() {
+        spawnPlanet(650, 0, .01, 0, 0, 12.28, 100, 10, 0, "earth");
+        System.out.println(cameraControlsHandler.getPrevMovementVector());
+    }
 
     @FXML
     public void initialize() {
 
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
+        //make sure that the exit button sticks to the top right corner
+        AnchorPane.setTopAnchor(vboxExitButton, 20.0);     // Stick to top
+        AnchorPane.setRightAnchor(vboxExitButton, 50.0);   // Stick to right
+
 
         // Button events
         this.buttonAddPlanet.setOnAction(e -> {
             handlerButtonAddPlanetEvent();
         });
-        
+        buttonExit.setOnAction(event -> handleExitButton());
+        buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
+
         handlerCameraButtonEvent();
         initializeBinding();
 
