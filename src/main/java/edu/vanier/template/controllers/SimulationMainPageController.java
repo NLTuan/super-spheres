@@ -1,6 +1,7 @@
 package edu.vanier.template.controllers;
 
 import edu.vanier.template.helpers.BuildInBodies;
+import edu.vanier.template.helpers.DragAndDropSystem;
 import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.BodyHandler;
@@ -331,6 +332,7 @@ animationTimer1.start();
     public void initialize() {
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,50));
 
+        DragAndDropSystem dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,groupRootNode);
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
         //make sure that the exit button sticks to the top right corner
