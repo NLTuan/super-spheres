@@ -198,7 +198,11 @@ public class CameraControlsHandler {
         isMovementAllow = movementAllow;
     }
 
-    public void placeObjectInFrontOfCamera(Node nodeObject, Group groupRootNode,double distanceFromCamera) {
+    public Point3D getLookVector(){
+
+        Transform transformCamera = camera.getLocalToSceneTransform();
+
 
     }
+
 }
