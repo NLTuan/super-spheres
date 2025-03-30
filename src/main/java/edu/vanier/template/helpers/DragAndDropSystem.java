@@ -1,6 +1,8 @@
 package edu.vanier.template.helpers;
 
 import edu.vanier.template.sim.Body;
+import edu.vanier.template.sim.CameraControlsHandler;
+import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.PerspectiveCamera;
@@ -18,15 +20,15 @@ public class DragAndDropSystem {
     private HBox hBoxToolBar;
     private double sceneWidth, sceneHeight;
     private double setBackX, setBackY;
-    private  boolean isDraggable;
-    private PerspectiveCamera perspectiveCamera;
-    public  DragAndDropSystem(TilePane tilePane, Group targetGroup, double sceneWidth, double sceneHeight, PerspectiveCamera perspectiveCamera, HBox toolBar){
+    private  boolean isDraggable = true;
+    private  CameraControlsHandler cameraControlsHandler;
+    public  DragAndDropSystem(TilePane tilePane, Group targetGroup, double sceneWidth, double sceneHeight, CameraControlsHandler cameraControlsHandler, HBox toolBar){
         this.tilePane = tilePane;
         this.targetGroup = targetGroup;
         this.hBoxToolBar = toolBar;
         this.sceneWidth = sceneWidth;
         this.sceneHeight = sceneHeight;
-        this.perspectiveCamera  = perspectiveCamera;
+        this.cameraControlsHandler = cameraControlsHandler;
 
 
         setTilePaneEventConsumers();
@@ -47,19 +49,25 @@ public class DragAndDropSystem {
     }
 
     public  void startDrag(Body body, MouseEvent event){
-        draggedObject = body;
-        dragOffSetX = event.getSceneX() - body.getTranslateX();
-        dragOffSetY = event.getSceneY() - body.getTranslateY();
+
+            draggedObject = body;
+            dragOffSetX = event.getSceneX() - body.getTranslateX();
+            dragOffSetY = event.getSceneY() - body.getTranslateY();
+
+
     }
 
 
     public void transferToSimulation(){
-        if(draggedObject != null){
+        if(draggedObject != null && cameraControlsHandler != null){
             this.targetGroup.getChildren().add(draggedObject);
-            draggedObject.setTranslateZ(draggedObject.getRadius() -this.perspectiveCamera.getTranslateZ() - 100);
+
+            cameraControlsHandler.placeObjectInFrontOfCamera(draggedObject,targetGroup,200);
+            draggedObject = null;
         }
     }
     public void updateDragPosition(MouseEvent event){
+        if(!isDraggable) return;
         double newX = event.getSceneX() - dragOffSetX;
         double newY = event.getSceneY() - dragOffSetY;
 
@@ -82,7 +90,7 @@ public class DragAndDropSystem {
             });
 
             body.setOnMouseDragged(e->{
-                if (draggedObject != null){
+                if (draggedObject != null && cameraControlsHandler != null){
                     updateDragPosition(e);
                 }
             });
@@ -97,6 +105,6 @@ public class DragAndDropSystem {
     }
 
     public void DragAndDropHandler(){
-
+        transferToSimulation();
     }
 }

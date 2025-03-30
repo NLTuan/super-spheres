@@ -101,6 +101,7 @@ public class SimulationMainPageController {
     private long prevTime = System.nanoTime();
 
     private BodyHandler bodyHandler;
+     private DragAndDropSystem dragAndDropSystem ;
 
     double count = 1.0;
     double count2 = 1.0;
@@ -210,9 +211,9 @@ public class SimulationMainPageController {
         
         this.camera.setFarClip(10000000);
         this.camera.setNearClip(0.1);
-        this.camera.setTranslateZ(-3000);
-        this.camera.setTranslateX(this.subSceneSimulation.getWidth() / 2);
-        this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
+        this.camera.setTranslateZ(-2000);
+       // this.camera.setTranslateX(this.subSceneSimulation.getWidth() / 2);
+       // this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
         
         
         
@@ -245,6 +246,7 @@ public class SimulationMainPageController {
                 cameraControlsHandler.updateMovement(dt / 50);
                 bodyHandler.update(dt);
                 prevTime = now;
+
             }
         };
     }
@@ -285,13 +287,11 @@ animationTimer1.start();
 
         groupRootNode.getChildren().add(planet);
         groupRootNode.getChildren().add(planet2);
-       // groupRootNode.getChildren().add(starSun);
+
 
 
        bodyHandler.add(planet);
         bodyHandler.add(planet2);
-      //  bodyHandler.add(starSun);
-
 
     }
     public void spawnPlanet(double x1,double y1, double z1,double x2,double y2, double z2, int mass, int size,int angle, String texture){
@@ -332,9 +332,11 @@ animationTimer1.start();
     public void initialize() {
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,50));
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
-
-        DragAndDropSystem dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,groupRootNode,this
-                .subSceneSimulation.getWidth(), this.subSceneSimulation.getHeight(),camera, hboxRootToolBar);
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),150,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),70,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
         //make sure that the exit button sticks to the top right corner
@@ -350,12 +352,16 @@ animationTimer1.start();
         buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
 
         handlerCameraButtonEvent();
+
         initializeBinding();
 
         setSubSceneSimulation();
         handlerTitlePaneEvent();
 
         handleCamera();
+        //TilePane tilePane, Group targetGroup, double sceneWidth, double sceneHeight, CameraControlsHandler cameraControlsHandler, HBox toolBar
+        dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation.getWidth(), this.subSceneSimulation.getHeight(), cameraControlsHandler,hboxRootToolBar);
+        if(dragAndDropSystem != null) dragAndDropSystem.DragAndDropHandler();
 
         setupBodies();
         setupAnimationTimer();

@@ -2,10 +2,9 @@ package edu.vanier.template.sim;
 
 import edu.vanier.template.math.Vector3D;
 import javafx.animation.AnimationTimer;
-import javafx.scene.Camera;
-import javafx.scene.PerspectiveCamera;
-import javafx.scene.Scene;
-import javafx.scene.SubScene;
+import javafx.geometry.Point2D;
+import javafx.geometry.Point3D;
+import javafx.scene.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -44,6 +43,7 @@ public class CameraControlsHandler {
     private boolean isMovementAllow = false;
 
     private Vector3D prevMovementVector = new Vector3D(0, 0, 0);
+    private Vector3D vector3DMoveVector = new Vector3D(0, 0, 0);
 
     public CameraControlsHandler(PerspectiveCamera camera) {
         this.camera = camera;
@@ -119,7 +119,7 @@ public class CameraControlsHandler {
                     -Math.sin(radYaw)
             );
 
-            Vector3D vector3DMoveVector = new Vector3D(0, 0, 0);
+
 
             if (activeKeys.contains(KeyCode.W)) {
                 vector3DMoveVector.addToCurrentVector3D(vector3DForward);
@@ -196,5 +196,9 @@ public class CameraControlsHandler {
 
     public void setMovementAllow(boolean movementAllow) {
         isMovementAllow = movementAllow;
+    }
+
+    public void placeObjectInFrontOfCamera(Node nodeObject, Group groupRootNode,double distanceFromCamera) {
+
     }
 }
