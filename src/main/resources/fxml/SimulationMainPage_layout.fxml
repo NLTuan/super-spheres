@@ -19,11 +19,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="vboxMainRootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1014.0">
          <children>
-            <AnchorPane fx:id="anchorPaneMainRootNode" prefHeight="633.0" prefWidth="884.0">
+            <AnchorPane fx:id="anchorPaneMainRootNode" prefHeight="507.0" prefWidth="893.0">
                <children>
                   <SubScene fx:id="subSceneSimulation" depthBuffer="true" depthTest="ENABLE" height="721.0" width="1014.0" xmlns="http://javafx.com/javafx/12.0.1" xmlns:fx="http://javafx.com/fxml/1">
                      <root>
@@ -78,9 +78,9 @@
                                     <Font name="Arial Black" size="14.0" />
                                  </font>
                                  <content>
-                                    <TilePane fx:id="tilePanePlanets" prefHeight="73.0" prefWidth="856.0">
+                                    <TilePane fx:id="tilePanePlanets" prefHeight="73.0" prefWidth="856.0" tileAlignment="TOP_LEFT">
                                        <children>
-                                          <VBox fx:id="vBoxCustomizeButton" prefHeight="68.0" prefWidth="50.0">
+                                          <VBox fx:id="vBoxCustomizeButton" alignment="CENTER" prefHeight="68.0" prefWidth="50.0">
                                              <children>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                    <children>

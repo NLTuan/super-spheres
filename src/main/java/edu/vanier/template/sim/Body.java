@@ -14,12 +14,12 @@ import javafx.scene.shape.Sphere;
  */
 public abstract class Body extends Sphere{
     
-    private Vector3D position;
-    private Vector3D velocity;
-    private Vector3D acceleration;
-    private Vector3D force;
+    protected Vector3D position;
+    protected Vector3D velocity;
+    protected Vector3D acceleration;
+    protected Vector3D force;
     
-    private double mass;
+    protected double mass;
 
     public Body(Vector3D position, double mass, double radius) {
         super(radius);

@@ -26,9 +26,9 @@ public class CameraControlsHandler {
     private double yaw = 0;
     private double pitch = 0;
 
-    private double MAX_SPEED = 200;
+    protected double MAX_SPEED = 200;
 
-    private double speed = 70;
+    protected double speed = 70;
 
     private double acceleration = 50;
 
@@ -201,7 +201,7 @@ public class CameraControlsHandler {
     public Point3D getLookVector(){
 
         Transform transformCamera = camera.getLocalToSceneTransform();
-
+        return null;
 
     }
 

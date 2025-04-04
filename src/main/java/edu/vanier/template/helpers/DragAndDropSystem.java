@@ -59,12 +59,12 @@ public class DragAndDropSystem {
 
 
     public void transferToSimulation(){
-        if(draggedObject != null && cameraControlsHandler != null){
-            this.targetGroup.getChildren().add(draggedObject);
-
-            cameraControlsHandler.placeObjectInFrontOfCamera(draggedObject,targetGroup,200);
-            draggedObject = null;
-        }
+//        if(draggedObject != null && cameraControlsHandler != null){
+//            this.targetGroup.getChildren().add(draggedObject);
+//
+//            cameraControlsHandler.placeObjectInFrontOfCamera(draggedObject,targetGroup,200);
+//            draggedObject = null;
+//        }
     }
     public void updateDragPosition(MouseEvent event){
         if(!isDraggable) return;
