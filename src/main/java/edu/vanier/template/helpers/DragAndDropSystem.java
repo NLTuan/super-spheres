@@ -12,10 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape3D;
 import javafx.scene.shape.Sphere;
-import javafx.scene.transform.Transform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 import java.awt.*;
 
@@ -69,7 +67,7 @@ public class DragAndDropSystem {
     public void transferToSimulation(){
         if(draggedObject != null && cameraControlsHandler != null){
             this.targetGroup.getChildren().add(draggedObject);
-            this.putObjectInFrontOfCamera(draggedObject,0);
+            this.putObjectInFrontOfCamera(draggedObject,200);
 
             draggedObject = null;
         }
@@ -111,37 +109,25 @@ public class DragAndDropSystem {
     }
 
     public void putObjectInFrontOfCamera(Shape3D shape3D, double distanceFromCamera) {
-        Camera camera = cameraControlsHandler.getCamera();
+        PerspectiveCamera perspectiveCamera = cameraControlsHandler.getCamera();
+        logger.info("camera: x={}, y={}, z={}", perspectiveCamera.getTranslateX(), perspectiveCamera.getTranslateY(), perspectiveCamera.getTranslateZ());
+       // logger.info("Camera Rotation: {}", perspectiveCamera.getTransforms().getFirst());
+        Point3D point3DCameraPosition =  targetGroup.sceneToLocal(perspectiveCamera.localToScene(
+                0,0,0
+        ));
+        Point3D point3DLookVector = cameraControlsHandler.getLookVector();
 
-        // 1. Get camera's world transform
-        Transform cameraTransform = camera.getLocalToSceneTransform();
+        Point3D point3DSpawnPosition = point3DCameraPosition.subtract(point3DLookVector.multiply(distanceFromCamera));
+        if(shape3D != null){
+            shape3D.setTranslateX(point3DSpawnPosition.getX());
+            shape3D.setTranslateY(point3DSpawnPosition.getY());
+            shape3D.setTranslateZ(point3DSpawnPosition.getZ());
+            logger.info("sphere position x={}, y={}, z={}", shape3D.getTranslateX(), shape3D.getTranslateY(),shape3D.getTranslateZ());
+            perspectiveCamera.setFieldOfView(90);
 
-        // 2. Define "in front" in camera's LOCAL space (negative Z)
-        Point3D localForward = new Point3D(0, 0, -1);
 
-        // 3. Convert to world direction
-        Point3D worldForward = cameraTransform.deltaTransform(localForward).normalize();
+        }
 
-        // 4. Get camera's world position
-        Point3D cameraWorldPos = new Point3D(
-                camera.getTranslateX(),
-                camera.getTranslateY(),
-                camera.getTranslateZ()
-        );
-
-        // 5. Calculate spawn position
-        Point3D spawnPos = cameraWorldPos.add(worldForward.multiply(distanceFromCamera));
-
-        // 6. Set position (in target group's coordinates)
-        Point3D localPos = targetGroup.sceneToLocal(spawnPos);
-        shape3D.setTranslateX(localPos.getX());
-        shape3D.setTranslateY(localPos.getY());
-        shape3D.setTranslateZ(localPos.getZ());
-
-        // DEBUG VISUALS - Uncomment these!
-        // addDebugArrow(cameraWorldPos, worldForward); // See method below
-        // shape3D.setMaterial(new PhongMaterial(Color.RED)); // Make highly visible
-        // ((Sphere)shape3D).setRadius(50); // Make it huge
     }
 
     public void DragAndDropHandler(){
