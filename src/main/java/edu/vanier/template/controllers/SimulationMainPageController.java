@@ -185,7 +185,7 @@ public class SimulationMainPageController {
             this.hboxRootToolBar.prefWidthProperty().bind(newScene == null ? oldScene.widthProperty() : newScene.widthProperty());
 
             this.anchorPaneToolBarKit.prefWidthProperty().bind((newScene == null ? oldScene.widthProperty() : newScene.widthProperty()));
-            // this.anchorPaneToolBarKit.setStyle("-fx-border-color: blue");
+
 
             this.tiltPanePlanets.prefWidthProperty().bind(hboxRootToolBar.prefWidthProperty());
             this.tilePanePlanets.prefWidthProperty().bind((hboxRootToolBar.prefWidthProperty()));
@@ -208,21 +208,18 @@ public class SimulationMainPageController {
         box.setMaterial(new PhongMaterial(Color.RED));
         groupRootNode.getChildren().add(box);
 
-        
-        this.camera.setFarClip(10000000);
+        this.camera.setTranslateZ(-1000);
+        this.camera.setFarClip(100000);
         this.camera.setNearClip(0.1);
-        this.camera.setTranslateZ(-2000);
-       // this.camera.setTranslateX(this.subSceneSimulation.getWidth() / 2);
-       // this.camera.setTranslateY(this.subSceneSimulation.getHeight() / 2);
+
+
         
         
         
 
 
         this.subSceneSimulation.setRoot(groupRootNode);
-        this.subSceneSimulation.getRoot().setTranslateX(this.subSceneSimulation.getWidth() / 2);
-        this.subSceneSimulation.getRoot().setTranslateY(this.subSceneSimulation.getHeight() / 2);
-        this.subSceneSimulation.getRoot().setTranslateZ(0);
+
         this.subSceneSimulation.setCamera(this.camera);
         cameraControlsHandler = new CameraControlsHandler(camera);
 
@@ -337,6 +334,11 @@ animationTimer1.start();
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),150,30));
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),70,30));
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
         //make sure that the exit button sticks to the top right corner
@@ -359,8 +361,8 @@ animationTimer1.start();
         handlerTitlePaneEvent();
 
         handleCamera();
-        //TilePane tilePane, Group targetGroup, double sceneWidth, double sceneHeight, CameraControlsHandler cameraControlsHandler, HBox toolBar
-        dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation.getWidth(), this.subSceneSimulation.getHeight(), cameraControlsHandler,hboxRootToolBar);
+
+        dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar);
         if(dragAndDropSystem != null) dragAndDropSystem.DragAndDropHandler();
 
         setupBodies();
