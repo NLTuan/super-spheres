@@ -21,6 +21,7 @@ import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyCode;
@@ -93,6 +94,9 @@ public class SimulationMainPageController {
     @FXML
     private SubScene subSceneSimulation;
 
+    @FXML
+    private Slider simulationSpeedSlider;
+    
     //Non fxml field members:
     private Group groupRootNode = new Group();
     
@@ -103,10 +107,12 @@ public class SimulationMainPageController {
     private long prevTime = System.nanoTime();
 
     private BodyHandler bodyHandler;
-     private DragAndDropSystem dragAndDropSystem ;
+    private DragAndDropSystem dragAndDropSystem ;
 
     double count = 1.0;
     double count2 = 1.0;
+    
+    double timeConstant = 1;
     public void handlerButtonAddPlanetEvent() {
         if (!vboxAddPlanetButton.isVisible()) {
             return;
@@ -211,6 +217,10 @@ public class SimulationMainPageController {
                 textFieldCameraSpeed.getParent().requestFocus();
             }
         });
+        
+        simulationSpeedSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            timeConstant = newVal.doubleValue();
+        });
 
     }
 
@@ -222,12 +232,6 @@ public class SimulationMainPageController {
         this.camera.setTranslateZ(-1000);
         this.camera.setFarClip(100000);
         this.camera.setNearClip(0.1);
-
-
-        
-        
-        
-
 
         this.subSceneSimulation.setRoot(groupRootNode);
 
@@ -250,9 +254,9 @@ public class SimulationMainPageController {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                double dt = (now - prevTime) / 1E9 * 50;
-                cameraControlsHandler.updateMovement(dt / 50);
-                bodyHandler.update(dt);
+                double dt = (now - prevTime) / 1E9;
+                cameraControlsHandler.updateMovement(dt);
+                bodyHandler.update(dt * timeConstant);
                 prevTime = now;
 
             }
