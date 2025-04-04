@@ -3,8 +3,14 @@ package edu.vanier.template.controllers;
 import edu.vanier.template.ui.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Sphere;
+
+import java.util.Objects;
 
 /**
  * FXML controller  for the start page.
@@ -13,41 +19,73 @@ import javafx.scene.shape.Sphere;
  */
 public class CreatePlanetController {
     @FXML
-    private Circle circle1;
+    private TextField massTextField;
     @FXML
-    private Circle circle2;
+    private TextField radiusTextField;
     @FXML
-    private Circle circle3;
+    private TextField velocityTextField;
     @FXML
-    private Circle circle4;
+    private ComboBox<String> bodyTextureComboBox;
     @FXML
-    private Circle circle5;
-
-
+    private ImageView bodyTextureImageView;
     @FXML
-    private Button customButton1;
-    @FXML
-    private Button customButton2;
-    @FXML
-    private Button customButton3;
-    @FXML
-    private Button customButton4;
-    @FXML
-    private Button customButton5;
-
-    @FXML
-    private Sphere planet;
-
-
-
-
+    private Button createButton;
 
     @FXML
     public void initialize() {
-        customButton1.setOnAction(event -> handleStartButton());
+        initializeComboBox();
+        handleCreateButton();
     }
-    // I'm not sure but here its probably going to be with the scene controller to change scene
-    public  void handleStartButton(){
-        MainApp.switchScene(MainApp.VOID_SIMULATION_LAYOUT);
+
+    public void initializeComboBox() {
+        bodyTextureComboBox.getItems().addAll("Earth", "Mars", "Jupiter", "Uranus", "Mercury");
+        bodyTextureComboBox.setValue("Earth");
+        bodyTextureImageView.setImage(new Image("/fxml/BuildInBodiesImages/EarthImage.jpeg"));
+
+        bodyTextureComboBox.setOnAction(event -> {
+            String selected = bodyTextureComboBox.getValue();
+            updateImageView(selected);
+        });
     }
+
+    public void updateImageView(String selected) {
+        switch (selected) {
+            case "Earth":
+                bodyTextureImageView.setImage(new Image("/fxml/BuildInBodiesImages/EarthImage.jpeg"));
+                break;
+            case "Mars":
+                bodyTextureImageView.setImage(new Image("/fxml/BuildInBodiesImages/MarsImage.png"));
+                break;
+            case "Jupiter":
+                bodyTextureImageView.setImage(new Image("/fxml/BuildInBodiesImages/JupiterImage.jpg"));
+                break;
+            case "Uranus":
+                bodyTextureImageView.setImage(new Image("/fxml/BuildInBodiesImages/UranusImage.png"));
+                break;
+            case "Venus":
+                bodyTextureImageView.setImage(new Image("/fxml/BuildInBodiesImages/VenusImage.png"));
+                break;
+            case "Sun":
+                bodyTextureImageView.setImage(new Image("/fxml/BuildInBodiesImages/SolarImage.jpg"));
+                break;
+            case "Mercury":
+                bodyTextureImageView.setImage(new Image("/fxml/BuildInBodiesImages/MercuryImage.png"));
+                break;
+            default:
+                System.out.println("Unknown planet selection: " + selected);
+                break;
+        }
+    }
+
+    @FXML
+    private void handleCreateButton() {
+        createButton.setOnAction(event -> {
+            createButton.getScene().getWindow().hide();
+        });
+        String mass = massTextField.getText();
+        String radius = radiusTextField.getText();
+        String velocity = velocityTextField.getText();
+        String bodyTexture = bodyTextureComboBox.getValue();
+    }
+
 }

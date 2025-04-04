@@ -2,22 +2,17 @@ package edu.vanier.template.controllers;
 
 import edu.vanier.template.helpers.BuildInBodies;
 import edu.vanier.template.helpers.DragAndDropSystem;
-import edu.vanier.template.math.Physics;
+import edu.vanier.template.helpers.FxUIHelper;
 import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.BodyHandler;
 import edu.vanier.template.sim.CameraControlsHandler;
 import edu.vanier.template.sim.Planet;
-import java.util.Calendar;
-import java.util.Date;
 
-import edu.vanier.template.sim.Star;
 import edu.vanier.template.ui.MainApp;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Point3D;
-import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,7 +26,11 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
 
 public class SimulationMainPageController {
 
@@ -370,6 +369,8 @@ animationTimer1.start();
 
         handlerCameraButtonEvent();
 
+        handlePlanetCreationButtonEvent();
+
         initializeBinding();
 
         setSubSceneSimulation();
@@ -380,9 +381,27 @@ animationTimer1.start();
         dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar);
         if(dragAndDropSystem != null) dragAndDropSystem.DragAndDropHandler();
 
+
         setupBodies();
         setupAnimationTimer();
         animationTimer.start();
     }
 
+    public void handlePlanetCreationButtonEvent() {
+        buttonCustomizePlanet.setOnAction(event -> {
+            try {
+                Parent root = FxUIHelper.loadFXML("planetCreation_layout", new CreatePlanetController());
+
+                Scene scene = new Scene(root, 600, 400);
+                Stage stage = new Stage();
+                stage.setTitle("Planet Creation");
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initOwner(buttonCustomizePlanet.getScene().getWindow());
+                stage.showAndWait();
+            } catch (Exception e) {
+                System.out.println("AAAAAAAAA");
+            }
+        });
+    }
 }
