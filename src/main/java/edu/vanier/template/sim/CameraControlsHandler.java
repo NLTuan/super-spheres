@@ -29,9 +29,9 @@ public class CameraControlsHandler {
     private double yaw = 0;
     private double pitch = 0;
 
-    protected double MAX_SPEED = 200;
+    private double maxSpeed = 200;
 
-    protected double speed = 70;
+    private double speed = 100;
 
     private double acceleration = 50;
 
@@ -153,8 +153,8 @@ public class CameraControlsHandler {
 
             Vector3D cameraMovements;
             if (!activeKeys.isEmpty()) {
-                if (speed > MAX_SPEED) {
-                    speed = MAX_SPEED;
+                if (speed > maxSpeed) {
+                    speed = maxSpeed;
                 }
                 speed += acceleration * deltaTime;
                 cameraMovements = vector3DMoveVector
@@ -234,4 +234,30 @@ public class CameraControlsHandler {
     public PerspectiveCamera getCamera() {
         return camera;
     }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public double getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public void setMaxSpeed(double maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
+    public double getAcceleration() {
+        return acceleration;
+    }
+
+    public void setAcceleration(double acceleration) {
+        this.acceleration = acceleration;
+    }
+    
+    
 }

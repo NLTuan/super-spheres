@@ -15,6 +15,7 @@ import edu.vanier.template.ui.MainApp;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -22,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
@@ -199,6 +201,15 @@ public class SimulationMainPageController {
         vboxMainRootNode.heightProperty().addListener((obs, oldHeight, newHeight) -> {
             vboxAddPlanetButton.setLayoutY(newHeight.doubleValue() - 150);
             hboxRootToolBar.setLayoutY(newHeight.doubleValue() * 0.88);
+        });
+        
+        textFieldCameraSpeed.setOnKeyPressed(e -> {
+            if(e.getCode() == KeyCode.ENTER){
+                Double speed = Double.parseDouble(textFieldCameraSpeed.getText());
+                cameraControlsHandler.setMaxSpeed(speed);
+                cameraControlsHandler.setAcceleration(speed/4);
+                textFieldCameraSpeed.getParent().requestFocus();
+            }
         });
 
     }
