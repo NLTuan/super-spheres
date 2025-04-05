@@ -2,22 +2,17 @@ package edu.vanier.template.controllers;
 
 import edu.vanier.template.helpers.BuildInBodies;
 import edu.vanier.template.helpers.DragAndDropSystem;
-import edu.vanier.template.math.Physics;
+import edu.vanier.template.helpers.FxUIHelper;
 import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.BodyHandler;
 import edu.vanier.template.sim.CameraControlsHandler;
 import edu.vanier.template.sim.Planet;
-import java.util.Calendar;
-import java.util.Date;
 
-import edu.vanier.template.sim.Star;
 import edu.vanier.template.ui.MainApp;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Point3D;
-import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,7 +26,11 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
 
 public class SimulationMainPageController {
 
@@ -343,15 +342,7 @@ animationTimer1.start();
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,50));
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),150,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),70,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
+
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
         //make sure that the exit button sticks to the top right corner
@@ -368,6 +359,8 @@ animationTimer1.start();
 
         handlerCameraButtonEvent();
 
+        handlePlanetCreationButtonEvent();
+
         initializeBinding();
 
         setSubSceneSimulation();
@@ -378,9 +371,34 @@ animationTimer1.start();
         dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar);
         if(dragAndDropSystem != null) dragAndDropSystem.DragAndDropHandler();
 
+
         setupBodies();
         setupAnimationTimer();
         animationTimer.start();
     }
 
+    public void handlePlanetCreationButtonEvent() {
+        CreatePlanetController createPlanetController = new CreatePlanetController();
+        createPlanetController.setSimulationController(this);
+
+        buttonCustomizePlanet.setOnAction(event -> {
+            try {
+                Parent root = FxUIHelper.loadFXML("planetCreation_layout", createPlanetController);
+
+                Scene scene = new Scene(root, 600, 430);
+                Stage stage = new Stage();
+                stage.setTitle("Planet Creation");
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initOwner(buttonCustomizePlanet.getScene().getWindow());
+                stage.showAndWait();
+            } catch (Exception e) {
+                System.out.println("AAAAAAAAA");
+            }
+        });
+    }
+
+    public TilePane getTilePanePlanets() {
+        return tilePanePlanets;
+    }
 }
