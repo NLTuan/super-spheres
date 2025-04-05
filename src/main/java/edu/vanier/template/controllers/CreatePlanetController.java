@@ -2,9 +2,12 @@ package edu.vanier.template.controllers;
 
 import edu.vanier.template.helpers.BuildInBodies;
 import edu.vanier.template.math.Vector3D;
+import edu.vanier.template.sim.Body;
 import edu.vanier.template.sim.Planet;
+import edu.vanier.template.sim.Star;
 import edu.vanier.template.ui.MainApp;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -100,15 +103,23 @@ public class CreatePlanetController {
                 double velocity = Double.parseDouble(velocityTextField.getText());
                 String bodyTexture = bodyTextureComboBox.getValue();
 
-                Planet planet = new Planet(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
-                BuildInBodies buildInBodies = new BuildInBodies(planet);
+                Body body;
+                if (isPlanet) {
+                    body = new Planet(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
+                } else {
+                    body = new Star(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
+                }
+                BuildInBodies buildInBodies = new BuildInBodies(body);
                 buildInBodies.applyTextures(bodyTexture);
-                simulationController.getTilePanePlanets().getChildren().add(planet);
-
+                simulationController.getTilePanePlanets().getChildren().add(body);
 
                 createButton.getScene().getWindow().hide();
 
             } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Invalid Input");
+                alert.setContentText("Mass, radius or velocity is invalid. Must be numeric values.");
+                alert.showAndWait();
                 System.out.println("Please enter valid numeric values for mass, radius, and velocity.");
             } catch (Exception e) {
                 e.printStackTrace();

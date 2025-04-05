@@ -344,15 +344,7 @@ animationTimer1.start();
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,50));
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),150,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),70,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),80,30));
+
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
         //make sure that the exit button sticks to the top right corner
@@ -395,7 +387,7 @@ animationTimer1.start();
             try {
                 Parent root = FxUIHelper.loadFXML("planetCreation_layout", createPlanetController);
 
-                Scene scene = new Scene(root, 600, 400);
+                Scene scene = new Scene(root, 600, 430);
                 Stage stage = new Stage();
                 stage.setTitle("Planet Creation");
                 stage.setScene(scene);
