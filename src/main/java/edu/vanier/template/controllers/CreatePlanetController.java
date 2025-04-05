@@ -1,5 +1,8 @@
 package edu.vanier.template.controllers;
 
+import edu.vanier.template.helpers.BuildInBodies;
+import edu.vanier.template.math.Vector3D;
+import edu.vanier.template.sim.Planet;
 import edu.vanier.template.ui.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,11 +33,21 @@ public class CreatePlanetController {
     private ImageView bodyTextureImageView;
     @FXML
     private Button createButton;
+    @FXML
+    private Button starButton;
+    @FXML
+    private Button planetButton;
+    @FXML
+    private boolean isPlanet;
+    private SimulationMainPageController simulationController;
+
 
     @FXML
     public void initialize() {
         initializeComboBox();
         handleCreateButton();
+        handleStarButtonAction();
+        handlePlanetButtonAction();
     }
 
     public void initializeComboBox() {
@@ -47,6 +60,7 @@ public class CreatePlanetController {
             updateImageView(selected);
         });
     }
+
 
     public void updateImageView(String selected) {
         switch (selected) {
@@ -80,12 +94,56 @@ public class CreatePlanetController {
     @FXML
     private void handleCreateButton() {
         createButton.setOnAction(event -> {
-            createButton.getScene().getWindow().hide();
+            try {
+                double mass = Double.parseDouble(massTextField.getText());
+                double radius = Double.parseDouble(radiusTextField.getText());
+                double velocity = Double.parseDouble(velocityTextField.getText());
+                String bodyTexture = bodyTextureComboBox.getValue();
+
+                Planet planet = new Planet(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
+                BuildInBodies buildInBodies = new BuildInBodies(planet);
+                buildInBodies.applyTextures(bodyTexture);
+                simulationController.getTilePanePlanets().getChildren().add(planet);
+
+
+                createButton.getScene().getWindow().hide();
+
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter valid numeric values for mass, radius, and velocity.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
-        String mass = massTextField.getText();
-        String radius = radiusTextField.getText();
-        String velocity = velocityTextField.getText();
-        String bodyTexture = bodyTextureComboBox.getValue();
+    }
+
+    private void handleStarButtonAction() {
+       starButton.setOnAction(event -> {
+           bodyTextureComboBox.getItems().clear();
+           bodyTextureComboBox.getItems().addAll("Sun");
+           bodyTextureComboBox.setValue("Sun");
+
+           planetButton.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+           starButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+
+           isPlanet = false;
+       });
+    }
+
+    private void handlePlanetButtonAction() {
+        planetButton.setOnAction(event -> {
+            isPlanet = true;
+            bodyTextureComboBox.getItems().clear();
+            bodyTextureComboBox.getItems().addAll("Earth", "Mars", "Jupiter", "Uranus", "Mercury");
+            bodyTextureComboBox.setValue("Earth");
+
+            starButton.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+            planetButton.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+
+        });
+    }
+
+    public void setSimulationController(SimulationMainPageController simulationController) {
+        this.simulationController = simulationController;
     }
 
 }

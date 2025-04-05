@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="600.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="247.0" layoutY="24.0" text="Creation Menu" textFill="WHITE">
          <font>
@@ -22,8 +22,16 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #171717;" text="Star" textFill="WHITE" />
-                  <Button mnemonicParsing="false" style="-fx-background-color: white;" text="Planet" />
+                  <Button fx:id="starButton" minWidth="53.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: white;" text="Star">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="planetButton" minWidth="53.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: black;" text="Planet" textFill="WHITE">
+                     <font>
+                        <Font name="Dubai Medium" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
             <VBox alignment="CENTER_LEFT" prefHeight="327.0" prefWidth="309.0">
@@ -47,18 +55,25 @@
                      </children>
                   </VBox>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <ComboBox fx:id="bodyTextureComboBox" prefWidth="150.0" promptText="Body Texture" style="-fx-background-color: white;" />
-                  <ImageView fx:id="bodyTextureImageView" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="bodyTextureImageView" fitHeight="100.0" fitWidth="112.0" layoutX="99.0" layoutY="5.0" pickOnBounds="true" />
+                     </children>
+                  </AnchorPane>
                </children>
             </VBox>
          </children>
       </VBox>
       <Button fx:id="createButton" layoutX="507.0" layoutY="348.0" mnemonicParsing="false" style="-fx-background-color: grey; -fx-background-radius: 10;" text="Create" AnchorPane.bottomAnchor="21.333333333333332" AnchorPane.rightAnchor="39.0">
          <font>
-            <Font name="Dubai Medium" size="12.0" />
+            <Font name="Dubai Medium" size="16.0" />
          </font>
       </Button>
    </children>

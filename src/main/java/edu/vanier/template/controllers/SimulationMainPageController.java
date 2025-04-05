@@ -388,9 +388,12 @@ animationTimer1.start();
     }
 
     public void handlePlanetCreationButtonEvent() {
+        CreatePlanetController createPlanetController = new CreatePlanetController();
+        createPlanetController.setSimulationController(this);
+
         buttonCustomizePlanet.setOnAction(event -> {
             try {
-                Parent root = FxUIHelper.loadFXML("planetCreation_layout", new CreatePlanetController());
+                Parent root = FxUIHelper.loadFXML("planetCreation_layout", createPlanetController);
 
                 Scene scene = new Scene(root, 600, 400);
                 Stage stage = new Stage();
@@ -403,5 +406,9 @@ animationTimer1.start();
                 System.out.println("AAAAAAAAA");
             }
         });
+    }
+
+    public TilePane getTilePanePlanets() {
+        return tilePanePlanets;
     }
 }
