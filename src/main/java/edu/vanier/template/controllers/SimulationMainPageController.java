@@ -307,8 +307,6 @@ animationTimer1.start();
 
     }
     public void spawnPlanet(double x1,double y1, double z1,double x2,double y2, double z2, int mass, int size,int angle, String texture){
-
-
         bodyHandler = new BodyHandler();
         Planet planet = new Planet(new Vector3D(x1 , y1, z1), new Vector3D(x2, y2, x2), mass, size);
         Rotate yRotate = new Rotate(angle, Rotate.Y_AXIS);
