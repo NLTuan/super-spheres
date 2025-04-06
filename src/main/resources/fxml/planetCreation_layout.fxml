@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Sphere?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -18,14 +18,14 @@
             <Insets left="20.0" right="20.0" top="10.0" />
          </padding>
       </HBox>
-      <Label alignment="CENTER" layoutX="248.0" layoutY="14.0" prefWidth="307.0" text="Creation Menu" textFill="WHITE" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="247.33333333333337" AnchorPane.topAnchor="14.0">
+      <Label alignment="CENTER" layoutX="248.0" layoutY="14.0" prefWidth="307.0" text="Customization Page" textFill="WHITE" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="247.33333333333337" AnchorPane.topAnchor="14.0">
          <font>
-            <Font name="Dubai Medium" size="20.0" />
+            <Font name="Avenir Heavy" size="20.0" />
          </font>
       </Label>
       <HBox alignment="CENTER" layoutX="384.0" layoutY="62.0" prefHeight="369.0" prefWidth="417.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="384.00000000000006" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="62.0">
          <children>
-            <Circle fx:id="bodyTextureCircle" fill="DODGERBLUE" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
+            <Sphere radius="30.0" />
          </children>
       </HBox>
       <HBox layoutY="62.0" prefHeight="389.0" prefWidth="417.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.684341886080802E-14" AnchorPane.rightAnchor="386.00000000000006" AnchorPane.topAnchor="62.0">
@@ -36,12 +36,12 @@
                      <children>
                         <Button fx:id="starButton" minWidth="53.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: white;" text="Star">
                            <font>
-                              <Font name="Dubai Medium" size="14.0" />
+                              <Font name="Arial Black" size="14.0" />
                            </font>
                         </Button>
                         <Button fx:id="planetButton" minWidth="53.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #262626;" text="Planet" textFill="WHITE">
                            <font>
-                              <Font name="Dubai Medium" size="14.0" />
+                              <Font name="Arial Black" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -50,48 +50,48 @@
                      <children>
                         <VBox prefHeight="52.0" prefWidth="398.0">
                            <children>
-                              <Label text="Velocity:" textFill="WHITE">
+                              <Label text="Rotation Rate" textFill="WHITE">
                                  <font>
-                                    <Font name="Dubai Medium" size="14.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="velocitySlider" minorTickCount="10" showTickLabels="true" showTickMarks="true" />
+                              <Slider fx:id="velocitySlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" value="1.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Radius:" textFill="WHITE">
                                  <font>
-                                    <Font name="Dubai Medium" size="14.0" />
+                                    <Font name="System Bold Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="radiusSlider" majorTickUnit="20.0" min="20.0" minorTickCount="10" showTickLabels="true" showTickMarks="true" />
+                              <Slider fx:id="radiusSlider" majorTickUnit="10.0" max="600.0" min="10.0" prefHeight="38.0" prefWidth="415.0" showTickLabels="true" showTickMarks="true" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Mass:" textFill="WHITE">
                                  <font>
-                                    <Font name="Dubai Medium" size="14.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="massSlider" majorTickUnit="20.0" min="20.0" minorTickCount="10" showTickLabels="true" showTickMarks="true" />
+                              <Slider fx:id="massSlider" blockIncrement="5.0" majorTickUnit="5.0" max="1500.0" min="10.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" />
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Appearance:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Avenir Black Oblique" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="bodyTextureComboBox" prefWidth="150.0" promptText="Body Texture" style="-fx-background-color: white;" />
+                                 </children>
+                              </VBox>
                            </children>
                         </VBox>
                      </children>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-                     <children>
-                        <Label text="Appearance:" textFill="WHITE">
-                           <font>
-                              <Font name="Dubai Medium" size="14.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="bodyTextureComboBox" prefWidth="150.0" promptText="Body Texture" style="-fx-background-color: white;" />
-                     </children>
                   </VBox>
                </children>
             </VBox>
@@ -100,7 +100,10 @@
             <Insets left="20.0" />
          </padding>
       </HBox>
-      <Button fx:id="button" layoutX="683.0" layoutY="517.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" text="Create" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="67.0" />
+      <Button fx:id="button" layoutX="683.0" layoutY="517.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" text="Create" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="67.0">
+         <font>
+            <Font name="Avenir Next Condensed Heavy Italic" size="13.0" />
+         </font></Button>
    </children>
    <padding>
       <Insets bottom="10.0" />

@@ -95,6 +95,8 @@ public class SimulationMainPageController {
 
     @FXML
     private Slider simulationSpeedSlider;
+    @FXML
+    private TextField textFieldVelocity;
     
     //Non fxml field members:
     private Group groupRootNode = new Group();
@@ -169,11 +171,7 @@ public class SimulationMainPageController {
         this.tiltPanePlanets.setExpanded(false);
         this.vboxCameraControls.setManaged(false);
         this.vboxCameraControls.setVisible(false);
-        Sphere sphere = new Sphere(30);
-        sphere.setMaterial(new PhongMaterial(Color.CORAL));
-        this.tilePanePlanets.getChildren().add(sphere);
 
-        //vboxExitButton.setLayoutX(vboxMainRootNode.getLayoutX()-150);
 
         if (this.subSceneSimulation == null || this.vboxMainRootNode == null) {
             return;
@@ -264,7 +262,8 @@ public class SimulationMainPageController {
 
     public void setupBodies(){
 
-
+        if(bodyHandler != null)dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar, textFieldVelocity,bodyHandler);
+        if(dragAndDropSystem != null) dragAndDropSystem.DragAndDropHandler();
         bodyHandler = new BodyHandler();
         Planet planet = new Planet(new Vector3D(-650 , 0, .01), new Vector3D(0, 0, -12.28), 100.0, 10);
 
@@ -272,7 +271,8 @@ public class SimulationMainPageController {
 
         Planet planet3 = new Planet(new Vector3D(0  , 0, 0), new Vector3D(0,0,0),150, 170);
         Rotate yRotate = new Rotate(0, Rotate.Y_AXIS);
-        Rotate yRotate2 = new Rotate(0, Rotate.Y_AXIS);
+        Rotate yRotate2 = new Rotate(0, Rotate.Y_AXIS)
+                ;
 
         planet.getTransforms().add(yRotate);
         planet2.getTransforms().add(yRotate2);
@@ -340,8 +340,8 @@ animationTimer1.start();
     @FXML
     public void initialize() {
         tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,50));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,30));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,60));
+        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,70));
 
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
@@ -365,8 +365,6 @@ animationTimer1.start();
         handlerTitlePaneEvent();
         handleCamera();
 
-        dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar);
-        if(dragAndDropSystem != null) dragAndDropSystem.DragAndDropHandler();
 
 
         setupBodies();
