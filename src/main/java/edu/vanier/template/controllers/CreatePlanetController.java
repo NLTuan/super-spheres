@@ -8,11 +8,13 @@ import edu.vanier.template.sim.Star;
 import edu.vanier.template.ui.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Sphere;
@@ -58,6 +60,11 @@ public class CreatePlanetController {
         handleStarButtonAction();
         handlePlanetButtonAction();
         initializeBinding();
+
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(20.0);
+        dropShadow.setColor(Color.ANTIQUEWHITE);
+        bodyTextureCircle.setEffect(dropShadow);
     }
 
     public void initializeComboBox() {
@@ -161,7 +168,7 @@ public class CreatePlanetController {
     }
 
     public void initializeBinding() {
-        bodyTextureCircle.radiusProperty().bind(rootAnchorPane.widthProperty().multiply(0.15));
+        bodyTextureCircle.radiusProperty().bind(rootAnchorPane.widthProperty().multiply(0.13));
     }
 
 }

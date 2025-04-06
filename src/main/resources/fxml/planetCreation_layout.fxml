@@ -36,7 +36,7 @@
                      <children>
                         <Button fx:id="starButton" minWidth="53.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: white;" text="Star">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="Dubai Medium" size="14.0" />
                            </font>
                         </Button>
                         <Button fx:id="planetButton" minWidth="53.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #262626;" text="Planet" textFill="WHITE">
@@ -46,18 +46,18 @@
                         </Button>
                      </children>
                   </HBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="327.0" prefWidth="309.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="199.0" prefWidth="398.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox prefHeight="52.0" prefWidth="398.0">
                            <children>
                               <Label text="Velocity:" textFill="WHITE">
                                  <font>
                                     <Font name="Dubai Medium" size="14.0" />
                                  </font>
                               </Label>
+                              <Slider fx:id="velocitySlider" min="10.0" showTickLabels="true" showTickMarks="true" />
                            </children>
                         </VBox>
-                        <Slider fx:id="velocitySlider" min="10.0" showTickLabels="true" showTickMarks="true" />
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Radius:" textFill="WHITE">
@@ -65,9 +65,9 @@
                                     <Font name="Dubai Medium" size="14.0" />
                                  </font>
                               </Label>
+                              <Slider fx:id="radiusSlider" min="10.0" showTickLabels="true" showTickMarks="true" />
                            </children>
                         </VBox>
-                        <Slider fx:id="radiusSlider" min="10.0" showTickLabels="true" showTickMarks="true" />
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Mass:" textFill="WHITE">
@@ -80,7 +80,7 @@
                         </VBox>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets />
                      </VBox.margin>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -100,7 +100,7 @@
             <Insets left="20.0" />
          </padding>
       </HBox>
-      <Button fx:id="button" layoutX="683.0" layoutY="517.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: grey; -fx-background-radius: 10;" text="Create" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="67.0" />
+      <Button fx:id="button" layoutX="683.0" layoutY="517.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" text="Create" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="67.0" />
    </children>
    <padding>
       <Insets bottom="10.0" />
