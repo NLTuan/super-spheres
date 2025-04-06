@@ -37,6 +37,7 @@ public class DragAndDropSystem {
     private BodyHandler bodyHandler;
     private  boolean isDraggable = true;
     private  CameraControlsHandler cameraControlsHandler;
+    private Vector3D vector3DInitialPosition;
     public  DragAndDropSystem(TilePane tilePane, Group targetGroup, SubScene subScene, CameraControlsHandler cameraControlsHandler, HBox toolBar, TextField textField , BodyHandler bodyHandler){
         this.tilePane = tilePane;
         this.targetGroup = targetGroup;
@@ -79,7 +80,7 @@ public class DragAndDropSystem {
             this.putObjectInFrontOfCamera(draggedObject,500);
             Body cloneDragged = draggedObject;
             this.DropHandler(cloneDragged);
-            //draggedObject = null;
+            draggedObject = null;
         }
     }
     public void updateDragPosition(MouseEvent event){
@@ -114,12 +115,11 @@ public class DragAndDropSystem {
 
 
     }
-    public void DropHandler(Body draggedObject){
+    public void DropHandler(Body draggedObject1){
         if(this.bodyHandler == null) return;
             textFieldVelocity.setVisible(true);
             textFieldVelocity.setManaged(true);
-        try{
-            logger.info("inside drop handler");
+
 
 
             Point3D lookVector = cameraControlsHandler.getLookVector();
@@ -127,16 +127,16 @@ public class DragAndDropSystem {
 
             this.textFieldVelocity.setOnKeyPressed(e->{
                 try {
-                    double velocityValue = Double.parseDouble(textFieldVelocity.getText());
-                    Point3D velocityVector = lookVector.multiply(velocityValue);
-                    Vector3D vector3DVelocity = new Vector3D(velocityVector.getX(), velocityVector.getY(), velocityVector.getZ());
-
-
                     if (e.getCode() == KeyCode.ENTER) {
-                        logger.info("key pressed");
+                        double velocityValue = Double.parseDouble(textFieldVelocity.getText());
+                        logger.info("Velocity ");
+                        Point3D velocityVector = lookVector.multiply(velocityValue);
+                        Vector3D vector3DVelocity = new Vector3D(velocityVector.getX(), velocityVector.getY(), velocityVector.getZ());
 
-                        draggedObject.setVelocity(vector3DVelocity);
-                        bodyHandler.add(draggedObject);
+                        logger.info("key pressed");
+                        draggedObject1.setPosition(vector3DInitialPosition);
+                        draggedObject1.setVelocity(vector3DVelocity);
+                        bodyHandler.add(draggedObject1);
                         this.textFieldVelocity.setVisible(false);
                         this.textFieldVelocity.setManaged(false);
                     }
@@ -146,9 +146,6 @@ public class DragAndDropSystem {
                 }
             });
 
-        }catch (Exception exception){
-            logger.info(exception.getMessage());
-        }
     }
 
     public void putObjectInFrontOfCamera(Shape3D shape3D, double distanceFromCamera) {
@@ -164,6 +161,7 @@ public class DragAndDropSystem {
             shape3D.setTranslateX(point3DSpawnPosition.getX());
             shape3D.setTranslateY(point3DSpawnPosition.getY());
             shape3D.setTranslateZ(point3DSpawnPosition.getZ());
+            vector3DInitialPosition = new Vector3D(shape3D.getTranslateX(), shape3D.getTranslateY(),shape3D.getTranslateZ());
             logger.info("sphere position x={}, y={}, z={}", shape3D.getTranslateX(), shape3D.getTranslateY(),shape3D.getTranslateZ());
         }
     }

@@ -4,8 +4,12 @@
  */
 package edu.vanier.template.sim;
 
+import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 
 /**
@@ -13,7 +17,7 @@ import java.util.ArrayList;
  * @author letua
  */
 public class BodyHandler {
-
+    private final static Logger logger = LoggerFactory.getLogger(BodyHandler.class);
     private ArrayList<Body> bodies;
 
     public BodyHandler() {

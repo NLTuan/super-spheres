@@ -292,10 +292,11 @@ public class SimulationMainPageController {
     }
 
     public void setupBodies(){
-
-        if(bodyHandler != null)dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar, textFieldVelocity,bodyHandler);
-        if(dragAndDropSystem != null) dragAndDropSystem.DragAndDropHandler();
         bodyHandler = new BodyHandler();
+
+        dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar, textFieldVelocity,bodyHandler);
+        dragAndDropSystem.DragAndDropHandler();
+
         Planet planet = new Planet(new Vector3D(-650 , 0, .01), new Vector3D(0, 0, -12.28), 100.0, 10);
 
         Planet planet2 = new Planet(new Vector3D(0  , 0, 0), new Vector3D(0,0,0),10000, 170);
@@ -337,7 +338,7 @@ animationTimer1.start();
 
     }
     public void spawnPlanet(double x1,double y1, double z1,double x2,double y2, double z2, int mass, int size,int angle, String texture){
-        bodyHandler = new BodyHandler();
+
         Planet planet = new Planet(new Vector3D(x1 , y1, z1), new Vector3D(x2, y2, x2), mass, size);
         Rotate yRotate = new Rotate(angle, Rotate.Y_AXIS);
         planet.getTransforms().add(yRotate);

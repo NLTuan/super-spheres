@@ -4,16 +4,18 @@
  */
 package edu.vanier.template.sim;
 
+import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.math.Vector3D;
 import javafx.scene.DepthTest;
 import javafx.scene.shape.Sphere;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author letua
  */
 public abstract class Body extends Sphere{
-    
     protected Vector3D position;
     protected Vector3D velocity;
     protected Vector3D acceleration;
