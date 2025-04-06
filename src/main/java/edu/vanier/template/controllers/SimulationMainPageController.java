@@ -382,7 +382,11 @@ animationTimer1.start();
             try {
                 Parent root = FxUIHelper.loadFXML("planetCreation_layout", createPlanetController);
 
-                Scene scene = new Scene(root, 600, 430);
+                Scene currentScene = buttonCustomizePlanet.getScene();
+                double width = currentScene.getWidth();
+                double height = currentScene.getHeight();
+
+                Scene scene = new Scene(root, width, height);
                 Stage stage = new Stage();
                 stage.setTitle("Planet Creation");
                 stage.setScene(scene);
