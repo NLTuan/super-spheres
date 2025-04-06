@@ -5,22 +5,14 @@ import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.Body;
 import edu.vanier.template.sim.Planet;
 import edu.vanier.template.sim.Star;
-import edu.vanier.template.ui.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Sphere;
-
-import java.util.Objects;
 
 /**
  * FXML controller  for the start page.
@@ -44,7 +36,7 @@ public class CreatePlanetController {
     private boolean isPlanet;
     private SimulationMainPageController simulationController;
     @FXML
-    private Slider velocitySlider;
+    private Slider rotationSlider;
     @FXML
     private Slider radiusSlider;
     @FXML
@@ -62,7 +54,7 @@ public class CreatePlanetController {
 //        initializeBinding();
 
         radiusSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            textureBodySphere.setRadius(newValue.doubleValue());
+            textureBodySphere.setRadius(newValue.doubleValue()*1.2);
         });
 
         radiusSlider.setValue(60);
@@ -113,7 +105,7 @@ public class CreatePlanetController {
         button.setOnAction(event -> {
                 double mass = massSlider.getValue();
                 double radius = radiusSlider.getValue();
-                double velocity = velocitySlider.getValue();
+                double velocity = rotationSlider.getValue();
                 String bodyTexture = bodyTextureComboBox.getValue();
 
                 Body body;
