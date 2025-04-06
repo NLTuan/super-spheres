@@ -38,6 +38,7 @@ public class DragAndDropSystem {
     private  boolean isDraggable = true;
     private  CameraControlsHandler cameraControlsHandler;
     private Vector3D vector3DInitialPosition;
+    private  RayCaster rayCaster;
     public  DragAndDropSystem(TilePane tilePane, Group targetGroup, SubScene subScene, CameraControlsHandler cameraControlsHandler, HBox toolBar, TextField textField , BodyHandler bodyHandler){
         this.tilePane = tilePane;
         this.targetGroup = targetGroup;
@@ -46,7 +47,7 @@ public class DragAndDropSystem {
         this.subScene = subScene;
         this.textFieldVelocity  = textField;
         this.bodyHandler = bodyHandler;
-
+        this.rayCaster = new RayCaster(targetGroup, cameraControlsHandler);
         setTilePaneEventConsumers();
 
     }
@@ -128,6 +129,9 @@ public class DragAndDropSystem {
             this.textFieldVelocity.setOnKeyPressed(e->{
                 try {
                     if (e.getCode() == KeyCode.ENTER) {
+                     double distance = rayCaster.castRay(2000).distance;
+                     logger.info("distance from ray cast result is "+ distance);
+
                         double velocityValue = Double.parseDouble(textFieldVelocity.getText());
                         logger.info("Velocity ");
                         Point3D velocityVector = lookVector.multiply(velocityValue);
