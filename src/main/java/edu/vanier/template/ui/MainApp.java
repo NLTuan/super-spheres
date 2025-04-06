@@ -30,7 +30,7 @@ public class MainApp extends Application {
     //declare the FXML file for the void scene
     public static final String VOID_SIMULATION_LAYOUT = "VoidSimulation_layout";
     //declare the FXML file for the planet creation scene
-    public static final String CREATE_PLANET_LAYOUT = "CreatePlanet_layout";
+    public static final String CREATE_PLANET_LAYOUT = "planetCreation_layout";
 
     public static  final String SIMULATIONS_LAYOUT = "Simulations_layout";
     public static final String SIMULATION_MAIN_PAGE_LAYOUT = "SimulationMainPage_layout";
