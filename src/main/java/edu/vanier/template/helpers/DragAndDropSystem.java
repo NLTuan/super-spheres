@@ -123,17 +123,21 @@ public class DragAndDropSystem {
 
 
 
-            Point3D lookVector = cameraControlsHandler.getLookVector();
-
+            //Find central body if looking at 1
+        RayCaster.RayCastResult hit = rayCaster.castRay(1000000000);
+        if(hit != null && hit.hitBody != null) {
+            logger.info("hit body is "+ hit.hitBody.toString());
+            logger.info("distance" + hit.distance);
+            double defaultVelocity = draggedObject1.vOrbital(hit.hitBody,hit.distance);
+            logger.info("velocty "+defaultVelocity);
+            textFieldVelocity.setText(String.format("%.2f", defaultVelocity));
+        }
 
             this.textFieldVelocity.setOnKeyPressed(e->{
                 try {
                     if (e.getCode() == KeyCode.ENTER) {
-                     Body distance = rayCaster.castRay(5000).hitBody;
-                     logger.info("distance from ray cast result is "+ distance.toString());
-
+                        Point3D lookVector = cameraControlsHandler.getLookVector();
                         double velocityValue = Double.parseDouble(textFieldVelocity.getText());
-                        logger.info("Velocity ");
                         Point3D velocityVector = lookVector.multiply(velocityValue);
                         Vector3D vector3DVelocity = new Vector3D(velocityVector.getX(), velocityVector.getY(), velocityVector.getZ());
 
@@ -143,6 +147,7 @@ public class DragAndDropSystem {
                         bodyHandler.add(draggedObject1);
                         this.textFieldVelocity.setVisible(false);
                         this.textFieldVelocity.setManaged(false);
+                        this.textFieldVelocity.setText("0.00");
                     }
 
                 }catch (Exception exception){

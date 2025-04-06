@@ -3,6 +3,7 @@ package edu.vanier.template.controllers;
 import edu.vanier.template.helpers.BuildInBodies;
 import edu.vanier.template.helpers.DragAndDropSystem;
 import edu.vanier.template.helpers.FxUIHelper;
+import edu.vanier.template.helpers.RotationClass;
 import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.BodyHandler;
 import edu.vanier.template.sim.CameraControlsHandler;
@@ -285,6 +286,7 @@ public class SimulationMainPageController {
             public void handle(long now) {
                 double dt = (now - prevTime) / 1E9;
                 cameraControlsHandler.updateMovement(dt);
+                RotationClass.updateAllRotations(dt);
                 bodyHandler.update(dt * timeConstant);
                 prevTime = now;
             }

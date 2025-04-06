@@ -110,6 +110,7 @@ public class CameraControlsHandler {
          */
 
 
+
             Vector3D vector3DForward = new Vector3D(
                     Math.sin(radYaw) * Math.cos(radPitch),
                     -Math.sin(radPitch),
