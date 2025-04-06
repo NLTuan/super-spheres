@@ -365,6 +365,7 @@ animationTimer1.start();
     }
 
     public void handleCreationButton() {
+        MainApp.switchScene(MainApp.CREATE_PLANET_LAYOUT);
         spawnPlanet(650, 0, .01, 0, 0, 12.28, 100, 10, 0, "earth");
         System.out.println(cameraControlsHandler.getPrevMovementVector());
     }
@@ -396,7 +397,7 @@ animationTimer1.start();
         });
         buttonExit.setOnAction(event -> handleExitButton());
         buttonSettings.setOnAction(event -> handlerButtonSetting());
-        buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
+        //buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
         buttonSettingExit.setOnAction(event -> handleExitButton());
         //Handler
         handlerCameraButtonEvent();
