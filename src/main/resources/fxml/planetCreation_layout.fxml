@@ -25,7 +25,7 @@
       </Label>
       <HBox alignment="CENTER" layoutX="384.0" layoutY="62.0" prefHeight="369.0" prefWidth="417.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="384.00000000000006" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="62.0">
          <children>
-            <Circle fx:id="bodyTextureCircle" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="bodyTextureCircle" fill="DODGERBLUE" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </HBox>
       <HBox layoutY="62.0" prefHeight="389.0" prefWidth="417.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.684341886080802E-14" AnchorPane.rightAnchor="386.00000000000006" AnchorPane.topAnchor="62.0">
@@ -55,7 +55,7 @@
                                     <Font name="Dubai Medium" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="velocitySlider" min="10.0" showTickLabels="true" showTickMarks="true" />
+                              <Slider fx:id="velocitySlider" minorTickCount="10" showTickLabels="true" showTickMarks="true" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -65,7 +65,7 @@
                                     <Font name="Dubai Medium" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="radiusSlider" min="10.0" showTickLabels="true" showTickMarks="true" />
+                              <Slider fx:id="radiusSlider" majorTickUnit="20.0" min="20.0" minorTickCount="10" showTickLabels="true" showTickMarks="true" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -75,7 +75,7 @@
                                     <Font name="Dubai Medium" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="massSlider" min="10.0" showTickLabels="true" showTickMarks="true" />
+                              <Slider fx:id="massSlider" majorTickUnit="20.0" min="20.0" minorTickCount="10" showTickLabels="true" showTickMarks="true" />
                            </children>
                         </VBox>
                      </children>
