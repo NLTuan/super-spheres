@@ -101,5 +101,16 @@ public abstract class Body extends Sphere{
 
     public void setMass(double mass) {
         this.mass = mass;
-    }    
+    }
+
+    @Override
+    public String toString() {
+        return "Body{" +
+                "position=" + position +
+                ", velocity=" + velocity +
+                ", acceleration=" + acceleration +
+                ", force=" + force +
+                ", mass=" + mass +
+                '}';
+    }
 }

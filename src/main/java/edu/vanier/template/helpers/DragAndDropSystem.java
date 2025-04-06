@@ -129,8 +129,8 @@ public class DragAndDropSystem {
             this.textFieldVelocity.setOnKeyPressed(e->{
                 try {
                     if (e.getCode() == KeyCode.ENTER) {
-                     double distance = rayCaster.castRay(2000).distance;
-                     logger.info("distance from ray cast result is "+ distance);
+                     Body distance = rayCaster.castRay(5000).hitBody;
+                     logger.info("distance from ray cast result is "+ distance.toString());
 
                         double velocityValue = Double.parseDouble(textFieldVelocity.getText());
                         logger.info("Velocity ");
