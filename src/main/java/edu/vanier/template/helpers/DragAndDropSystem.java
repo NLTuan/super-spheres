@@ -4,6 +4,7 @@ import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.Body;
 import edu.vanier.template.sim.BodyHandler;
 import edu.vanier.template.sim.CameraControlsHandler;
+import javafx.collections.ListChangeListener;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
 import javafx.scene.control.TextField;
@@ -48,6 +49,16 @@ public class DragAndDropSystem {
         this.textFieldVelocity  = textField;
         this.bodyHandler = bodyHandler;
         this.rayCaster = new RayCaster(targetGroup, cameraControlsHandler);
+
+        tilePane.getChildren().addListener((ListChangeListener<? super Node>) change->{
+            while(change.next()){
+                for(Node node : change.getAddedSubList()){
+                    if(node instanceof Body){
+                        setUpBodyDrag(node);
+                    }
+                }
+            }
+        });
         setTilePaneEventConsumers();
 
     }
