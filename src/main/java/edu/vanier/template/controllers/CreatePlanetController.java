@@ -105,7 +105,7 @@ public class CreatePlanetController {
         button.setOnAction(event -> {
                 double mass = massSlider.getValue();
                 double radius = radiusSlider.getValue();
-                double velocity = rotationSlider.getValue();
+                //double velocity = rotationSlider.getValue();
                 String bodyTexture = bodyTextureComboBox.getValue();
 
                 Body body;
