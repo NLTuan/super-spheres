@@ -46,4 +46,7 @@ public class BodyHandler {
         bodies.add(body);
     }
 
+    public ArrayList<Body> getBodies() {
+        return bodies;
+    }
 }

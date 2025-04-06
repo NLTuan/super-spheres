@@ -73,6 +73,19 @@ public class SimulationMainPageController {
     private VBox vboxExitButton;
 
     @FXML
+    private Button buttonSettings;
+    @FXML
+    private VBox vboxSetting;
+    @FXML
+    private AnchorPane anchorPaneSetting;
+    @FXML
+    private Button buttonSettingExit;
+    @FXML
+    private Button buttonSettingLoad;
+    @FXML
+    private Button buttonSettingSave;
+
+    @FXML
     private VBox vboxPlanetStatistic;
     //Components(Essentials):
     @FXML
@@ -108,10 +121,28 @@ public class SimulationMainPageController {
     private BodyHandler bodyHandler;
     private DragAndDropSystem dragAndDropSystem ;
 
+
     double count = 1.0;
     double count2 = 1.0;
     
     double timeConstant = 1;
+
+    public void handlerButtonSetting() {
+        if (vboxSetting.isVisible()) {
+            vboxSetting.setVisible(false);
+            buttonSettingSave.setManaged(false);
+            buttonSettingExit.setManaged(false);
+            buttonSettingLoad.setManaged(false);
+        }else {
+            // animations can be added here
+            vboxSetting.setVisible(true);
+            buttonSettingSave.setManaged(true);
+            buttonSettingExit.setManaged(true);
+            buttonSettingLoad.setManaged(true);
+        }
+    }
+
+
     public void handlerButtonAddPlanetEvent() {
         if (!vboxAddPlanetButton.isVisible()) {
             return;
@@ -121,7 +152,6 @@ public class SimulationMainPageController {
         vboxAddPlanetButton.setVisible(false);
         vboxAddPlanetButton.setManaged(false);
         this.tiltPanePlanets.setExpanded(true);
-
     }
 
     //add event to exit button
@@ -257,7 +287,6 @@ public class SimulationMainPageController {
                 cameraControlsHandler.updateMovement(dt);
                 bodyHandler.update(dt * timeConstant);
                 prevTime = now;
-
             }
         };
     }
@@ -355,8 +384,9 @@ animationTimer1.start();
             handlerButtonAddPlanetEvent();
         });
         buttonExit.setOnAction(event -> handleExitButton());
+        buttonSettings.setOnAction(event -> handlerButtonSetting());
         buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
-
+        buttonSettingExit.setOnAction(event -> handleExitButton());
         //Handler
         handlerCameraButtonEvent();
         handlePlanetCreationButtonEvent();
