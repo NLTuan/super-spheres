@@ -25,7 +25,7 @@
 
 <VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fx:id="vboxMainRootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1014.0">
+      <VBox fx:id="vboxMainRootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1014.0" style="-fx-border-color: white;">
          <children>
             <AnchorPane fx:id="anchorPaneMainRootNode" prefHeight="507.0" prefWidth="893.0">
                <children>
@@ -194,7 +194,7 @@
                      </children>
                   </VBox>
                   <VBox fx:id="vboxSettingButton" layoutX="343.0" layoutY="162.0" prefHeight="48.0" prefWidth="63.0" />
-                  <VBox fx:id="vboxExitButton" layoutX="926.0" layoutY="23.0" prefHeight="84.0" prefWidth="92.0">
+                  <VBox fx:id="vboxSettingButton" layoutX="300.0" layoutY="44.0" prefHeight="84.0" prefWidth="92.0">
                      <children>
                         <Button fx:id="buttonSettings" mnemonicParsing="false" prefHeight="83.0" prefWidth="74.0" style="-fx-background-color: transparent;" text="⚙" textFill="#908c8c">
                            <font>
@@ -207,14 +207,14 @@
                      <children>
                         <AnchorPane fx:id="anchorSetting" prefHeight="269.0" prefWidth="203.0">
                            <children>
-                              <Label fx:id="labelSetting" layoutX="35.0" layoutY="3.0" prefHeight="25.0" prefWidth="142.0" text="Settings" textAlignment="CENTER" textFill="#bfbfbf">
+                              <Label fx:id="labelSetting" layoutX="35.0" layoutY="3.0" prefHeight="25.0" prefWidth="142.0" text="⚙ Settings" textAlignment="CENTER" textFill="#bfbfbf">
                                  <font>
-                                    <Font name="Arial Hebrew Bold" size="16.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
                               <Button fx:id="buttonSettingExit" layoutX="36.0" layoutY="76.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Exit" textAlignment="CENTER" />
-                              <Button fx:id="ButtonExitSave" layoutX="35.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="144.0" text="Save" textAlignment="CENTER" />
-                              <Button fx:id="buttonSettingLoad" layoutX="46.0" layoutY="207.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Load" />
+                              <Button fx:id="ButtonExitSave" layoutX="35.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="133.0" text="Save" textAlignment="CENTER" />
+                              <Button fx:id="buttonSettingLoad" layoutX="35.0" layoutY="207.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Load" />
                            </children>
                         </AnchorPane>
                      </children>

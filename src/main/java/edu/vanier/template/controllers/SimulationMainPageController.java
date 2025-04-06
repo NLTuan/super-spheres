@@ -77,6 +77,8 @@ public class SimulationMainPageController {
     @FXML
     private VBox vboxSetting;
     @FXML
+    private VBox vboxSettingButton;
+    @FXML
     private AnchorPane anchorPaneSetting;
     @FXML
     private Button buttonSettingExit;
@@ -358,10 +360,12 @@ animationTimer1.start();
         bodyHandler.add(planet);
 
     }
+
     public void handleCreationButton() {
         spawnPlanet(650, 0, .01, 0, 0, 12.28, 100, 10, 0, "earth");
         System.out.println(cameraControlsHandler.getPrevMovementVector());
     }
+
 
     public void setTilePanePlanets(){
         tilePanePlanets.setPickOnBounds(false);
@@ -374,9 +378,13 @@ animationTimer1.start();
 
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
-        //make sure that the exit button sticks to the top right corner
-        AnchorPane.setTopAnchor(vboxExitButton, 20.0);     // Stick to top
-        AnchorPane.setRightAnchor(vboxExitButton, 50.0);   // Stick to right
+        vboxSettingButton.setLayoutX(200);
+
+        //make sure that the setting button sticks to the top right corner
+        AnchorPane.setTopAnchor(vboxSettingButton, 20.0);     // Stick to top
+        AnchorPane.setRightAnchor(vboxSettingButton, 50.0);   // Stick to right
+        AnchorPane.setTopAnchor(vboxSetting, 20.0);     // Stick to top
+        AnchorPane.setRightAnchor(vboxSetting, 100.0);   // Stick to right
 
 
         // Button events
