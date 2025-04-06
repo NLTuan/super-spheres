@@ -5,6 +5,7 @@
 package edu.vanier.template.sim;
 
 import edu.vanier.template.controllers.TemplateSelectionController;
+import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
 import javafx.scene.DepthTest;
 import javafx.scene.shape.Sphere;
@@ -112,5 +113,12 @@ public abstract class Body extends Sphere{
                 ", force=" + force +
                 ", mass=" + mass +
                 '}';
+    }
+
+    public  double vOrbital(Body bodyCentral, double distance){
+        if(bodyCentral != null || bodyCentral.getMass() <= 0) return 0;
+        if(bodyCentral.getMass() < 1e-10) return 0;
+        double mu = Physics.G * bodyCentral.getMass();
+        return Math.sqrt(mu / distance);
     }
 }
