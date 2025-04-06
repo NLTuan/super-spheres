@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Sphere?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -25,7 +25,7 @@
       </Label>
       <HBox alignment="CENTER" layoutX="384.0" layoutY="62.0" prefHeight="369.0" prefWidth="417.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="384.00000000000006" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="62.0">
          <children>
-            <Circle fx:id="bodyTextureCircle" fill="DODGERBLUE" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
+            <Sphere fx:id="textureBodySphere" radius="60.0" />
          </children>
       </HBox>
       <HBox layoutY="62.0" prefHeight="389.0" prefWidth="417.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.684341886080802E-14" AnchorPane.rightAnchor="386.00000000000006" AnchorPane.topAnchor="62.0">

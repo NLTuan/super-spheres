@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Sphere;
 
@@ -34,9 +35,6 @@ public class CreatePlanetController {
     @FXML
     private ComboBox<String> bodyTextureComboBox;
     @FXML
-    private Circle bodyTextureCircle;
-
-    @FXML
     private Button button;
     @FXML
     private Button starButton;
@@ -51,6 +49,8 @@ public class CreatePlanetController {
     private Slider radiusSlider;
     @FXML
     private Slider massSlider;
+    @FXML
+    private Sphere textureBodySphere;
 
 
     @FXML
@@ -62,23 +62,16 @@ public class CreatePlanetController {
 //        initializeBinding();
 
         radiusSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            bodyTextureCircle.setRadius(newValue.doubleValue());
+            textureBodySphere.setRadius(newValue.doubleValue());
         });
 
         radiusSlider.setValue(60);
-
-
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setRadius(20.0);
-        dropShadow.setColor(Color.ANTIQUEWHITE);
-        bodyTextureCircle.setEffect(dropShadow);
     }
 
     public void initializeComboBox() {
         bodyTextureComboBox.getItems().addAll("Earth", "Mars", "Jupiter", "Uranus", "Mercury");
         bodyTextureComboBox.setValue("Earth");
-        bodyTextureCircle.setFill(new ImagePattern(new Image("/fxml/BuildInBodiesImages/EarthImage.jpeg")));
-
+        texturizeBody(new Image("/fxml/BuildInBodiesImages/EarthImage.jpeg"), Color.BLUE);
         bodyTextureComboBox.setOnAction(event -> {
             String selected = bodyTextureComboBox.getValue();
             updateImageView(selected);
@@ -89,28 +82,27 @@ public class CreatePlanetController {
     public void updateImageView(String selected) {
         switch (selected) {
             case "Earth":
-                bodyTextureCircle.setFill(new ImagePattern(new Image("/fxml/BuildInBodiesImages/EarthImage.jpeg")));
+                texturizeBody(new Image("/fxml/BuildInBodiesImages/EarthImage.jpeg"), Color.BLUE);
                 break;
             case "Mars":
-                bodyTextureCircle.setFill(new ImagePattern(new Image("/fxml/BuildInBodiesImages/MarsImage.png")));
+                texturizeBody(new Image("/fxml/BuildInBodiesImages/MarsImage.png"), Color.DARKRED);
                 break;
             case "Jupiter":
-                bodyTextureCircle.setFill(new ImagePattern(new Image("/fxml/BuildInBodiesImages/JupiterImage.jpg")));
+                texturizeBody(new Image("/fxml/BuildInBodiesImages/JupiterImage.jpg"), Color.BURLYWOOD);
                 break;
             case "Uranus":
-                bodyTextureCircle.setFill(new ImagePattern(new Image("/fxml/BuildInBodiesImages/UranusImage.png")));
+                texturizeBody(new Image("/fxml/BuildInBodiesImages/UranusImage.png"), Color.LIGHTBLUE);
                 break;
             case "Venus":
-                bodyTextureCircle.setFill(new ImagePattern(new Image("/fxml/BuildInBodiesImages/VenusImage.png")));
+                texturizeBody(new Image("/fxml/BuildInBodiesImages/VenusImage.png"), Color.GOLDENROD);
                 break;
             case "Sun":
-                bodyTextureCircle.setFill(new ImagePattern(new Image("/fxml/BuildInBodiesImages/SolarImage.jpg")));
+                texturizeBody(new Image("/fxml/BuildInBodiesImages/SolarImage.jpg"), Color.GOLD);
                 break;
             case "Mercury":
-                bodyTextureCircle.setFill(new ImagePattern(new Image("/fxml/BuildInBodiesImages/MercuryImage.png")));
+                texturizeBody(new Image("/fxml/BuildInBodiesImages/MercuryImage.png"), Color.DARKGRAY);
                 break;
             default:
-                System.out.println("Unknown planet selection: " + selected);
                 break;
         }
     }
@@ -181,7 +173,17 @@ public class CreatePlanetController {
     }
 
     public void initializeBinding() {
-        bodyTextureCircle.radiusProperty().bind(rootAnchorPane.widthProperty().multiply(0.13));
+        textureBodySphere.radiusProperty().bind(rootAnchorPane.widthProperty().multiply(0.13));
     }
+
+    public void texturizeBody(Image image , Color color){
+        PhongMaterial phongMaterial = new PhongMaterial(color);
+        phongMaterial.setBumpMap(image);
+        phongMaterial.setDiffuseMap(image);
+        phongMaterial.setSpecularMap(image);
+        phongMaterial.setSelfIlluminationMap(image);
+        this.textureBodySphere.setMaterial(phongMaterial);
+    }
+
 
 }
