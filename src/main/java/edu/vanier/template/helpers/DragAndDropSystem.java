@@ -67,7 +67,7 @@ public class DragAndDropSystem {
     public void transferToSimulation(){
         if(draggedObject != null && cameraControlsHandler != null){
             this.targetGroup.getChildren().add(draggedObject);
-            this.putObjectInFrontOfCamera(draggedObject,200);
+            this.putObjectInFrontOfCamera(draggedObject,500);
 
             draggedObject = null;
         }
@@ -117,19 +117,14 @@ public class DragAndDropSystem {
         ));
         Point3D point3DLookVector = cameraControlsHandler.getLookVector();
 
-        Point3D point3DSpawnPosition = point3DCameraPosition.subtract(point3DLookVector.multiply(distanceFromCamera));
+        Point3D point3DSpawnPosition = point3DCameraPosition.add(point3DLookVector.multiply(distanceFromCamera));
         if(shape3D != null){
             shape3D.setTranslateX(point3DSpawnPosition.getX());
             shape3D.setTranslateY(point3DSpawnPosition.getY());
             shape3D.setTranslateZ(point3DSpawnPosition.getZ());
             logger.info("sphere position x={}, y={}, z={}", shape3D.getTranslateX(), shape3D.getTranslateY(),shape3D.getTranslateZ());
-            perspectiveCamera.setFieldOfView(90);
-
-
         }
-
     }
-
     public void DragAndDropHandler(){
         transferToSimulation();
     }
