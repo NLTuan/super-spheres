@@ -435,6 +435,7 @@ animationTimer1.start();
                 stage.showAndWait();
             } catch (Exception e) {
                 System.out.println("AAAAAAAAA");
+                e.getMessage();
             }
         });
     }
