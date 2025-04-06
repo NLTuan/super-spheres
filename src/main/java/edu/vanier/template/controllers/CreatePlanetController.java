@@ -59,7 +59,14 @@ public class CreatePlanetController {
         handleCreateButton();
         handleStarButtonAction();
         handlePlanetButtonAction();
-        initializeBinding();
+//        initializeBinding();
+
+        radiusSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            bodyTextureCircle.setRadius(newValue.doubleValue());
+        });
+
+        radiusSlider.setValue(60);
+
 
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(20.0);
@@ -128,7 +135,6 @@ public class CreatePlanetController {
                 simulationController.getTilePanePlanets().getChildren().add(body);
 
                 button.getScene().getWindow().hide();
-            System.out.println("hi");
         });
     }
 
@@ -142,8 +148,11 @@ public class CreatePlanetController {
            starButton.setStyle("-fx-background-color: #262626; -fx-text-fill: white;");
 
            isPlanet = false;
-           bodyTextureCircle.radiusProperty().bind(rootAnchorPane.widthProperty().multiply(0.18));
 
+           radiusSlider.setMin(150);
+           radiusSlider.setMax(200);
+           massSlider.setMin(150);
+           massSlider.setMax(200);
        });
     }
 
@@ -158,8 +167,12 @@ public class CreatePlanetController {
             planetButton.setStyle("-fx-background-color: #262626; -fx-text-fill: white;");
 
             isPlanet = true;
-            bodyTextureCircle.radiusProperty().bind(rootAnchorPane.widthProperty().multiply(0.13));
 
+            radiusSlider.setMin(20);
+            radiusSlider.setMax(100);
+            massSlider.setMin(20);
+            massSlider.setMax(100);
+            radiusSlider.setValue(60);
         });
     }
 
