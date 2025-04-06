@@ -357,15 +357,12 @@ animationTimer1.start();
         buttonExit.setOnAction(event -> handleExitButton());
         buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
 
+        //Handler
         handlerCameraButtonEvent();
-
         handlePlanetCreationButtonEvent();
-
         initializeBinding();
-
         setSubSceneSimulation();
         handlerTitlePaneEvent();
-
         handleCamera();
 
         dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar);
