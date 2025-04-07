@@ -129,8 +129,10 @@ public class DragAndDropSystem {
     }
     public void DropHandler(Body draggedObject1){
         if(this.bodyHandler == null) return;
-            textFieldVelocity.setVisible(true);
-            textFieldVelocity.setManaged(true);
+
+        textFieldVelocity.setVisible(true);
+        textFieldVelocity.setManaged(true);
+
 
 
 

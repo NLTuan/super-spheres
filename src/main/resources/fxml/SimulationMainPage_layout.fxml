@@ -88,9 +88,9 @@
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <VBox fx:id="vboxCameraIcon" alignment="CENTER" layoutX="12.0" layoutY="-124.0" prefHeight="819.0" prefWidth="123.0" scaleX="0.6" scaleY="0.6">
+                  <VBox fx:id="vboxCameraIcon" alignment="CENTER" layoutX="12.0" layoutY="-3.0" prefHeight="84.0" prefWidth="122.0" scaleX="0.6" scaleY="0.6">
                      <children>
-                        <AnchorPane prefHeight="223.0" prefWidth="165.0">
+                        <AnchorPane prefHeight="82.0" prefWidth="113.0">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7c7c7c" height="26.0" layoutX="42.0" layoutY="17.0" opacity="0.56" stroke="BLACK" strokeType="INSIDE" width="39.0" />
                               <Rectangle arcHeight="5.0" arcWidth="100.0" fill="#7c7c7c" height="54.0" layoutX="20.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="83.0" />
@@ -100,7 +100,7 @@
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ababab" height="4.0" layoutX="53.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="16.0" />
                            </children>
                         </AnchorPane>
-                        <ImageView fitHeight="133.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="93.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@AppImages/clock.png" />
                            </image>
@@ -164,9 +164,9 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxCameraControls" layoutX="10.0" layoutY="11.0" prefHeight="166.0" prefWidth="244.0" style="-fx-border-color: white;" visible="false">
+                  <VBox fx:id="vboxCameraControls" layoutX="110.0" layoutY="11.0" prefHeight="70.0" prefWidth="144.0" style="-fx-border-color: white;" visible="false">
                      <children>
-                        <Label prefHeight="22.0" prefWidth="241.0" style="-fx-border-color: white;" text="Camera Controls" textFill="#e1e0e0">
+                        <Label prefHeight="22.0" prefWidth="146.0" style="-fx-border-color: white;" text="Camera Controls" textAlignment="CENTER" textFill="#e1e0e0">
                            <font>
                               <Font name="Arial Black" size="13.0" />
                            </font>
@@ -194,8 +194,16 @@
                      </children>
                   </VBox>
                   <VBox fx:id="vboxSettingButton" layoutX="343.0" layoutY="162.0" prefHeight="48.0" prefWidth="63.0" />
-                  <VBox fx:id="vboxSettingButton" layoutX="300.0" layoutY="44.0" prefHeight="84.0" prefWidth="92.0" />
-                  <VBox fx:id="vboxSetting" layoutX="752.0" layoutY="32.0" prefHeight="271.0" prefWidth="204.0" visible="false" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="20.0">
+                  <VBox fx:id="vboxSettingButton" layoutX="300.0" layoutY="44.0" prefHeight="84.0" prefWidth="92.0">
+                     <children>
+                        <Button fx:id="buttonSettings" mnemonicParsing="false" prefHeight="83.0" prefWidth="74.0" style="-fx-background-color: transparent;" text="⚙" textFill="#908c8c">
+                           <font>
+                              <Font name="Arial Black" size="38.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vboxSetting" layoutX="752.0" layoutY="32.0" prefHeight="271.0" prefWidth="204.0" visible="false">
                      <children>
                         <AnchorPane fx:id="anchorSetting" prefHeight="269.0" prefWidth="203.0">
                            <children>
@@ -205,13 +213,31 @@
                                  </font>
                               </Label>
                               <Button fx:id="buttonSettingExit" layoutX="36.0" layoutY="76.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Exit" textAlignment="CENTER" />
-                              <Button fx:id="buttonSettingSave" layoutX="35.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="133.0" text="Save" textAlignment="CENTER" />
+                              <Button fx:id="ButtonExitSave" layoutX="35.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="133.0" text="Save" textAlignment="CENTER" />
                               <Button fx:id="buttonSettingLoad" layoutX="35.0" layoutY="207.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Load" />
                            </children>
                         </AnchorPane>
                      </children>
                   </VBox>
                   <VBox layoutX="375.0" layoutY="319.0" prefHeight="200.0" prefWidth="100.0" />
+                  <HBox layoutX="940.0" layoutY="373.0" prefHeight="51.0" prefWidth="65.0">
+                     <children>
+                        <AnchorPane prefHeight="48.0" prefWidth="86.0">
+                           <children>
+                              <Button fx:id="buttonSimulatedBodies" layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="56.0" style="-fx-background-color: transparent;">
+                                 <font>
+                                    <Font name="Arial Hebrew Bold" size="22.0" />
+                                 </font>
+                              </Button>
+                              <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@AppImages/planetIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
                   <VBox fx:id="vBoxSettings" alignment="CENTER" layoutX="347.0" layoutY="114.0" prefHeight="418.0" prefWidth="299.0">
                      <children>
                         <AnchorPane fx:id="vBoxSaveSimulationButton" prefHeight="429.0" prefWidth="299.0" style="-fx-background-color: grey;" visible="false">
@@ -286,11 +312,11 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <Button fx:id="buttonSettings" layoutX="742.0" layoutY="32.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="74.0" style="-fx-background-color: transparent;" text="⚙" textFill="#908c8c" AnchorPane.rightAnchor="0.0">
+                  <TextField fx:id="textFieldVelocity" layoutX="413.0" layoutY="83.0" prefHeight="26.0" prefWidth="100.0" visible="false">
                      <font>
-                        <Font name="Arial Black" size="38.0" />
+                        <Font name="October Tamil Black" size="13.0" />
                      </font>
-                  </Button>
+                  </TextField>
                </children>
             </AnchorPane>
          </children>
