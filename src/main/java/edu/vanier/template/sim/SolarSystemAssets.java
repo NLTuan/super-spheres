@@ -92,7 +92,7 @@ public class SolarSystemAssets {
                 80     // Size
         );
        uranus.setVelocity(new Vector3D(0,0,-uranus.vOrbital(sun,5200+600)));
-        // No texture applied - will use default
+       BuildInBodies.applyTextures(uranus, "Uranus");
 
         // Neptune
         Planet neptune = new Planet(
@@ -135,7 +135,5 @@ public class SolarSystemAssets {
         rotationClass.addBody(uranus, 30);
         rotationClass.addBody(neptune, 30);
         rotationClass.addBody(pluto, 20);
-
-
     }
 }

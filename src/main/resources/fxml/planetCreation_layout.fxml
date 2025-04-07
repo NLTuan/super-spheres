@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Sphere?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="hBox" alignment="CENTER_LEFT" layoutY="62.0" prefHeight="369.0" prefWidth="803.0" spacing="60.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
          <padding>
@@ -60,7 +65,7 @@
                                     <Font name="System Bold Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="radiusSlider" majorTickUnit="10.0" max="600.0" min="10.0" prefHeight="38.0" prefWidth="415.0" showTickLabels="true" showTickMarks="true" />
+                              <Slider fx:id="radiusSlider" majorTickUnit="100.0" max="600.0" min="10.0" minorTickCount="4" prefHeight="38.0" prefWidth="415.0" showTickLabels="true" showTickMarks="true" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -70,7 +75,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="massSlider" blockIncrement="5.0" majorTickUnit="5.0" max="1500.0" min="10.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" />
+                              <Slider fx:id="massSlider" blockIncrement="5.0" majorTickUnit="100.0" max="1500.0" min="10.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" />
                               <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                  <children>
                                     <Label text="Appearance:" textFill="WHITE">

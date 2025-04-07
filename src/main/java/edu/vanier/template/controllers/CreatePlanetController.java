@@ -45,30 +45,37 @@ public class CreatePlanetController {
     @FXML
     private Sphere textureBodySphere;
     private RotationClass rotationClassForBody;
-    private  double rotationRate =0;
+    private double rotationRate = 26;
 
 
 
     @FXML
     public void initialize() {
+        rotationClassForBody = new RotationClass();
+        rotationClassForBody.addBody(textureBodySphere, rotationRate);
+
         initializeComboBox();
         handleCreateButton();
         handleStarButtonAction();
         handlePlanetButtonAction();
-//        initializeBinding();
 
         radiusSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            textureBodySphere.setRadius(newValue.doubleValue()*1.2);
+            if (isPlanet) {
+                textureBodySphere.setRadius(newValue.doubleValue()*0.4);
+            } else {
+                textureBodySphere.setRadius(newValue.doubleValue()*0.2);
+            }
+
         });
 
-        radiusSlider.setValue(60);
+        radiusSlider.setValue(300);
 
         rotationSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             rotationClassForBody = new RotationClass();
-            rotationRate = newValue.doubleValue() * 36;
+            rotationRate = newValue.doubleValue() * 26;
             rotationClassForBody.addBody(textureBodySphere, rotationRate);
         });
-        rotationSlider.setValue(0);
+        rotationSlider.setValue(1);
     }
 
     public void initializeComboBox() {
@@ -147,10 +154,10 @@ public class CreatePlanetController {
 
            isPlanet = false;
 
-           radiusSlider.setMin(150);
-           radiusSlider.setMax(200);
-           massSlider.setMin(150);
-           massSlider.setMax(200);
+           radiusSlider.setMin(800);
+           radiusSlider.setMax(1200);
+           massSlider.setMin(1500);
+           massSlider.setMax(3000);
        });
     }
 
@@ -166,20 +173,16 @@ public class CreatePlanetController {
 
             isPlanet = true;
 
-            radiusSlider.setMin(20);
-            radiusSlider.setMax(100);
-            massSlider.setMin(20);
-            massSlider.setMax(100);
-            radiusSlider.setValue(60);
+            radiusSlider.setMin(10);
+            radiusSlider.setMax(600);
+            massSlider.setMin(10);
+            massSlider.setMax(1500);
+            radiusSlider.setValue(300);
         });
     }
 
     public void setSimulationController(SimulationMainPageController simulationController) {
         this.simulationController = simulationController;
-    }
-
-    public void initializeBinding() {
-        textureBodySphere.radiusProperty().bind(rootAnchorPane.widthProperty().multiply(0.13));
     }
 
     public void texturizeBody(Image image , Color color){
