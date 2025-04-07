@@ -1,14 +1,12 @@
 package edu.vanier.template.controllers;
 
-import edu.vanier.template.helpers.BuildInBodies;
-import edu.vanier.template.helpers.DragAndDropSystem;
-import edu.vanier.template.helpers.FxUIHelper;
-import edu.vanier.template.helpers.RotationClass;
+import edu.vanier.template.helpers.*;
 import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.BodyHandler;
 import edu.vanier.template.sim.CameraControlsHandler;
 import edu.vanier.template.sim.Planet;
 
+import edu.vanier.template.sim.SolarSystemAssets;
 import edu.vanier.template.ui.MainApp;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
@@ -125,8 +123,33 @@ public class SimulationMainPageController {
 
     private BodyHandler bodyHandler;
     private DragAndDropSystem dragAndDropSystem ;
+    private SolarSystemAssets solarSystemAssets;
+    private GarbageCollector garbageCollector;
 
+   static SimulationMainPageController currentInstance;
+    public  SimulationMainPageController(){
+        currentInstance = this;
+    }
+    public  static SimulationMainPageController getLastInstance(){return currentInstance;}
 
+    public void loadTemplate(String templateName){
+        if(garbageCollector == null){
+            garbageCollector = new GarbageCollector(groupRootNode, bodyHandler);
+        }
+        garbageCollector.clearAll();
+
+        switch (templateName){
+            case "empty":
+                //nothing cuz its empty
+            case "solarSystem":
+                if(solarSystemAssets == null){
+                    solarSystemAssets =  new SolarSystemAssets();
+                }
+                solarSystemAssets.loadAssets(groupRootNode,bodyHandler);
+                break;
+
+        }
+    }
     double count = 1.0;
     double count2 = 1.0;
     

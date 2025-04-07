@@ -1,6 +1,7 @@
 package edu.vanier.template.controllers;
 
 import edu.vanier.template.helpers.BuildInBodies;
+import edu.vanier.template.helpers.RotationClass;
 import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.Body;
 import edu.vanier.template.sim.Planet;
@@ -43,6 +44,9 @@ public class CreatePlanetController {
     private Slider massSlider;
     @FXML
     private Sphere textureBodySphere;
+    private RotationClass rotationClassForBody;
+    private  double rotationRate =0;
+
 
 
     @FXML
@@ -58,6 +62,13 @@ public class CreatePlanetController {
         });
 
         radiusSlider.setValue(60);
+
+        rotationSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            rotationClassForBody = new RotationClass();
+            rotationRate = newValue.doubleValue() * 36;
+            rotationClassForBody.addBody(textureBodySphere, rotationRate);
+        });
+        rotationSlider.setValue(0);
     }
 
     public void initializeComboBox() {
@@ -111,8 +122,11 @@ public class CreatePlanetController {
                 Body body;
                 if (isPlanet) {
                     body = new Planet(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
+
+                    rotationClassForBody.addBody(body, rotationRate);
                 } else {
                     body = new Star(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
+                    rotationClassForBody.addBody(body, rotationRate);
                 }
                 BuildInBodies buildInBodies = new BuildInBodies(body);
                 buildInBodies.applyTextures(bodyTexture);
