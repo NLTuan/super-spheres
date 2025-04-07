@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
 public class BuildInBodies {
     private Body body;
 
-    HashMap<String , Image> bodyBuildTexture = new HashMap<>();
+   static HashMap<String , Image> bodyBuildTexture = new HashMap<>();
 
     
     public  BuildInBodies(Body body){
@@ -70,7 +70,25 @@ public class BuildInBodies {
 
 
 
-        //
+    }
+    public static void applyTextures(Body planet, String textureName) {
 
+        PhongMaterial material = new PhongMaterial();
+
+        if (textureName != null && bodyBuildTexture.containsKey(textureName)) {
+            material.setDiffuseMap(bodyBuildTexture.get(textureName));
+        } else {
+            switch(textureName) {
+                case "Sun": material.setDiffuseColor(Color.YELLOW); break;
+                case "Mercury": material.setDiffuseColor(Color.MEDIUMPURPLE); break;
+                case "Venus": material.setDiffuseColor(Color.ORANGE); break;
+                case "Earth": material.setDiffuseColor(Color.BLUE); break;
+                case "Mars": material.setDiffuseColor(Color.ORANGERED); break;
+                case "Jupiter": material.setDiffuseColor(Color.ORANGE); break;
+                default: material.setDiffuseColor(Color.GRAY); break;
+            }
+        }
+
+        planet.setMaterial(material);
     }
 }

@@ -49,7 +49,9 @@ public class BodyHandler {
     public void add(Body body){
         bodies.add(body);
     }
-
+    public void addAll(Body... bodies){
+        for(Body body : bodies){add(body);}
+    }
     public ArrayList<Body> getBodies() {
         return bodies;
     }
