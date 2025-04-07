@@ -1,6 +1,7 @@
 package edu.vanier.template.helpers;
 
 import edu.vanier.template.sim.Body;
+import javafx.scene.shape.Shape3D;
 import javafx.scene.transform.Rotate;
 
 import java.util.HashMap;
@@ -12,9 +13,9 @@ import java.util.Map;
  * @author Josue
  */
 public class RotationClass {
-    private  Body bodyToRotate;
+    private Shape3D bodyToRotate;
     private  double rotationRate;
-    private  static Map<Body, RotationData> rotatingBodies = new HashMap<>();
+    private  static Map<Shape3D, RotationData> rotatingBodies = new HashMap<>();
 
     public  static  void updateAllRotations(double deltaTime){
         if (rotatingBodies.isEmpty()) return;
@@ -23,7 +24,7 @@ public class RotationClass {
         });
     }
 
-    public void addBody(Body body, double rotationRate){
+    public void addBody(Shape3D body, double rotationRate){
         Rotate rotate = new Rotate(0, Rotate.Y_AXIS);
         body.getTransforms().add(rotate);
 
