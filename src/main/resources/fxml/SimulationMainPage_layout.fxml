@@ -213,7 +213,7 @@
                                  </font>
                               </Label>
                               <Button fx:id="buttonSettingExit" layoutX="36.0" layoutY="76.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Exit" textAlignment="CENTER" />
-                              <Button fx:id="ButtonExitSave" layoutX="35.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="133.0" text="Save" textAlignment="CENTER" />
+                              <Button fx:id="buttonSettingSave" layoutX="35.0" layoutY="139.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="133.0" text="Save" textAlignment="CENTER" />
                               <Button fx:id="buttonSettingLoad" layoutX="35.0" layoutY="207.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Load" />
                            </children>
                         </AnchorPane>
@@ -312,11 +312,6 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <TextField fx:id="textFieldVelocity" layoutX="413.0" layoutY="83.0" prefHeight="26.0" prefWidth="100.0" visible="false">
-                     <font>
-                        <Font name="October Tamil Black" size="13.0" />
-                     </font>
-                  </TextField>
                </children>
             </AnchorPane>
          </children>
