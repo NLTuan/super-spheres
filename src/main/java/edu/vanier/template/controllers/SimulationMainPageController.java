@@ -5,6 +5,7 @@ import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.BodyHandler;
 import edu.vanier.template.sim.CameraControlsHandler;
 import edu.vanier.template.sim.Planet;
+import edu.vanier.template.helpers.SavenLoad;
 
 import edu.vanier.template.sim.SolarSystemAssets;
 import edu.vanier.template.ui.MainApp;
@@ -31,6 +32,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+import static edu.vanier.template.helpers.SavenLoad.loadFileSaver;
 import static edu.vanier.template.helpers.SavenLoad.writePlanetsToFile;
 
 public class SimulationMainPageController {
@@ -288,6 +290,9 @@ public class SimulationMainPageController {
             System.err.println("Error writing to file: " + e.getMessage());
         }
     }
+    public void HandlerSettingLoad() throws IOException {
+        loadFileSaver(groupRootNode,bodyHandler,"src/main/resources/planets.txt");
+    }
 
     public void handleCamera() {
         Box box = new Box(25, 25, 20);
@@ -411,9 +416,40 @@ animationTimer1.start();
     }
     @FXML
     public void initialize() {
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,50));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,60));
-        tilePanePlanets.getChildren().add(new Planet(new Vector3D(0,0,0),new Vector3D(0,0,0),50,70));
+
+        Planet mercury = new Planet(
+                new Vector3D(-800-600, 0, 0),
+                new Vector3D(0, 0, 0),
+                10,    // Mass
+                20     // Size
+        );
+
+
+        // Venus
+        Planet venus = new Planet(
+                new Vector3D(-1200-600, 0, 0),
+                new Vector3D(0, 0, 0),
+                20,    // Mass
+                40     // Size
+        );
+
+        // Earth
+        Planet earth = new Planet(
+                new Vector3D(-1600-600, 0, 0),
+                new Vector3D(0, 0, 0),
+                20,    // Mass
+                42     // Size
+        );
+        BuildInBodies buildInBodies = new BuildInBodies(mercury);
+        BuildInBodies buildInBodies1 = new BuildInBodies(venus);
+        BuildInBodies buildInBodies2 = new BuildInBodies(earth);
+
+        buildInBodies.applyTextures("Mercury");
+        buildInBodies1.applyTextures("Venus");
+        buildInBodies2.applyTextures("Earth");
+
+        tilePanePlanets.getChildren().addAll(earth,mercury,venus);
+
 
         groupRootNode.setDepthTest(DepthTest.ENABLE);
 
@@ -437,6 +473,13 @@ animationTimer1.start();
         buttonSettingExit.setOnAction(event -> handleExitButton());
 
         buttonSettingSave.setOnAction(event -> handlerSaveButtonEvent());
+        buttonSettingLoad.setOnAction(event -> {
+            try {
+                HandlerSettingLoad();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         //Handler
         handlerCameraButtonEvent();
         handlePlanetCreationButtonEvent();
