@@ -33,6 +33,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+import static edu.vanier.template.helpers.SavenLoad.writePlanetsToFile;
+
 public class SimulationMainPageController {
 
     // All the main containers:
@@ -253,6 +255,16 @@ public class SimulationMainPageController {
         });
 
     }
+    public void handlerSaveButtonEvent(){
+
+        try {
+            // Write to file
+            writePlanetsToFile(bodyHandler.getBodies(), "src/main/resources/planets.txt");
+            System.out.println("Planet data successfully written to file.");
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+    }
 
     public void handleCamera() {
         Box box = new Box(25, 25, 20);
@@ -386,19 +398,22 @@ animationTimer1.start();
 
         //make sure that the setting button sticks to the top right corner
         AnchorPane.setTopAnchor(vboxSettingButton, 20.0);     // Stick to top
-        AnchorPane.setRightAnchor(vboxSettingButton, 50.0);   // Stick to right
+        AnchorPane.setRightAnchor(vboxSettingButton, 20.0);   // Stick to right
         AnchorPane.setTopAnchor(vboxSetting, 20.0);     // Stick to top
-        AnchorPane.setRightAnchor(vboxSetting, 100.0);   // Stick to right
+        AnchorPane.setRightAnchor(vboxSetting, 40.0);   // Stick to right
 
 
         // Button events
         this.buttonAddPlanet.setOnAction(e -> {
             handlerButtonAddPlanetEvent();
         });
+
         buttonExit.setOnAction(event -> handleExitButton());
         buttonSettings.setOnAction(event -> handlerButtonSetting());
         //buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
         buttonSettingExit.setOnAction(event -> handleExitButton());
+
+        buttonSettingSave.setOnAction(event -> handlerSaveButtonEvent());
         //Handler
         handlerCameraButtonEvent();
         handlePlanetCreationButtonEvent();
