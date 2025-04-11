@@ -26,8 +26,11 @@ public abstract class Body extends Sphere{
     
     protected double mass;
 
+    Trail trail;
+
     public Body(Vector3D position, double mass, double radius) {
         super(radius);
+        this.trail = new Trail();
         setDepthTest(DepthTest.ENABLE);
         this.position = position;
         velocity = new Vector3D(0, 0, 0);
@@ -37,6 +40,7 @@ public abstract class Body extends Sphere{
 
     public Body(Vector3D position, Vector3D velocity, double mass, double radius, int divisions) {
         super(radius, divisions);
+        this.trail = new Trail();
         setDepthTest(DepthTest.ENABLE);
         this.position = position;
         this.velocity = velocity;
@@ -46,6 +50,7 @@ public abstract class Body extends Sphere{
 
     public Body(Vector3D position, Vector3D velocity, double mass, double radius) {
         super(radius);
+        this.trail = new Trail();
         setDepthTest(DepthTest.ENABLE);
         this.position = position;
         this.velocity = velocity;
@@ -54,6 +59,7 @@ public abstract class Body extends Sphere{
     }
     
     public void update(double deltaTime){
+        trail.update(this);
         acceleration = force.scaleVector3D(1/mass);
         velocity.addToCurrentVector3D(acceleration.scaleVector3D(deltaTime));
         position.addToCurrentVector3D(velocity.scaleVector3D(deltaTime));
