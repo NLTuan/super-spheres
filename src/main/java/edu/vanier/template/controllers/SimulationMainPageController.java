@@ -560,7 +560,7 @@ animationTimer1.start();
         Planet venus = new Planet(
                 new Vector3D(-1200-600, 0, 0),
                 new Vector3D(0, 0, 0),
-                20,    // Mass
+                100000,    // Mass
                 40     // Size
         );
 
