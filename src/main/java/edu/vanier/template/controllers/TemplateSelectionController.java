@@ -68,9 +68,10 @@ public class TemplateSelectionController {
         MainApp.switchScene(MainApp.SIMULATION_MAIN_PAGE_LAYOUT);
 
         // Use Platform.runLater to ensure controller is created
-        Platform.runLater(() -> {
+       Platform.runLater(() -> {
             SimulationMainPageController controller = SimulationMainPageController.getLastInstance();
             if (controller != null) {
+                logger.info("Loading solar sytem from template");
                 controller.loadTemplate("solarSystem");
             } else {
                 System.err.println("Failed to get simulation controller");

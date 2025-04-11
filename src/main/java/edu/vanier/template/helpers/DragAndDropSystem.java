@@ -161,6 +161,7 @@ public class DragAndDropSystem {
                         this.textFieldVelocity.setVisible(false);
                         this.textFieldVelocity.setManaged(false);
                         this.textFieldVelocity.setText("0.00");
+                        this.textFieldVelocity.getParent().requestFocus();
                     }
 
                 }catch (Exception exception){

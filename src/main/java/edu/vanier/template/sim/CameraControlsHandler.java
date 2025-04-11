@@ -178,7 +178,7 @@ public class CameraControlsHandler {
             camera.setTranslateZ(camera.getTranslateZ() + cameraMovements.getZ());
         }
     public void handleCamera(Scene scene) {
-        if (isMovementAllow) {
+        if (isMovementAllow && this.camera != null) {
             scene.setOnMousePressed(event -> {
                 if (event.getButton() == MouseButton.SECONDARY) {
                     rightClickedHeld = true;

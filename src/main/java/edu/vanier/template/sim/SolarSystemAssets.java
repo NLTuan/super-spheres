@@ -1,23 +1,30 @@
 package edu.vanier.template.sim;
 
+import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.helpers.BuildInBodies;
 import edu.vanier.template.helpers.GarbageCollector;
 import edu.vanier.template.helpers.RotationClass;
 import edu.vanier.template.math.Vector3D;
 import javafx.scene.Group;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 public class SolarSystemAssets {
-
+    private final static Logger logger = LoggerFactory.getLogger(SolarSystemAssets.class);
     private List<Planet> solarSystemBodies = new ArrayList<>();
 
     private  GarbageCollector garbageCollector;
 
+
     public void loadAssets(Group rootNode, BodyHandler bodyHandler) {
         garbageCollector = new GarbageCollector(rootNode, bodyHandler);
+        garbageCollector.clearAll();
+
+        logger.info("We are loading assets");
         Planet sun = new Planet(
                 new Vector3D(0, 0, 0),
                 new Vector3D(0, 0, 0),
@@ -81,8 +88,9 @@ public class SolarSystemAssets {
                 150,   // Mass
                 150    // Size
         );
+        BuildInBodies.applyTextures(saturn, "Saturn");
         saturn.setVelocity(new Vector3D(0,0,-saturn.vOrbital(sun,4200+600)));
-        // No texture applied - will use default
+
 
         // Uranus
         Planet uranus = new Planet(
@@ -101,8 +109,8 @@ public class SolarSystemAssets {
                 100,   // Mass
                 75     // Size
         );
-        // No texture applied - will use default
         neptune.setVelocity(new Vector3D(0,0,-neptune.vOrbital(sun,6200+600)));
+       BuildInBodies.applyTextures(neptune,"Neptune");
         // Pluto
         Planet pluto = new Planet(
                 new Vector3D(-7200-600, 0, 0),
@@ -111,7 +119,7 @@ public class SolarSystemAssets {
                 10     // Size
         );
         pluto.setVelocity(new Vector3D(0,0,-pluto.vOrbital(sun,7200+600)));
-
+       BuildInBodies.applyTextures(pluto,"Pluto");
 
         // Add all bodies to lists
         solarSystemBodies.addAll(List.of(
@@ -119,10 +127,8 @@ public class SolarSystemAssets {
                 jupiter, saturn, uranus, neptune, pluto
         ));
 
-        // Add to scene and physics
-        rootNode.getChildren().addAll(solarSystemBodies);
-        bodyHandler.addAll(sun, mercury, venus, earth, mars,
-                jupiter, saturn, uranus, neptune, pluto);
+
+
 
         RotationClass rotationClass = new RotationClass();
         rotationClass.addBody(sun, 50);
@@ -135,5 +141,9 @@ public class SolarSystemAssets {
         rotationClass.addBody(uranus, 30);
         rotationClass.addBody(neptune, 30);
         rotationClass.addBody(pluto, 20);
+
+        rootNode.getChildren().addAll(solarSystemBodies);
+        bodyHandler.addAll(sun, mercury, venus, earth, mars,
+                jupiter, saturn, uranus, neptune, pluto);
     }
 }

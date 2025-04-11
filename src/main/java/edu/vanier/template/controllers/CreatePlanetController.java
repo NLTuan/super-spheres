@@ -110,8 +110,11 @@ public class CreatePlanetController {
                 texturizeBody(new Image("/fxml/BuildInBodiesImages/SolarImage.jpg"), Color.GOLD);
                 break;
             case "Mercury":
-                texturizeBody(new Image("/fxml/BuildInBodiesImages/MercuryImage.png"), Color.DARKGRAY);
+                // example of what to do..
+                BuildInBodies.applyTextures(textureBodySphere,"Mercury");
                 break;
+            case "Saturn":
+                BuildInBodies.applyTextures(textureBodySphere,"Saturn");
             default:
                 break;
         }
