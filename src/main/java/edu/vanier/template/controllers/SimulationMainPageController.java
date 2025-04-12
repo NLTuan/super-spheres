@@ -146,8 +146,8 @@ public class SimulationMainPageController {
         currentInstance = this;
     }
     public  static SimulationMainPageController getLastInstance(){return currentInstance;}
-
-
+    public PerspectiveCamera getCamera(){return this.camera;}
+    public Group getGroupRootNode(){return  this.groupRootNode;}
     public void loadTemplate(String templateName){
         if(garbageCollector == null){
             garbageCollector = new GarbageCollector(groupRootNode, bodyHandler);
@@ -341,6 +341,13 @@ public class SimulationMainPageController {
                 RotationClass.updateAllRotations(dt);
                 bodyHandler.update(dt * timeConstant);
                 prevTime = now;
+
+                // if some see th
+                //if(true){
+                    bodyHandler.getBodies().forEach(body -> {
+                        body.updateLabelPosition();
+                    });
+                //}
             }
         };
     }

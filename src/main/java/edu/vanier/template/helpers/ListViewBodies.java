@@ -24,6 +24,8 @@ public class ListViewBodies {
     private Body sphere;
     private Sphere shape3DCloned;
     String bodyName;
+
+    Text3D text3D;
     public  static  ListView<HBox> listView = SimulationMainPageController.getLastInstance().listViewSimulatedBodies;
     public ListViewBodies(String bodyName, Body bodyToClone){
         this.bodyName = bodyName;
@@ -55,6 +57,14 @@ public class ListViewBodies {
         textFieldName.setPrefHeight(20);
 
         hBoxNameControls.getChildren().addAll(this.shape3DCloned,labelShowName,textFieldName, checkBoxShowName);
+
+        checkBoxShowName.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            logger.info("Planet selected propery show value is " + newValue);
+            sphere.setName("Planet");
+            sphere.nameLabel.setSize(70);
+            sphere.setShowName(newValue);
+
+        }));
         // Spacers
         Region spacer = new Region();
         Region spacer1 = new Region();
@@ -116,14 +126,8 @@ public class ListViewBodies {
 
     public void setCloneShape(Body bodyToClone){
         this.shape3DCloned = new Sphere(12);
-
-
         bodyToClone.materialProperty().addListener(((observable, oldValue, newValue) -> {
             this.shape3DCloned.setMaterial((PhongMaterial) newValue);
         }));
-
-
     }
-
-
 }

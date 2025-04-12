@@ -4,12 +4,15 @@
  */
 package edu.vanier.template.sim;
 
+import edu.vanier.template.controllers.SimulationMainPageController;
 import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.helpers.DragAndDropSystem;
 import edu.vanier.template.helpers.ListViewBodies;
+import edu.vanier.template.helpers.Text3D;
 import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
 import javafx.scene.DepthTest;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Sphere;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +31,7 @@ public abstract class Body extends Sphere{
     protected double mass;
 
     private String name;
+    public Text3D nameLabel;
 
     protected ListViewBodies listViewBodies;
 
@@ -42,6 +46,7 @@ public abstract class Body extends Sphere{
         velocity = new Vector3D(0, 0, 0);
         acceleration = new Vector3D(0, 0, 0);
         this.mass = mass;
+        createNameLabel();
     }
 
     public Body(Vector3D position, Vector3D velocity, double mass, double radius, int divisions) {
@@ -53,6 +58,7 @@ public abstract class Body extends Sphere{
         this.velocity = velocity;
         this.acceleration = new Vector3D(0, 0, 0);
         this.mass = mass;
+        createNameLabel();
     }
 
     public Body(Vector3D position, Vector3D velocity, double mass, double radius) {
@@ -64,6 +70,7 @@ public abstract class Body extends Sphere{
         this.velocity = velocity;
         this.acceleration = new Vector3D(0, 0, 0);
         this.mass = mass;
+        createNameLabel();
     }
 
     public void setName(String name) {
@@ -135,7 +142,22 @@ public abstract class Body extends Sphere{
                 '}';
     }
 
-
+    private void createNameLabel(){
+        this.nameLabel = new Text3D(this.name != null ? this.name : "Planet", Color.WHITE, this,SimulationMainPageController.getLastInstance().getCamera());
+        this.nameLabel.setVisible(false);
+        this.nameLabel.setManaged(false);
+    }
+    public  void setShowName(boolean showName){
+        if(nameLabel != null){
+            nameLabel.setVisible(showName);
+            nameLabel.setManaged(showName);
+        }
+    }
+    public  void updateLabelPosition(){
+        if(this.nameLabel != null){
+            this.nameLabel.updatePosition();
+        }
+    }
     public  double vOrbital(Body bodyCentral, double distance){
         if(bodyCentral == null || bodyCentral.getMass() <= 0) {
             logger.info("body central or body.getmass  is less than zero");

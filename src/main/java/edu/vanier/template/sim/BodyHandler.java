@@ -4,6 +4,7 @@
  */
 package edu.vanier.template.sim;
 
+import edu.vanier.template.controllers.SimulationMainPageController;
 import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
@@ -48,6 +49,7 @@ public class BodyHandler {
 
     public void add(Body body){
         bodies.add(body);
+        if(body.nameLabel!= null) SimulationMainPageController.getLastInstance().getGroupRootNode().getChildren().add(body.nameLabel);
     }
     public void addAll(Body... bodies){
         for(Body body : bodies){add(body);}
