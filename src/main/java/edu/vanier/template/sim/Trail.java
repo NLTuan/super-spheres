@@ -34,7 +34,7 @@ public class Trail {
                 parentNode.getChildren().remove(trailParticles.get(0));
                 trailParticles.remove(0);
             }
-            Sphere particle = new Sphere(20);
+            Sphere particle = new Sphere(5);
             trailParticles.add(particle);
             particle.setTranslateX(followBody.getTranslateX());
             particle.setTranslateY(followBody.getTranslateY());

@@ -6,6 +6,7 @@ package edu.vanier.template.sim;
 
 import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.helpers.DragAndDropSystem;
+import edu.vanier.template.helpers.ListViewBodies;
 import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
 import javafx.scene.DepthTest;
@@ -26,11 +27,16 @@ public abstract class Body extends Sphere{
     
     protected double mass;
 
+    private String name;
+
+    protected ListViewBodies listViewBodies;
+
     Trail trail;
 
     public Body(Vector3D position, double mass, double radius) {
         super(radius);
         this.trail = new Trail();
+        this.listViewBodies = new ListViewBodies("No name",this);
         setDepthTest(DepthTest.ENABLE);
         this.position = position;
         velocity = new Vector3D(0, 0, 0);
@@ -41,6 +47,7 @@ public abstract class Body extends Sphere{
     public Body(Vector3D position, Vector3D velocity, double mass, double radius, int divisions) {
         super(radius, divisions);
         this.trail = new Trail();
+        this.listViewBodies = new ListViewBodies("No name",this);
         setDepthTest(DepthTest.ENABLE);
         this.position = position;
         this.velocity = velocity;
@@ -51,13 +58,18 @@ public abstract class Body extends Sphere{
     public Body(Vector3D position, Vector3D velocity, double mass, double radius) {
         super(radius);
         this.trail = new Trail();
+        this.listViewBodies = new ListViewBodies("No name",this);
         setDepthTest(DepthTest.ENABLE);
         this.position = position;
         this.velocity = velocity;
         this.acceleration = new Vector3D(0, 0, 0);
         this.mass = mass;
     }
-    
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void update(double deltaTime){
         trail.update(this);
         acceleration = force.scaleVector3D(1/mass);
@@ -122,6 +134,7 @@ public abstract class Body extends Sphere{
                 ", mass=" + mass +
                 '}';
     }
+
 
     public  double vOrbital(Body bodyCentral, double distance){
         if(bodyCentral == null || bodyCentral.getMass() <= 0) {

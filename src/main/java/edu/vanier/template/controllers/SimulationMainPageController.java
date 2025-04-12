@@ -14,11 +14,7 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -29,6 +25,8 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +36,7 @@ import static edu.vanier.template.helpers.SavenLoad.loadFileSaver;
 import static edu.vanier.template.helpers.SavenLoad.writePlanetsToFile;
 
 public class SimulationMainPageController {
+    private final static Logger logger = LoggerFactory.getLogger(SimulationMainPageController.class);
 
     // All the main containers:
     @FXML
@@ -117,7 +116,17 @@ public class SimulationMainPageController {
     private Slider simulationSpeedSlider;
     @FXML
     private TextField textFieldVelocity;
-    
+    @FXML
+    private HBox hboxSimulatedPlanets;
+    @FXML
+    private  Button buttonSimulatedBodies;
+
+    @FXML
+    private VBox vBoxSimulatedBodies;
+    @FXML
+    public  ListView<HBox> listViewSimulatedBodies;
+
+
     //Non fxml field members:
     private Group groupRootNode = new Group();
     
@@ -137,6 +146,7 @@ public class SimulationMainPageController {
         currentInstance = this;
     }
     public  static SimulationMainPageController getLastInstance(){return currentInstance;}
+
 
     public void loadTemplate(String templateName){
         if(garbageCollector == null){
@@ -302,7 +312,7 @@ public class SimulationMainPageController {
         groupRootNode.getChildren().add(box);
 
         this.camera.setTranslateZ(-1000);
-        this.camera.setFarClip(100000);
+        this.camera.setFarClip(2000000000);
         this.camera.setNearClip(0.1);
 
         this.subSceneSimulation.setRoot(groupRootNode);
@@ -420,44 +430,7 @@ animationTimer1.start();
     }
     @FXML
     public void initialize() {
-
-        Planet mercury = new Planet(
-                new Vector3D(-800-600, 0, 0),
-                new Vector3D(0, 0, 0),
-                10,    // Mass
-                20     // Size
-        );
-
-
-        // Venus
-        Planet venus = new Planet(
-                new Vector3D(-1200-600, 0, 0),
-                new Vector3D(0, 0, 0),
-                100000,    // Mass
-                40     // Size
-        );
-
-        // Earth
-        Planet earth = new Planet(
-                new Vector3D(-1600-600, 0, 0),
-                new Vector3D(0, 0, 0),
-                20,    // Mass
-                42     // Size
-        );
-        BuildInBodies buildInBodies = new BuildInBodies(mercury);
-        BuildInBodies buildInBodies1 = new BuildInBodies(venus);
-        BuildInBodies buildInBodies2 = new BuildInBodies(earth);
-
-        //buildInBodies.applyTextures("Mercury");
-        BuildInBodies.applyTextures(mercury,"Saturn");
-        buildInBodies1.applyTextures("Venus");
-        buildInBodies2.applyTextures("Earth");
-
-        tilePanePlanets.getChildren().addAll(earth,mercury,venus);
-
-
         groupRootNode.setDepthTest(DepthTest.ENABLE);
-
         vboxSettingButton.setLayoutX(200);
 
         //make sure that the setting button sticks to the top right corner
@@ -465,6 +438,9 @@ animationTimer1.start();
         AnchorPane.setRightAnchor(vboxSettingButton, 20.0);   // Stick to right
         AnchorPane.setTopAnchor(vboxSetting, 20.0);     // Stick to top
         AnchorPane.setRightAnchor(vboxSetting, 40.0);   // Stick to right
+        AnchorPane.setRightAnchor(hboxSimulatedPlanets,40.0);
+        AnchorPane.setRightAnchor(vBoxSimulatedBodies,100.0);
+
 
 
         // Button events
@@ -476,6 +452,7 @@ animationTimer1.start();
         buttonSettings.setOnAction(event -> handlerButtonSetting());
         //buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
         buttonSettingExit.setOnAction(event -> handleExitButton());
+        buttonSimulatedBodies.setOnAction(event -> {handleButtonSimulatedBodies();});
 
         if (buttonSettingSave != null) buttonSettingSave.setOnAction(event -> handlerSaveButtonEvent());
         buttonSettingLoad.setOnAction(event -> {
@@ -495,11 +472,23 @@ animationTimer1.start();
 
 
 
+
         setupBodies();
         setupAnimationTimer();
         animationTimer.start();
     }
 
+    public  void handleButtonSimulatedBodies(){
+        logger.info("Make vbox visible");
+        if(!vBoxSimulatedBodies.isVisible()) {
+            vBoxSimulatedBodies.setVisible(true);
+            vBoxSimulatedBodies.setManaged(true);
+        }else {
+            vBoxSimulatedBodies.setVisible(false);
+            vBoxSimulatedBodies.setManaged(false);
+        }
+
+    }
     public void handlePlanetCreationButtonEvent() {
         CreatePlanetController createPlanetController = new CreatePlanetController();
         createPlanetController.setSimulationController(this);

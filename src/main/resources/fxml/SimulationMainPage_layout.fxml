@@ -224,16 +224,16 @@
                      <children>
                         <AnchorPane prefHeight="48.0" prefWidth="86.0">
                            <children>
-                              <Button fx:id="buttonSimulatedBodies" layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="56.0" style="-fx-background-color: transparent;">
-                                 <font>
-                                    <Font name="Arial Hebrew Bold" size="22.0" />
-                                 </font>
-                              </Button>
                               <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@AppImages/planetIcon.png" />
                                  </image>
                               </ImageView>
+                              <Button fx:id="buttonSimulatedBodies" layoutX="3.0" layoutY="3.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="56.0" style="-fx-background-color: transparent;">
+                                 <font>
+                                    <Font name="Arial Hebrew Bold" size="22.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </children>
@@ -298,14 +298,14 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <VBox layoutX="742.0" layoutY="369.0" prefHeight="269.0" prefWidth="193.0" visible="false">
+                  <VBox fx:id="vBoxSimulatedBodies" layoutX="702.0" layoutY="350.0" prefHeight="300.0" prefWidth="244.0" visible="false">
                      <children>
-                        <AnchorPane prefHeight="269.0" prefWidth="203.0">
+                        <AnchorPane prefHeight="311.0" prefWidth="244.0">
                            <children>
-                              <ListView layoutY="24.0" opacity="0.35" prefHeight="257.0" prefWidth="204.0" style="-fx-background-color: grey;" />
-                              <Label layoutX="35.0" layoutY="3.0" text="Simulated Bodies" textFill="#bfbfbf">
+                              <ListView fx:id="listViewSimulatedBodies" layoutY="21.0" opacity="0.35" prefHeight="279.0" prefWidth="244.0" style="-fx-background-color: grey;" />
+                              <Label layoutX="14.0" layoutY="-17.0" prefHeight="43.0" prefWidth="216.0" text="       Simulated Bodies" textFill="#aeaeae">
                                  <font>
-                                    <Font name="Arial Hebrew Bold" size="16.0" />
+                                    <Font name="Arial Black" size="16.0" />
                                  </font>
                               </Label>
                            </children>
