@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 public class ListViewBodies {
-    private final static Logger logger = LoggerFactory.getLogger(TemplateSelectionController.class);
+    private final static Logger logger = LoggerFactory.getLogger(ListViewBodies.class);
     private Body sphere;
     private Sphere shape3DCloned;
     String bodyName;
@@ -58,13 +58,15 @@ public class ListViewBodies {
 
         hBoxNameControls.getChildren().addAll(this.shape3DCloned,labelShowName,textFieldName, checkBoxShowName);
 
-        checkBoxShowName.selectedProperty().addListener(((observable, oldValue, newValue) -> {
-            logger.info("Planet selected propery show value is " + newValue);
-            sphere.setName("Planet");
-            sphere.nameLabel.setSize(70);
-            sphere.setShowName(newValue);
 
+
+        checkBoxShowName.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            logger.info("Planet name " + sphere.getName());
+            sphere.setShowName(newValue);
         }));
+
+
+        //}
         // Spacers
         Region spacer = new Region();
         Region spacer1 = new Region();

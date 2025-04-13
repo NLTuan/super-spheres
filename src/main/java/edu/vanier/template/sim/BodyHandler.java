@@ -49,7 +49,7 @@ public class BodyHandler {
 
     public void add(Body body){
         bodies.add(body);
-        if(body.nameLabel!= null) SimulationMainPageController.getLastInstance().getGroupRootNode().getChildren().add(body.nameLabel);
+        if(body.nameLabel!= null)SimulationMainPageController.getLastInstance().getGroupRootNode().getChildren().add(body.nameLabel);
     }
     public void addAll(Body... bodies){
         for(Body body : bodies){add(body);}

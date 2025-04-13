@@ -11,6 +11,8 @@ import edu.vanier.template.helpers.ListViewBodies;
 import edu.vanier.template.helpers.Text3D;
 import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.DepthTest;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Sphere;
@@ -30,7 +32,7 @@ public abstract class Body extends Sphere{
     
     protected double mass;
 
-    private String name;
+    private StringProperty name = new SimpleStringProperty("Unamed");
     public Text3D nameLabel;
 
     protected ListViewBodies listViewBodies;
@@ -73,10 +75,11 @@ public abstract class Body extends Sphere{
         createNameLabel();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
+
+    public  StringProperty getNameProperty(){
+        return this.name;
+    }
     public void update(double deltaTime){
         trail.update(this);
         acceleration = force.scaleVector3D(1/mass);
@@ -143,9 +146,14 @@ public abstract class Body extends Sphere{
     }
 
     private void createNameLabel(){
-        this.nameLabel = new Text3D(this.name != null ? this.name : "Planet", Color.WHITE, this,SimulationMainPageController.getLastInstance().getCamera());
+        this.nameLabel = new Text3D( this.name.getName()!= null ? this.getName(): "Planet", Color.WHITE, this,SimulationMainPageController.getLastInstance().getCamera());
         this.nameLabel.setVisible(false);
         this.nameLabel.setManaged(false);
+        /*name.addListener((obs, oldVal, newVal)-> {
+          if(newVal != null){
+              this.nameLabel.setTextTocheck(newVal);
+          }
+        });*/
     }
     public  void setShowName(boolean showName){
         if(nameLabel != null){
@@ -158,6 +166,16 @@ public abstract class Body extends Sphere{
             this.nameLabel.updatePosition();
         }
     }
+
+    public String getName() {
+        return name.get();
+    }
+    public void setName(String name) {
+        this.name.setValue(name);
+        this.nameLabel.setTextTocheck(getName());
+        logger.info("new name set in method setName is " + this.getName());
+    }
+
     public  double vOrbital(Body bodyCentral, double distance){
         if(bodyCentral == null || bodyCentral.getMass() <= 0) {
             logger.info("body central or body.getmass  is less than zero");

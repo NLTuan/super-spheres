@@ -15,7 +15,7 @@ import java.util.Vector;
 
 public class SolarSystemAssets {
     private final static Logger logger = LoggerFactory.getLogger(SolarSystemAssets.class);
-    private List<Planet> solarSystemBodies = new ArrayList<>();
+    private List<Body> solarSystemBodies = new ArrayList<>();
 
     private  GarbageCollector garbageCollector;
 
@@ -25,14 +25,14 @@ public class SolarSystemAssets {
         garbageCollector.clearAll();
 
         logger.info("We are loading assets");
-        Planet sun = new Planet(
+        Star sun = new Star(
                 new Vector3D(0, 0, 0),
                 new Vector3D(0, 0, 0),
-                100000,
+                1000000,
                 600
         );
         BuildInBodies.applyTextures(sun, "Sun");
-
+        sun.setName("Sun");
         // Mercury (closest to sun)
         Planet mercury = new Planet(
                 new Vector3D(-800-600, 0, 0),
@@ -42,6 +42,7 @@ public class SolarSystemAssets {
         );
         mercury.setVelocity(new Vector3D(0,0,-mercury.vOrbital(sun,800+600)));
         BuildInBodies.applyTextures(mercury, "Mercury");
+        mercury.setName("Mercury");
 
         // Venus
         Planet venus = new Planet(
@@ -50,6 +51,7 @@ public class SolarSystemAssets {
                 20,    // Mass
                 40     // Size
         );
+        venus.setName("Venus");
         venus.setVelocity(new Vector3D(0,0,-venus.vOrbital(sun,1200+600)));
         BuildInBodies.applyTextures(venus, "Venus");
 
@@ -60,6 +62,7 @@ public class SolarSystemAssets {
                 20,    // Mass
                 42     // Size
         );
+        earth.setName("Earth");
         earth.setVelocity(new Vector3D(0,0,-earth.vOrbital(sun,1600+600)));
         BuildInBodies.applyTextures(earth, "Earth");
 
@@ -72,6 +75,7 @@ public class SolarSystemAssets {
         );
         BuildInBodies.applyTextures(mars, "Mars");
         mars.setVelocity(new Vector3D(0,0,-mars.vOrbital(sun,2200+600)));
+        mars.setName("Mars");
         // Jupiter
         Planet jupiter = new Planet(
                 new Vector3D(-3200-600, 0, 0),
@@ -81,6 +85,7 @@ public class SolarSystemAssets {
         );
         BuildInBodies.applyTextures(jupiter, "Jupiter");
         jupiter.setVelocity(new Vector3D(0,0,-jupiter.vOrbital(sun,3200+600)));
+        jupiter.setName("Jupiter");
         // Saturn
         Planet saturn = new Planet(
                 new Vector3D(-4200-600, 0, 0),
@@ -90,7 +95,7 @@ public class SolarSystemAssets {
         );
         BuildInBodies.applyTextures(saturn, "Saturn");
         saturn.setVelocity(new Vector3D(0,0,-saturn.vOrbital(sun,4200+600)));
-
+        saturn.setName("Saturn");
 
         // Uranus
         Planet uranus = new Planet(
@@ -101,6 +106,7 @@ public class SolarSystemAssets {
         );
        uranus.setVelocity(new Vector3D(0,0,-uranus.vOrbital(sun,5200+600)));
        BuildInBodies.applyTextures(uranus, "Uranus");
+       uranus.setName("Uranus");
 
         // Neptune
         Planet neptune = new Planet(
@@ -109,6 +115,7 @@ public class SolarSystemAssets {
                 100,   // Mass
                 75     // Size
         );
+        neptune.setName("Neptune");
         neptune.setVelocity(new Vector3D(0,0,-neptune.vOrbital(sun,6200+600)));
        BuildInBodies.applyTextures(neptune,"Neptune");
         // Pluto
@@ -120,6 +127,7 @@ public class SolarSystemAssets {
         );
         pluto.setVelocity(new Vector3D(0,0,-pluto.vOrbital(sun,7200+600)));
        BuildInBodies.applyTextures(pluto,"Pluto");
+       pluto.setName("Pluto");
 
         // Add all bodies to lists
         solarSystemBodies.addAll(List.of(
