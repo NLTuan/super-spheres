@@ -57,9 +57,10 @@ public class MainApp extends Application {
             sceneController = new SceneController(scene);
             sceneController.addScene(START_SCENE, root);
             primaryStage.setScene(scene);
+
             primaryStage.sizeToScene();
             primaryStage.setTitle("Super Spheres");
-            // Request putting this appliation's main window on top of other 
+            // Request putting this appliation's main window on top of other
             // already-opened windows upon launching the app.
             primaryStage.setAlwaysOnTop(true);
             primaryStage.show();

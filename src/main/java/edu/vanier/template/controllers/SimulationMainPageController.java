@@ -439,12 +439,11 @@ animationTimer1.start();
     public void initialize() {
         groupRootNode.setDepthTest(DepthTest.ENABLE);
         vboxSettingButton.setLayoutX(200);
-
-        //make sure that the setting button sticks to the top right corner
-        AnchorPane.setTopAnchor(vboxSettingButton, 20.0);     // Stick to top
-        AnchorPane.setRightAnchor(vboxSettingButton, 20.0);   // Stick to right
-        AnchorPane.setTopAnchor(vboxSetting, 20.0);     // Stick to top
-        AnchorPane.setRightAnchor(vboxSetting, 40.0);   // Stick to right
+//        make sure that the setting button sticks to the top right corner
+//        AnchorPane.setTopAnchor(vboxSettingButton, 20.0);     // Stick to top
+//        AnchorPane.setRightAnchor(vboxSettingButton, 20.0);   // Stick to right
+//        AnchorPane.setTopAnchor(vboxSetting, 20.0);     // Stick to top
+//        AnchorPane.setRightAnchor(vboxSetting, 40.0);   // Stick to right
         AnchorPane.setRightAnchor(hboxSimulatedPlanets,40.0);
         AnchorPane.setRightAnchor(vBoxSimulatedBodies,100.0);
 
