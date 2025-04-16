@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.SceneAntialiasing?>
 <?import javafx.scene.SubScene?>
 <?import javafx.scene.control.Button?>
@@ -164,37 +165,44 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxCameraControls" layoutX="124.0" layoutY="11.0" prefHeight="115.0" prefWidth="155.0" spacing="10.0" style="-fx-background-color: transparent; -fx-background-radius: 10;" visible="false" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="20.0">
+                  <VBox fx:id="vboxCameraControls" alignment="TOP_CENTER" layoutX="147.33333333333334" layoutY="11.0" prefHeight="143.0" prefWidth="167.0" spacing="10.0" style="-fx-background-color: transparent; -fx-background-radius: 10;" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="20.0">
                      <children>
                         <Label prefHeight="22.0" prefWidth="146.0" text="Camera Controls" textAlignment="CENTER" textFill="#e1e0e0">
                            <font>
                               <Font name="Dubai Bold" size="18.0" />
                            </font>
                         </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                        <VBox prefHeight="101.0" prefWidth="164.0" spacing="10.0" style="-fx-background-color: #171717; -fx-background-radius: 10;">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="101.0" text="Camera Speed:" textFill="WHITE">
-                                 <font>
-                                    <Font name="Dubai Regular" size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldCameraSpeed" prefHeight="2.0" prefWidth="38.0" style="-fx-border-color: transparent;" text="100" />
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="101.0" text="Camera Speed" textFill="WHITE">
+                                       <font>
+                                          <Font name="Dubai Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="textFieldCameraSpeed" prefHeight="2.0" prefWidth="38.0" style="-fx-border-color: transparent;" text="100" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="labelStatisticPosition22" prefHeight="30.0" prefWidth="83.0" text="Set to Origin" textFill="WHITE">
+                                       <font>
+                                          <Font name="Dubai Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="buttonSetBackOrigin" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="46.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" text="↺ " textFill="#f2f2f2">
+                                       <font>
+                                          <Font name="Avenir Black" size="20.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                           <children>
-                              <Label fx:id="labelStatisticPosition22" prefHeight="30.0" prefWidth="83.0" text="Set To origin:" textFill="WHITE">
-                                 <font>
-                                    <Font name="Dubai Regular" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="buttonSetBackOrigin" mnemonicParsing="false" prefHeight="43.0" prefWidth="56.0" style="-fx-background-color: transparent;" text="↺ " textFill="#f2f2f2">
-                                 <font>
-                                    <Font name="Avenir Black" size="20.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
                      </children>
                   </VBox>
                   <VBox fx:id="vboxSettingButton" layoutX="343.0" layoutY="162.0" prefHeight="48.0" prefWidth="63.0" />
