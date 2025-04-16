@@ -13,6 +13,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape3D;
@@ -35,18 +36,20 @@ public class DragAndDropSystem {
     private double setBackX, setBackY;
     private SubScene subScene;
     private javafx.scene.control.TextField textFieldVelocity;
+    private VBox vboxInputVelocity;
     private BodyHandler bodyHandler;
     private  boolean isDraggable = true;
     private  CameraControlsHandler cameraControlsHandler;
     private Vector3D vector3DInitialPosition;
     private  RayCaster rayCaster;
-    public  DragAndDropSystem(TilePane tilePane, Group targetGroup, SubScene subScene, CameraControlsHandler cameraControlsHandler, HBox toolBar, TextField textField , BodyHandler bodyHandler){
+    public  DragAndDropSystem(TilePane tilePane, Group targetGroup, SubScene subScene, CameraControlsHandler cameraControlsHandler, HBox toolBar, TextField textField , VBox vboxInputVelocity, BodyHandler bodyHandler){
         this.tilePane = tilePane;
         this.targetGroup = targetGroup;
         this.hBoxToolBar = toolBar;
         this.cameraControlsHandler = cameraControlsHandler;
         this.subScene = subScene;
         this.textFieldVelocity  = textField;
+        this.vboxInputVelocity = vboxInputVelocity;
         this.bodyHandler = bodyHandler;
         this.rayCaster = new RayCaster(targetGroup, cameraControlsHandler);
 
@@ -129,11 +132,10 @@ public class DragAndDropSystem {
     }
     public void DropHandler(Body draggedObject1){
         if(this.bodyHandler == null) return;
-
+        vboxInputVelocity.setVisible(true);
+        vboxInputVelocity.setManaged(true);
         textFieldVelocity.setVisible(true);
         textFieldVelocity.setManaged(true);
-
-
 
 
             //Find central body if looking at 1
@@ -162,6 +164,9 @@ public class DragAndDropSystem {
                         this.textFieldVelocity.setManaged(false);
                         this.textFieldVelocity.setText("0.00");
                         this.textFieldVelocity.getParent().requestFocus();
+
+                        this.vboxInputVelocity.setVisible(false);
+                        this.vboxInputVelocity.setManaged(false);
                     }
 
                 }catch (Exception exception){

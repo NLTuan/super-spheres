@@ -117,6 +117,8 @@ public class SimulationMainPageController {
     @FXML
     private TextField textFieldVelocity;
     @FXML
+    private VBox vboxInputVelocity;
+    @FXML
     private HBox hboxSimulatedPlanets;
     @FXML
     private  Button buttonSimulatedBodies;
@@ -356,7 +358,7 @@ public class SimulationMainPageController {
     public void setupBodies(){
         bodyHandler = new BodyHandler();
 
-        dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar, textFieldVelocity,bodyHandler);
+        dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar, textFieldVelocity, vboxInputVelocity, bodyHandler);
         dragAndDropSystem.DragAndDropHandler();
 
         Planet planet = new Planet(new Vector3D(-650 , 0, .01), new Vector3D(0, 0, -12.28), 100.0, 10);

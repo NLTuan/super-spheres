@@ -30,7 +30,7 @@
          <children>
             <AnchorPane fx:id="anchorPaneMainRootNode" prefHeight="507.0" prefWidth="893.0">
                <children>
-                  <SubScene fx:id="subSceneSimulation" depthBuffer="true" depthTest="ENABLE" height="721.0" width="1014.0" xmlns="http://javafx.com/javafx/12.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                  <SubScene fx:id="subSceneSimulation" depthBuffer="true" depthTest="ENABLE" height="721.0" width="1014.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/12.0.1" xmlns:fx="http://javafx.com/fxml/1">
                      <root>
                         <Region />
                      </root>
@@ -56,11 +56,11 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <HBox fx:id="hboxRootToolBar" alignment="CENTER" layoutX="5.0" layoutY="513.0" prefHeight="110.0" prefWidth="866.0" visible="false">
+                  <HBox fx:id="hboxRootToolBar" alignment="CENTER" layoutX="5.0" layoutY="513.0" prefHeight="110.0" prefWidth="866.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="512.0">
                      <children>
                         <AnchorPane fx:id="anchorPaneToolBarKit" opacity="0.63" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TitledPane fx:id="tiltPanePlanets" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutY="-12.0" opacity="0.65" prefHeight="120.0" prefWidth="866.0" style="-fx-border-color: white;" text="Celestial Bodies" textAlignment="CENTER">
+                              <TitledPane fx:id="tiltPanePlanets" alignment="TOP_LEFT" contentDisplay="RIGHT" opacity="0.65" prefHeight="209.0" prefWidth="866.0" style="-fx-border-color: white;" text="Celestial Bodies" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Black" size="14.0" />
                                  </font>
@@ -89,24 +89,23 @@
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <VBox fx:id="vboxCameraIcon" alignment="CENTER" layoutX="12.0" layoutY="-3.0" prefHeight="84.0" prefWidth="122.0" scaleX="0.6" scaleY="0.6">
+                  <VBox fx:id="vboxCameraIcon" alignment="TOP_CENTER" layoutX="4.0" layoutY="-18.0" prefHeight="84.0" prefWidth="122.0" scaleX="0.6" scaleY="0.6" spacing="10.0" AnchorPane.leftAnchor="-20.0" AnchorPane.topAnchor="-10.0">
                      <children>
-                        <AnchorPane prefHeight="82.0" prefWidth="113.0">
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7c7c7c" height="26.0" layoutX="42.0" layoutY="17.0" opacity="0.56" stroke="BLACK" strokeType="INSIDE" width="39.0" />
-                              <Rectangle arcHeight="5.0" arcWidth="100.0" fill="#7c7c7c" height="54.0" layoutX="20.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="83.0" />
-                              <Circle fill="#eeeeee" layoutX="37.0" layoutY="48.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                              <Circle fill="#8e8f90" layoutX="61.0" layoutY="61.0" radius="13.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0" />
-                              <Button fx:id="buttonCamera" layoutX="15.0" layoutY="30.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="108.0" style="-fx-background-color: transparent;" />
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ababab" height="4.0" layoutX="53.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="16.0" />
+                              <ImageView fitHeight="116.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../cameraIcon.png" />
+                                 </image></ImageView>
+                              <Button fx:id="buttonCamera" mnemonicParsing="false" prefHeight="80.0" prefWidth="104.0" style="-fx-background-color: transparent;" />
                            </children>
-                        </AnchorPane>
-                        <ImageView fitHeight="93.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+                        </StackPane>
+                        <ImageView fitHeight="118.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@AppImages/clock.png" />
                            </image>
                         </ImageView>
-                        <Slider fx:id="simulationSpeedSlider" max="1000.0" min="1.0" />
+                        <Slider fx:id="simulationSpeedSlider" max="1000.0" min="1.0" prefHeight="20.0" prefWidth="161.0" />
                      </children>
                   </VBox>
                   <VBox fx:id="vboxPlanetStatistic" alignment="CENTER" layoutX="34.0" layoutY="128.0" prefHeight="271.0" prefWidth="243.0" style="-fx-border-color: white;" visible="false">
@@ -330,11 +329,20 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <TextField fx:id="textFieldVelocity" layoutX="413.0" layoutY="83.0" prefHeight="26.0" prefWidth="100.0" visible="false">
-                     <font>
-                        <Font name="October Tamil Black" size="13.0" />
-                     </font>
-                  </TextField>
+                  <VBox fx:id="vboxInputVelocity" alignment="CENTER" layoutX="37.0" layoutY="212.0" prefHeight="83.0" prefWidth="167.0" spacing="10.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" visible="false" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="212.0">
+                     <children>
+                        <Label text="Input Planet Velocity:" textFill="WHITE">
+                           <font>
+                              <Font name="Dubai Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textFieldVelocity" prefHeight="35.0" prefWidth="100.0" visible="false">
+                           <font>
+                              <Font name="October Tamil Black" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
          </children>
