@@ -89,7 +89,7 @@
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <VBox fx:id="vboxCameraIcon" alignment="TOP_CENTER" layoutX="4.0" layoutY="-18.0" prefHeight="84.0" prefWidth="122.0" scaleX="0.6" scaleY="0.6" spacing="10.0" AnchorPane.leftAnchor="-20.0" AnchorPane.topAnchor="-10.0">
+                  <VBox fx:id="vboxCameraIcon" alignment="TOP_CENTER" layoutX="4.0" layoutY="-18.0" prefHeight="242.0" prefWidth="161.0" scaleX="0.6" scaleY="0.6" spacing="10.0" AnchorPane.leftAnchor="-20.0" AnchorPane.topAnchor="-10.0">
                      <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
@@ -164,33 +164,37 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxCameraControls" layoutX="110.0" layoutY="11.0" prefHeight="70.0" prefWidth="144.0" style="-fx-border-color: white;" visible="false">
+                  <VBox fx:id="vboxCameraControls" layoutX="124.0" layoutY="11.0" prefHeight="115.0" prefWidth="155.0" spacing="10.0" style="-fx-background-color: transparent; -fx-background-radius: 10;" visible="false" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="20.0">
                      <children>
-                        <Label prefHeight="22.0" prefWidth="146.0" style="-fx-border-color: white;" text="Camera Controls" textAlignment="CENTER" textFill="#e1e0e0">
+                        <Label prefHeight="22.0" prefWidth="146.0" text="Camera Controls" textAlignment="CENTER" textFill="#e1e0e0">
                            <font>
-                              <Font name="Arial Black" size="13.0" />
+                              <Font name="Dubai Bold" size="18.0" />
                            </font>
                         </Label>
-                        <AnchorPane prefHeight="62.0" prefWidth="139.0">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                            <children>
-                              <Label fx:id="labelStatisticPosition22" layoutX="3.0" layoutY="47.0" prefHeight="30.0" prefWidth="83.0" text="Set To origin:" textFill="WHITE">
+                              <Label prefHeight="30.0" prefWidth="101.0" text="Camera Speed:" textFill="WHITE">
                                  <font>
-                                    <Font name="Arial Black" size="10.5" />
+                                    <Font name="Dubai Regular" size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="3.0" layoutY="7.0" prefHeight="30.0" prefWidth="101.0" text="Camera Speed:" textFill="WHITE">
+                              <TextField fx:id="textFieldCameraSpeed" prefHeight="2.0" prefWidth="38.0" style="-fx-border-color: transparent;" text="100" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Label fx:id="labelStatisticPosition22" prefHeight="30.0" prefWidth="83.0" text="Set To origin:" textFill="WHITE">
                                  <font>
-                                    <Font name="Arial Black" size="11.0" />
+                                    <Font name="Dubai Regular" size="14.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="buttonSetBackOrigin" layoutX="97.0" layoutY="40.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="41.0" style="-fx-background-color: transparent;" text="↺ " textFill="#f2f2f2">
+                              <Button fx:id="buttonSetBackOrigin" mnemonicParsing="false" prefHeight="43.0" prefWidth="56.0" style="-fx-background-color: transparent;" text="↺ " textFill="#f2f2f2">
                                  <font>
                                     <Font name="Avenir Black" size="20.0" />
                                  </font>
                               </Button>
-                              <TextField fx:id="textFieldCameraSpeed" layoutX="101.0" layoutY="8.0" prefHeight="2.0" prefWidth="38.0" style="-fx-border-color: transparent;" text="100" />
                            </children>
-                        </AnchorPane>
+                        </HBox>
                      </children>
                   </VBox>
                   <VBox fx:id="vboxSettingButton" layoutX="343.0" layoutY="162.0" prefHeight="48.0" prefWidth="63.0" />
