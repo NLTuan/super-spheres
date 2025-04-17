@@ -89,7 +89,7 @@
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <VBox fx:id="vboxCameraIcon" alignment="TOP_CENTER" layoutX="30.0" layoutY="33.0" prefHeight="209.0" prefWidth="124.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
+                  <VBox fx:id="vboxCameraIcon" alignment="TOP_CENTER" layoutX="30.0" layoutY="33.0" prefHeight="259.0" prefWidth="124.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
                      <children>
                         <StackPane prefHeight="63.0" prefWidth="98.0">
                            <children>
@@ -124,6 +124,16 @@
                               </Button>
                            </children>
                         </StackPane>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="buttonPause" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #171717; -fx-background-radius: 10;" text="▐▐ " textFill="WHITE" />
+                              <Button fx:id="buttonPlay" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #171717; -fx-background-radius: 10;" text="▶" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                   <VBox fx:id="vboxPlanetStatistic" alignment="CENTER" layoutX="34.0" layoutY="128.0" prefHeight="271.0" prefWidth="243.0" style="-fx-border-color: white;" visible="false">

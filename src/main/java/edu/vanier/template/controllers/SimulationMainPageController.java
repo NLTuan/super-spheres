@@ -56,8 +56,6 @@ public class SimulationMainPageController {
     @FXML
     private TilePane tilePanePlanets;
     @FXML
-    private VBox vBoxCustomizeButton;
-    @FXML
     private Button buttonCustomizePlanet;
 
     @FXML
@@ -69,8 +67,6 @@ public class SimulationMainPageController {
     private Button buttonSimulationSpeed;
     @FXML
     private VBox vboxSimulationSpeed;
-    @FXML
-    private VBox vboxExitButton;
 
     @FXML
     private Button buttonSettings;
@@ -78,8 +74,6 @@ public class SimulationMainPageController {
     private VBox vboxSetting;
     @FXML
     private VBox vboxSettingButton;
-    @FXML
-    private AnchorPane anchorPaneSetting;
     @FXML
     private Button buttonSettingExit;
     @FXML
@@ -120,6 +114,10 @@ public class SimulationMainPageController {
     private VBox vBoxSimulatedBodies;
     @FXML
     public  ListView<HBox> listViewSimulatedBodies;
+    @FXML
+    private Button buttonPause;
+    @FXML
+    private Button buttonPlay;
 
 
     //Non fxml field members:
@@ -132,7 +130,6 @@ public class SimulationMainPageController {
     private long prevTime = System.nanoTime();
 
     private BodyHandler bodyHandler;
-    private DragAndDropSystem dragAndDropSystem ;
     private SolarSystemAssets solarSystemAssets;
     private GarbageCollector garbageCollector;
 
@@ -384,14 +381,13 @@ public class SimulationMainPageController {
     public void setupBodies(){
         bodyHandler = new BodyHandler();
 
-        dragAndDropSystem = new DragAndDropSystem(tilePanePlanets,this.groupRootNode,this.subSceneSimulation, cameraControlsHandler,hboxRootToolBar, textFieldVelocity, vboxInputVelocity, bodyHandler);
+        DragAndDropSystem dragAndDropSystem = new DragAndDropSystem(tilePanePlanets, this.groupRootNode, this.subSceneSimulation, cameraControlsHandler, hboxRootToolBar, textFieldVelocity, vboxInputVelocity, bodyHandler);
         dragAndDropSystem.DragAndDropHandler();
 
         Planet planet = new Planet(new Vector3D(-650 , 0, .01), new Vector3D(0, 0, -12.28), 100.0, 10);
 
         Planet planet2 = new Planet(new Vector3D(0  , 0, 0), new Vector3D(0,0,0),10000, 170);
 
-        Planet planet3 = new Planet(new Vector3D(0  , 0, 0), new Vector3D(0,0,0),150, 170);
         Rotate yRotate = new Rotate(0, Rotate.Y_AXIS);
         Rotate yRotate2 = new Rotate(0, Rotate.Y_AXIS)
                 ;
@@ -450,9 +446,7 @@ animationTimer1.start();
         buildInBodies.applyTextures(texture);
         groupRootNode.getChildren().add(planet);
         bodyHandler.add(planet);
-
     }
-
 
     public void setTilePanePlanets(){
         tilePanePlanets.setPickOnBounds(false);
@@ -469,7 +463,8 @@ animationTimer1.start();
         this.buttonAddPlanet.setOnAction(e -> {
             handlerButtonAddPlanetEvent();
         });
-
+        buttonPause.setOnAction(event -> pauseSimulation());
+        buttonPlay.setOnAction(event -> unPauseSimulation());
         buttonSettings.setOnAction(event -> handlerButtonSetting());
         buttonSettingExit.setOnAction(event -> handleExitButton());
         buttonSimulatedBodies.setOnAction(event -> {handleButtonSimulatedBodies();});
@@ -531,7 +526,6 @@ animationTimer1.start();
                 planetCreationStage.showAndWait();
             } catch (Exception e) {
                 System.out.println("AAAAAAAAA");
-                e.getMessage();
             }
         });
     }
