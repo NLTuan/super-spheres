@@ -468,6 +468,7 @@ animationTimer1.start();
         buttonSettings.setOnAction(event -> handlerButtonSetting());
         buttonSettingExit.setOnAction(event -> handleExitButton());
         buttonSimulatedBodies.setOnAction(event -> {handleButtonSimulatedBodies();});
+        buttonSetBackOrigin.setOnAction(event -> cameraControlsHandler.reset());
 
         if (buttonSettingSave != null) buttonSettingSave.setOnAction(event -> handlerSaveButtonEvent());
         buttonSettingLoad.setOnAction(event -> {

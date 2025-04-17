@@ -232,6 +232,16 @@ public class CameraControlsHandler {
         return  point3DWorldLook.normalize();
     }
 
+    public void reset() {
+        camera.setTranslateX(0);
+        camera.setTranslateY(0);
+        camera.setTranslateZ(-1000);
+
+        yaw = 0;
+        pitch = 0;
+        updateCameraRotation();
+    }
+
     public PerspectiveCamera getCamera() {
         return camera;
     }
