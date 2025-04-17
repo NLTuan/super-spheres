@@ -70,6 +70,10 @@ public class SimulationMainPageController {
     //Components(Essential):
     @FXML
     private Button buttonCamera;
+    @FXML
+    private Button buttonSimulationSpeed;
+    @FXML
+    private VBox vboxSimulationSpeed;
 
     @FXML
     private Button buttonExit;
@@ -171,7 +175,7 @@ public class SimulationMainPageController {
     double count = 1.0;
     double count2 = 1.0;
     
-    double timeConstant = 1;
+    double timeConstant = 10;
 
     public void handlerButtonSetting() {
         if (vboxSetting.isVisible()) {
@@ -233,11 +237,28 @@ public class SimulationMainPageController {
             if (!this.vboxCameraControls.isVisible()) {
                 this.vboxCameraControls.setVisible(true);
                 this.vboxCameraControls.setManaged(true);
+                this.vboxSimulationSpeed.setVisible(false);
+                this.vboxSimulationSpeed.setManaged(false);
             } else {
                 this.vboxCameraControls.setVisible(false);
                 this.vboxCameraControls.setManaged(false);
             }
 
+        });
+    }
+
+    public void handlerSimulationSpeedButtonEvent() {
+        //animations logic to be added
+        this.buttonSimulationSpeed.setOnAction(e -> {
+            if (!this.vboxSimulationSpeed.isVisible()) {
+                this.vboxSimulationSpeed.setVisible(true);
+                this.vboxSimulationSpeed.setManaged(true);
+                this.vboxCameraControls.setVisible(false);
+                this.vboxCameraControls.setManaged(false);
+            } else {
+                this.vboxSimulationSpeed.setVisible(false);
+                this.vboxSimulationSpeed.setManaged(false);
+            }
         });
     }
 
@@ -292,7 +313,6 @@ public class SimulationMainPageController {
         simulationSpeedSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             timeConstant = newVal.doubleValue();
         });
-
     }
     public void handlerSaveButtonEvent(){
 
@@ -441,13 +461,7 @@ animationTimer1.start();
     public void initialize() {
         groupRootNode.setDepthTest(DepthTest.ENABLE);
         vboxSettingButton.setLayoutX(200);
-//        make sure that the setting button sticks to the top right corner
-//        AnchorPane.setTopAnchor(vboxSettingButton, 20.0);     // Stick to top
-//        AnchorPane.setRightAnchor(vboxSettingButton, 20.0);   // Stick to right
-//        AnchorPane.setTopAnchor(vboxSetting, 20.0);     // Stick to top
-//        AnchorPane.setRightAnchor(vboxSetting, 40.0);   // Stick to right
-        AnchorPane.setRightAnchor(hboxSimulatedPlanets,40.0);
-        AnchorPane.setRightAnchor(vBoxSimulatedBodies,100.0);
+        simulationSpeedSlider.setValue(10);
 
 
 
@@ -472,6 +486,7 @@ animationTimer1.start();
         });
         //Handler
         handlerCameraButtonEvent();
+        handlerSimulationSpeedButtonEvent();
         handlePlanetCreationButtonEvent();
         initializeBinding();
         setSubSceneSimulation();
