@@ -97,7 +97,7 @@
       </HBox>
       <Button fx:id="button" layoutX="683.0" layoutY="517.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" text="Create" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="67.0">
          <font>
-            <Font name="Avenir Next Condensed Heavy Italic" size="13.0" />
+            <Font name="Dubai Bold" size="13.0" />
          </font></Button>
    </children>
    <padding>

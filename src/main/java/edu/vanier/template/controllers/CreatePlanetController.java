@@ -141,6 +141,7 @@ public class CreatePlanetController {
                 BuildInBodies buildInBodies = new BuildInBodies(body);
                 buildInBodies.applyTextures(bodyTexture);
                 simulationController.getTilePanePlanets().getChildren().add(body);
+                simulationController.unPauseSimulation();
 
                 button.getScene().getWindow().hide();
         });

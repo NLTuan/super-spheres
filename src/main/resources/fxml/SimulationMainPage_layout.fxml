@@ -283,7 +283,7 @@
                   </VBox>
                   <VBox fx:id="vBoxSimulatedBodies" layoutX="26.0" layoutY="249.0" prefHeight="225.0" prefWidth="504.0" visible="false" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="249.0">
                      <children>
-                        <Label prefHeight="43.0" prefWidth="216.0" text="       Simulated Bodies" textFill="#aeaeae">
+                        <Label prefHeight="43.0" prefWidth="216.0" text="       Simulated Bodies" textFill="WHITE">
                            <font>
                               <Font name="Dubai Bold" size="18.0" />
                            </font>

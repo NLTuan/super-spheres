@@ -201,6 +201,15 @@ public class SimulationMainPageController {
 
     //add event to exit button
     public  void handleExitButton(){
+        vboxSetting.setVisible(false);
+        vboxSetting.setManaged(false);
+        this.vboxCameraControls.setVisible(false);
+        this.vboxCameraControls.setManaged(false);
+        this.vboxSimulationSpeed.setVisible(false);
+        this.vboxSimulationSpeed.setManaged(false);
+        tiltPanePlanets.setExpanded(false);
+        vBoxSimulatedBodies.setVisible(false);
+
         MainApp.switchScene(MainApp.TEMPLATE_SELECTION_LAYOUT);
     }
     public  void handleSelectionButton(){
@@ -369,6 +378,14 @@ public class SimulationMainPageController {
         };
     }
 
+    public void pauseSimulation() {
+        animationTimer.stop();
+    }
+
+    public void unPauseSimulation() {
+        prevTime = System.nanoTime();
+        animationTimer.start();
+    }
 
     public void setupBodies(){
         bodyHandler = new BodyHandler();
@@ -512,6 +529,7 @@ animationTimer1.start();
 
         buttonCustomizePlanet.setOnAction(event -> {
             try {
+                pauseSimulation();
                 Parent root = FxUIHelper.loadFXML("planetCreation_layout", createPlanetController);
 
                 Scene currentScene = buttonCustomizePlanet.getScene();
