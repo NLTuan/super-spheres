@@ -5,14 +5,12 @@ import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.BodyHandler;
 import edu.vanier.template.sim.CameraControlsHandler;
 import edu.vanier.template.sim.Planet;
-import edu.vanier.template.helpers.SavenLoad;
 
 import edu.vanier.template.sim.SolarSystemAssets;
 import edu.vanier.template.ui.MainApp;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -20,7 +18,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
-import javafx.scene.shape.Sphere;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,8 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static edu.vanier.template.helpers.SavenLoad.loadFileSaver;
 import static edu.vanier.template.helpers.SavenLoad.writePlanetsToFile;
@@ -121,7 +116,6 @@ public class SimulationMainPageController {
     private VBox vboxInputVelocity;
     @FXML
     private  Button buttonSimulatedBodies;
-
     @FXML
     private VBox vBoxSimulatedBodies;
     @FXML
@@ -459,12 +453,6 @@ animationTimer1.start();
 
     }
 
-    public void handleCreationButton() {
-        MainApp.switchScene(MainApp.CREATE_PLANET_LAYOUT);
-        spawnPlanet(650, 0, .01, 0, 0, 12.28, 100, 10, 0, "earth");
-        System.out.println(cameraControlsHandler.getPrevMovementVector());
-    }
-
 
     public void setTilePanePlanets(){
         tilePanePlanets.setPickOnBounds(false);
@@ -483,7 +471,6 @@ animationTimer1.start();
         });
 
         buttonSettings.setOnAction(event -> handlerButtonSetting());
-        //buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
         buttonSettingExit.setOnAction(event -> handleExitButton());
         buttonSimulatedBodies.setOnAction(event -> {handleButtonSimulatedBodies();});
 
@@ -504,9 +491,6 @@ animationTimer1.start();
         handlerTitlePaneEvent();
         handleCamera();
 
-
-
-
         setupBodies();
         setupAnimationTimer();
         animationTimer.start();
@@ -523,6 +507,7 @@ animationTimer1.start();
         }
 
     }
+
     public void handlePlanetCreationButtonEvent() {
         CreatePlanetController createPlanetController = new CreatePlanetController();
         createPlanetController.setSimulationController(this);
@@ -537,12 +522,13 @@ animationTimer1.start();
                 double height = currentScene.getHeight();
 
                 Scene scene = new Scene(root, width, height);
-                Stage stage = new Stage();
-                stage.setTitle("Planet Creation");
-                stage.setScene(scene);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initOwner(buttonCustomizePlanet.getScene().getWindow());
-                stage.showAndWait();
+                Stage planetCreationStage = new Stage();
+                planetCreationStage.setTitle("Planet Creation");
+                planetCreationStage.setScene(scene);
+                planetCreationStage.initModality(Modality.APPLICATION_MODAL);
+                planetCreationStage.initOwner(buttonCustomizePlanet.getScene().getWindow());
+                planetCreationStage.setOnHidden(e -> unPauseSimulation());
+                planetCreationStage.showAndWait();
             } catch (Exception e) {
                 System.out.println("AAAAAAAAA");
                 e.getMessage();
