@@ -74,9 +74,6 @@ public class SimulationMainPageController {
     private Button buttonSimulationSpeed;
     @FXML
     private VBox vboxSimulationSpeed;
-
-    @FXML
-    private Button buttonExit;
     @FXML
     private VBox vboxExitButton;
 
@@ -122,8 +119,6 @@ public class SimulationMainPageController {
     private TextField textFieldVelocity;
     @FXML
     private VBox vboxInputVelocity;
-    @FXML
-    private HBox hboxSimulatedPlanets;
     @FXML
     private  Button buttonSimulatedBodies;
 
@@ -470,7 +465,6 @@ animationTimer1.start();
             handlerButtonAddPlanetEvent();
         });
 
-        buttonExit.setOnAction(event -> handleExitButton());
         buttonSettings.setOnAction(event -> handlerButtonSetting());
         //buttonCustomizePlanet.setOnAction(event -> handleCreationButton());
         buttonSettingExit.setOnAction(event -> handleExitButton());
