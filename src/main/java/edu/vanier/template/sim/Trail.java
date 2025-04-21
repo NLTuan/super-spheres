@@ -2,10 +2,9 @@ package edu.vanier.template.sim;
 
 import java.util.ArrayList;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.SubScene;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
-import javax.swing.plaf.metal.MetalIconFactory;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -21,9 +20,12 @@ public class Trail {
         
     int frequency = 3;
     int internalClock = 0;
-    int maxParticles = 100;
+    int maxParticles = 50;
+    
+    Color trailColor;
     
     public Trail(){
+        trailColor = Color.RED;
     }
     
     
@@ -34,7 +36,18 @@ public class Trail {
                 parentNode.getChildren().remove(trailParticles.get(0));
                 trailParticles.remove(0);
             }
+            
             Sphere particle = new Sphere(5);
+            PhongMaterial material = new PhongMaterial();
+            
+            material.setDiffuseColor(Color.rgb(
+                    (int)(trailColor.getRed() * 255), 
+                    (int)(trailColor.getGreen() * 255), 
+                    (int)(trailColor.getBlue() * 255), 
+                    trailColor.getOpacity())
+            );
+            particle.setMaterial(material);
+            
             trailParticles.add(particle);
             particle.setTranslateX(followBody.getTranslateX());
             particle.setTranslateY(followBody.getTranslateY());
@@ -46,4 +59,14 @@ public class Trail {
         }
         internalClock += 1;
     }
+
+    public Color getTrailColor() {
+        return trailColor;
+    }
+
+    public void setTrailColor(Color trailColor) {
+        this.trailColor = trailColor;
+    }
+    
+    
 }

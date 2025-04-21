@@ -24,7 +24,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="vboxMainRootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1014.0" style="-fx-border-color: white;">
          <children>
@@ -209,14 +209,14 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="vboxCameraControls" alignment="TOP_CENTER" layoutX="147.33333333333334" layoutY="11.0" prefHeight="143.0" prefWidth="167.0" style="-fx-background-color: transparent; -fx-background-radius: 10;" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="20.0">
+                  <VBox fx:id="vboxCameraControls" alignment="TOP_CENTER" layoutX="147.33333333333334" layoutY="11.0" prefHeight="143.0" prefWidth="213.0" style="-fx-background-color: transparent; -fx-background-radius: 10;" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="20.0">
                      <children>
                         <Label prefHeight="22.0" prefWidth="146.0" text="Camera Controls" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Dubai Bold" size="18.0" />
                            </font>
                         </Label>
-                        <VBox prefHeight="101.0" prefWidth="164.0" spacing="10.0" style="-fx-background-color: #171717; -fx-background-radius: 10;">
+                        <VBox prefHeight="101.0" prefWidth="229.0" spacing="10.0" style="-fx-background-color: #171717; -fx-background-radius: 10;">
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
@@ -225,7 +225,7 @@
                                           <Font name="Dubai Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="textFieldCameraSpeed" prefHeight="2.0" prefWidth="38.0" style="-fx-border-color: transparent;" text="100" />
+                                    <TextField fx:id="textFieldCameraSpeed" prefHeight="28.0" prefWidth="78.0" style="-fx-border-color: transparent;" text="100" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -313,7 +313,7 @@
                         </Label>
                         <VBox alignment="CENTER" prefHeight="36.0" prefWidth="155.0" style="-fx-background-color: #171717; -fx-background-radius: 10;">
                            <children>
-                              <Slider fx:id="simulationSpeedSlider" max="1000.0" min="1.0" prefHeight="20.0" prefWidth="161.0" />
+                              <Slider fx:id="simulationSpeedSlider" max="1000.0" prefHeight="20.0" prefWidth="161.0" value="50.0" />
                            </children>
                            <VBox.margin>
                               <Insets left="5.0" right="5.0" />
