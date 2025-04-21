@@ -32,7 +32,7 @@ public abstract class Body extends Sphere{
     
     protected double mass;
 
-    private StringProperty name = new SimpleStringProperty("Unamed");
+    private StringProperty name = new SimpleStringProperty("Unnamed");
     public Text3D nameLabel;
 
     protected ListViewBodies listViewBodies;
