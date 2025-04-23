@@ -92,7 +92,7 @@ public class DragAndDropSystem {
     public void transferToSimulation(){
         if(draggedObject != null && cameraControlsHandler != null){
             this.targetGroup.getChildren().add(draggedObject);
-            this.putObjectInFrontOfCamera(draggedObject,500);
+            this.putObjectInFrontOfCamera(draggedObject,400);
             Body cloneDragged = draggedObject;
             this.DropHandler(cloneDragged);
             draggedObject = null;
@@ -178,19 +178,29 @@ public class DragAndDropSystem {
 
     public void putObjectInFrontOfCamera(Shape3D shape3D, double distanceFromCamera) {
         PerspectiveCamera perspectiveCamera = cameraControlsHandler.getCamera();
-        logger.info("camera: x={}, y={}, z={}", perspectiveCamera.getTranslateX(), perspectiveCamera.getTranslateY(), perspectiveCamera.getTranslateZ());
-        Point3D point3DCameraPosition =  targetGroup.sceneToLocal(perspectiveCamera.localToScene(
-                0,0,0
-        ));
+        Point3D point3DCameraPosition = targetGroup.sceneToLocal(perspectiveCamera.localToScene(0, 0, 0));
         Point3D point3DLookVector = cameraControlsHandler.getLookVector();
 
-        Point3D point3DSpawnPosition = point3DCameraPosition.add(point3DLookVector.multiply(distanceFromCamera));
-        if(shape3D != null){
+        // Get the radius if the shape is a Sphere
+        double radius = 0;
+        if (shape3D instanceof Sphere) {
+            radius = ((Sphere)shape3D).getRadius();
+        }
+
+        // Calculate spawn position accounting for object's radius
+        Point3D point3DSpawnPosition = point3DCameraPosition.add(
+                point3DLookVector.multiply(distanceFromCamera + radius)
+        );
+
+        if(shape3D != null) {
             shape3D.setTranslateX(point3DSpawnPosition.getX());
             shape3D.setTranslateY(point3DSpawnPosition.getY());
             shape3D.setTranslateZ(point3DSpawnPosition.getZ());
-            vector3DInitialPosition = new Vector3D(shape3D.getTranslateX(), shape3D.getTranslateY(),shape3D.getTranslateZ());
-            logger.info("sphere position x={}, y={}, z={}", shape3D.getTranslateX(), shape3D.getTranslateY(),shape3D.getTranslateZ());
+            vector3DInitialPosition = new Vector3D(
+                    shape3D.getTranslateX(),
+                    shape3D.getTranslateY(),
+                    shape3D.getTranslateZ()
+            );
         }
     }
     public void DragAndDropHandler(){
