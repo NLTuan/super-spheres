@@ -1,10 +1,18 @@
 package edu.vanier.template.controllers;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVWriter;
 import edu.vanier.template.ui.MainApp;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -65,6 +73,16 @@ public class StartPageController {
     private PasswordField signUpPassword;
     
     @FXML
+    private Label guideLabel;
+            
+    @FXML
+    private Label messageLabel;
+            
+    String username;
+    String password;
+    boolean loggedIn = false;
+    
+    @FXML
     public void initialize() {
         buttonStart.setOnAction(event -> handleStartButton());
         buttonExit.setOnAction(event -> handleExitButton());
@@ -83,9 +101,15 @@ public class StartPageController {
         String password = signUpPassword.getText();
         
         try{
-            PrintWriter writer = new PrintWriter(new FileWriter("src/main/resources/save/users.csv", true));
-            writer.println(name + ',' + password);
-            
+            File file = new File("src/main/resources/save/users.csv");
+            FileWriter outputFile = new FileWriter(file);         
+            try (CSVWriter writer = new CSVWriter(outputFile)) {
+                String[] userData = {name, password};
+                
+                writer.writeNext(userData);
+            }
+            signUpName.clear();
+            signUpPassword.clear();
             logInButton.setDisable(false);
             signUpButton.setDisable(false);
             signUpWindow.toBack();
@@ -101,20 +125,31 @@ public class StartPageController {
         String enteredPassword = logInPassword.getText();
 
         System.out.println(enteredName + enteredPassword);
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/save/users.csv"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                String name = parts[0];
-                String password = parts[1];
-                System.out.println(name + password);
+        try (FileInputStream stream = new FileInputStream("src/main/resources/save/users.csv");
+            InputStreamReader isReader = new InputStreamReader(stream);
+            CSVReader csvReader = new CSVReaderBuilder(isReader).build();) {
+            String[] line;
+            while ((line = csvReader.readNext()) != null) {
+                String name = line[0];
+                String password = line[1];
 
                 if(name.equals(enteredName) && password.equals(enteredPassword)){
+                    username = enteredName;
+                    this.password = enteredPassword;
+                    loggedIn=true;
+                    
+                    guideLabel.setText("Welcome, " + username);
+                    logInName.clear();
+                    logInPassword.clear();
+                    buttonStart.setDisable(false);
                     logInButton.setDisable(false);
                     signUpButton.setDisable(false);
                     logInWindow.toBack();
                     break;
                 }
+            }
+            if(!loggedIn){
+                messageLabel.setText("Your username or password\n is wrong, please try again.");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
