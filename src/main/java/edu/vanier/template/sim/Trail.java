@@ -25,7 +25,7 @@ public class Trail {
     Color trailColor;
     
     public Trail(){
-        trailColor = Color.RED;
+        trailColor = Color.WHITE;
     }
     
     

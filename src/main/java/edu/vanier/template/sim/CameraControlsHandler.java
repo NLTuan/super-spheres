@@ -161,8 +161,6 @@ public class CameraControlsHandler {
             
             vector3DMoveVector.normalizeVector3D();
             
-            System.out.println(vector3DMoveVector.getMagnitude());
-            System.out.println(focused);
             if(!activeKeys.isEmpty() && focused){
                 focused = false;
                 yaw = 270;
