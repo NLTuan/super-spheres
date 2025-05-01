@@ -170,6 +170,9 @@ public abstract class Body extends Sphere{
     public String getName() {
         return name.get();
     }
+    public Trail getTrail(){
+        return  this.trail;
+    }
     public void setName(String name) {
         this.name.setValue(name);
         this.nameLabel.setTextTocheck(getName());
@@ -186,5 +189,8 @@ public abstract class Body extends Sphere{
             return 0;}
         double mu = Physics.G * bodyCentral.getMass();
         return Math.sqrt(mu / distance);
+    }
+    public void setTrailColor(){
+
     }
 }

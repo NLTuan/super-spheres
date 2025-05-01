@@ -7,7 +7,7 @@ import edu.vanier.template.tests.*;
  * The Launcher class serves as the entry point to the application.
  *
  * Currently, it launches the {@link MainApp} class's main method to start the
- * application. A commented-out line suggests the potential to launch another
+ * application. A commented-out line suggests the potential to launcr6h another
  * class (e.g., {@link Driver}) in the future.
  */
 public class Launcher {

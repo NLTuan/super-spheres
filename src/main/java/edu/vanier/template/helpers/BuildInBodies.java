@@ -12,6 +12,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape3D;
 
+/**
+ * @author Josue
+ */
 public class BuildInBodies {
     private Body body;
 

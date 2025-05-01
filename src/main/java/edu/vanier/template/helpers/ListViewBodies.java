@@ -115,7 +115,7 @@ public class ListViewBodies {
 
         colorPicker.valueProperty().addListener((obs, oldColor, newColor) ->{
             circleTrailColorIndicator.setFill(newColor);
-
+            sphere.getTrail().setTrailColor(newColor);
             //i will add the logic for trails if I have time here
         });
 
