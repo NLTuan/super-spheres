@@ -47,6 +47,12 @@ public class CameraControlsHandler {
 
     private Vector3D prevMovementVector = new Vector3D(0, 0, 0);
     private Vector3D vector3DMoveVector = new Vector3D(0, 0, 0);
+    
+    private boolean focused = false;
+    
+    private Body followBody;
+    
+    private Transform rotation;
 
     public CameraControlsHandler(PerspectiveCamera camera) {
         this.camera = camera;
@@ -90,7 +96,7 @@ public class CameraControlsHandler {
     public void updateCameraRotation() {
         // create concateneation is just adding multiple rotations transform in one transform
         //because if we add in one goe for some reason it did not work
-        Transform rotation = new Rotate(yaw, Rotate.Y_AXIS)
+        rotation = new Rotate(yaw, Rotate.Y_AXIS)
                 .createConcatenation(new Rotate(pitch, Rotate.X_AXIS));
 
         camera.getTransforms().setAll(rotation);
@@ -122,14 +128,14 @@ public class CameraControlsHandler {
                     0,
                     -Math.sin(radYaw)
             );
-
-
-
+            
+            
+            
             if (activeKeys.contains(KeyCode.W)) {
                 vector3DMoveVector.addToCurrentVector3D(vector3DForward);
             }
             if (activeKeys.contains(KeyCode.S)) {
-                vector3DMoveVector.addToCurrentVector3D(vector3DForward.scaleVector3D(-1));
+                vector3DMoveVector.addToCurrentVector3D(vector3DForward.scaleVector3D(-1));                
             }
             if (activeKeys.contains(KeyCode.A)) {
                 vector3DMoveVector.addToCurrentVector3D(vector3DRight.scaleVector3D(-1));
@@ -149,34 +155,59 @@ public class CameraControlsHandler {
             if (activeKeys.contains(KeyCode.SHIFT)) {
                 vector3DMoveVector.addToCurrentVector3D(new Vector3D(0, 1, 0));
             }
-
+            if (activeKeys.isEmpty()){
+                vector3DMoveVector = new Vector3D(0, 0, 0);
+            }
+            
             vector3DMoveVector.normalizeVector3D();
-
+            
+            System.out.println(vector3DMoveVector.getMagnitude());
+            System.out.println(focused);
+            if(!activeKeys.isEmpty() && focused){
+                focused = false;
+                yaw = 270;
+                pitch = 0;
+            }
+            
             Vector3D cameraMovements;
-            if (!activeKeys.isEmpty()) {
-                if (speed > maxSpeed) {
-                    speed = maxSpeed;
-                }
-                speed += acceleration * deltaTime;
-                cameraMovements = vector3DMoveVector
-                        .scaleVector3D(speed)
-                        .scaleVector3D(deltaTime);
-                prevMovementVector = vector3DMoveVector;
-            } else {
-                speed -= speed * deceleration * deltaTime;
-                cameraMovements = prevMovementVector
-                        .scaleVector3D(speed)
-                        .scaleVector3D(deltaTime);
+            if (!focused){
+                if (!activeKeys.isEmpty()) {
+                    if (speed > maxSpeed) {
+                        speed = maxSpeed;
+                    }
+                    speed += acceleration * deltaTime;
+                    cameraMovements = vector3DMoveVector
+                            .scaleVector3D(speed)
+                            .scaleVector3D(deltaTime);
+                    prevMovementVector = vector3DMoveVector;
+                } else {
+                    speed -= speed * deceleration * deltaTime;
+                    cameraMovements = prevMovementVector
+                            .scaleVector3D(speed)
+                            .scaleVector3D(deltaTime);
 
-                if (Math.abs(speed) <= 0.0001) {
-                    speed = 0;
+                    if (Math.abs(speed) <= 0.0001) {
+                        speed = 0;
+                    }
                 }
+                
+                camera.setTranslateX(camera.getTranslateX() + cameraMovements.getX());
+                camera.setTranslateY(camera.getTranslateY() + cameraMovements.getY());
+                camera.setTranslateZ(camera.getTranslateZ() + cameraMovements.getZ());
+            }
+            else if (focused){
+                rotation = new Rotate(270, Rotate.Y_AXIS);
+                camera.getTransforms().setAll(rotation);
+
+                camera.setTranslateX(followBody.getTranslateX() + followBody.getRadius() * 15);
+                camera.setTranslateY(followBody.getTranslateY());
+                camera.setTranslateZ(followBody.getTranslateZ());
+                
             }
 
-            camera.setTranslateX(camera.getTranslateX() + cameraMovements.getX());
-            camera.setTranslateY(camera.getTranslateY() + cameraMovements.getY());
-            camera.setTranslateZ(camera.getTranslateZ() + cameraMovements.getZ());
         }
+    
+    private int value;
     public void handleCamera(Scene scene) {
         if (isMovementAllow && this.camera != null) {
             scene.setOnMousePressed(event -> {
@@ -268,6 +299,22 @@ public class CameraControlsHandler {
 
     public void setAcceleration(double acceleration) {
         this.acceleration = acceleration;
+    }
+
+    public boolean isFocused() {
+        return focused;
+    }
+
+    public void setFocused(boolean focused) {
+        this.focused = focused;
+    }
+
+    public Body getFollowBody() {
+        return followBody;
+    }
+
+    public void setFollowBody(Body followBody) {
+        this.followBody = followBody;
     }
     
     

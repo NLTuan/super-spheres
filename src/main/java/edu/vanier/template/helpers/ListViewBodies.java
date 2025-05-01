@@ -3,6 +3,7 @@ package edu.vanier.template.helpers;
 import edu.vanier.template.controllers.SimulationMainPageController;
 import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.sim.Body;
+import edu.vanier.template.sim.CameraControlsHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -18,6 +19,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 public class ListViewBodies {
     private final static Logger logger = LoggerFactory.getLogger(ListViewBodies.class);
@@ -120,8 +124,22 @@ public class ListViewBodies {
         hBoxTrailsControls.getChildren().addAll(trailCheckBox, circleTrailColorIndicator,colorPicker);
 
         hBoxEntryContainer.getChildren().addAll(hBoxNameControls,spacer1,hboxStatsControls,spacer,hBoxTrailsControls);
+        
+        hBoxEntryContainer.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                    if(mouseEvent.getClickCount() == 2){
+                        CameraControlsHandler cameraHandler = SimulationMainPageController.getLastInstance().cameraControlsHandler;
+                        System.out.println("now following" + sphere.getName());
+                        cameraHandler.setFocused(true);
+                        cameraHandler.setFollowBody(sphere);
+                    }
+                }
+            }
+        });
         return hBoxEntryContainer;
-
+        
     }
 
 

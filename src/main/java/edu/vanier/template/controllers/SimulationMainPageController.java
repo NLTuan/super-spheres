@@ -97,7 +97,6 @@ public class SimulationMainPageController {
     private Button buttonSetBackOrigin;
     @FXML
     private TextField textFieldCameraSpeed;
-
     //Subscene simulation
     @FXML
     private SubScene subSceneSimulation;
@@ -124,7 +123,7 @@ public class SimulationMainPageController {
     private Group groupRootNode = new Group();
     
     private PerspectiveCamera camera = new PerspectiveCamera(true);
-    private CameraControlsHandler cameraControlsHandler;
+    public CameraControlsHandler cameraControlsHandler;
     
     private AnimationTimer animationTimer;
     private long prevTime = System.nanoTime();
