@@ -20,6 +20,10 @@ public class SolarSystemAssets {
     private  GarbageCollector garbageCollector;
 
 
+    public void loadAsteroidBelts(Group rootNode, BodyHandler bodyHandler){
+        bodyHandler.getBodies().clear();
+
+    }
     public void loadAssets(Group rootNode, BodyHandler bodyHandler) {
         garbageCollector = new GarbageCollector(rootNode, bodyHandler);
         garbageCollector.clearAll();

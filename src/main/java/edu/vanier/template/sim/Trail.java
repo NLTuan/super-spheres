@@ -24,6 +24,7 @@ public class Trail {
     int frequency = 3;
     int internalClock = 0;
     int maxParticles = 100;
+    boolean isActive = true;
 
     private Color colorTrail = Color.WHITE;
     public PhongMaterial phongMaterialTrail = new PhongMaterial(this.colorTrail);
@@ -33,6 +34,7 @@ public class Trail {
     
     
     public void update(Body followBody) {
+        if( !isActive || followBody == null) return;
         if (internalClock % frequency == 0){
             if (trailParticles.size() == maxParticles){
                 Group parentNode = (Group) followBody.getParent();
@@ -56,5 +58,13 @@ public class Trail {
     public void setTrailColor(Color newColor) {
         this.phongMaterialTrail.setDiffuseColor(newColor);
         this.phongMaterialTrail.setSpecularColor(colorTrail);
+    }
+
+    /**
+     * This method set the activate state
+     * @param activeState, the active state parameter
+     */
+    public void setActive(boolean activeState){
+        this.isActive = activeState;
     }
 }

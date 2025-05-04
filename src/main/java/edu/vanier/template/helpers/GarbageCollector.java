@@ -1,5 +1,6 @@
 package edu.vanier.template.helpers;
 
+import edu.vanier.template.sim.Body;
 import edu.vanier.template.sim.BodyHandler;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape3D;
@@ -21,7 +22,11 @@ public class GarbageCollector {
 
     public void clearAll(){
         List<Shape3D> allBodies = new ArrayList<>(bodyHandler.getBodies());
-        clearSpecificBodies(allBodies);
+        for (Shape3D shape3D : allBodies){
+            if(shape3D instanceof Body){
+                ((Body) shape3D).removeBody();
+            }
+        }
     }
     public  void clearSpecificBodies(Collection<Shape3D> bodiesToRemove){
         bodyHandler.getBodies().removeAll(bodiesToRemove);

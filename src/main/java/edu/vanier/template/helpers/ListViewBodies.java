@@ -30,6 +30,7 @@ public class ListViewBodies {
     String bodyName;
 
     Text3D text3D;
+    public HBox hBoxEntry;
     public  static  ListView<HBox> listView = SimulationMainPageController.getLastInstance().listViewSimulatedBodies;
     public ListViewBodies(String bodyName, Body bodyToClone){
         this.bodyName = bodyName;
@@ -138,6 +139,15 @@ public class ListViewBodies {
                 }
             }
         });
+
+        // remove button:
+       Button removeButton = new Button("X");
+       removeButton.setStyle("-fx-background-color:  #ff4444; -fx-text-fill: white");
+       removeButton.setOnAction(e->{
+           sphere.removeBody();
+       });
+       hBoxEntryContainer.getChildren().add(removeButton);
+       this.hBoxEntry =hBoxEntryContainer;
         return hBoxEntryContainer;
         
     }

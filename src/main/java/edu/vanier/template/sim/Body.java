@@ -190,7 +190,19 @@ public abstract class Body extends Sphere{
         double mu = Physics.G * bodyCentral.getMass();
         return Math.sqrt(mu / distance);
     }
-    public void setTrailColor(){
+
+    /**
+     * This method remove the current instance from the target group
+     */
+    public void  removeBody(){
+        SimulationMainPageController controller = SimulationMainPageController.getLastInstance();
+        ListViewBodies.listView.getItems().remove(listViewBodies.hBoxEntry);
+        this.trail.setActive(false);
+        controller.getGroupRootNode().getChildren().removeAll(this.trail.trailParticles);
+        this.trail.trailParticles.clear();
+        controller.getBodyHandler().getBodies().remove(this);
+        controller.getGroupRootNode().getChildren().remove(this);
+        if(this.nameLabel != null){controller.getGroupRootNode().getChildren().remove(this.nameLabel);}
 
     }
 }

@@ -141,6 +141,7 @@ public class SimulationMainPageController {
     public  static SimulationMainPageController getLastInstance(){return currentInstance;}
     public PerspectiveCamera getCamera(){return this.camera;}
     public Group getGroupRootNode(){return  this.groupRootNode;}
+    public BodyHandler getBodyHandler(){return this.bodyHandler;}
     public void loadTemplate(String templateName){
         if(garbageCollector == null){
             garbageCollector = new GarbageCollector(groupRootNode, bodyHandler);
@@ -156,7 +157,9 @@ public class SimulationMainPageController {
                 }
                 solarSystemAssets.loadAssets(groupRootNode,bodyHandler);
                 break;
-
+            case "asteroidBelt":
+                //
+                break;
         }
     }
     double count = 1.0;
