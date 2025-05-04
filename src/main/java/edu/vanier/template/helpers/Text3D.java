@@ -13,8 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ *  The Text3D class is a class that displays a 2D text in a 3D environment.
  * @author Joseph Josue Forestal
- * The Text3D class is a class that displays a 2D text in a 3D enviroment
  */
 public class Text3D extends Group {
     private final static Logger logger = LoggerFactory.getLogger(Text3D.class);
@@ -81,8 +81,8 @@ public class Text3D extends Group {
      */
     public void rotateToTargetPosition(Vector3D targetPosition){
         double angleOfRotation = Math.atan2(targetPosition.getZ() - this.getTranslateZ(), targetPosition.getX() - this.getTranslateX());
-        this.rotateY.setAngle(-Math.toDegrees(angleOfRotation ));
-        this.rotateY.setPivotY(10);
+        this.rotateY.setAngle(-Math.toDegrees(angleOfRotation )  -90);
+        //this.rotateY.setPivotY(10);
    }
 
     /**
@@ -98,7 +98,7 @@ public class Text3D extends Group {
    }
 
     /**
-     * Set  the current text and directly updates it
+     * Set  the current text and directly updates it ,in the mesh text.
      * @param textTocheck ,the new text
      */
     public void setTextTocheck(String textTocheck) {
@@ -110,8 +110,8 @@ public class Text3D extends Group {
     }
 
     /**
-     * This method get the current text
-     * @return the current text
+     * This method get the current text.
+     * @return the current text.
      */
     public String getTextTocheck() {
         return this.textTocheck;

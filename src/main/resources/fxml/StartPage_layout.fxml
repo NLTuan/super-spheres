@@ -13,11 +13,11 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<Pane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="signUpWindow" alignment="CENTER" layoutX="225.0" layoutY="50.0" prefHeight="309.0" prefWidth="198.0" spacing="10.0" style="-fx-background-color: gray; -fx-background-radius: 15;" translateX="-10.0" translateY="-10.0">
          <children>
-            <Button fx:id="backButtonSignUp" mnemonicParsing="false" text="Back" />
+            <Button fx:id="backButtonSignUp" mnemonicParsing="false" style="-fx-background-radius: 10; -fx-background-color: #333333;" text="Back" textFill="WHITE" />
             <Label text="Sign Up">
                <font>
                   <Font name="System Bold" size="20.0" />
@@ -40,7 +40,7 @@
       </VBox>
       <VBox fx:id="logInWindow" alignment="CENTER" layoutX="215.0" layoutY="40.0" prefHeight="309.0" prefWidth="198.0" spacing="5.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
          <children>
-            <Button fx:id="backButtonLogIn" mnemonicParsing="false" text="Back" />
+            <Button fx:id="backButtonLogIn" mnemonicParsing="false" style="-fx-background-color: #333333; -fx-background-radius: 10;" text="Back" textFill="WHITE" />
             <Label text="Log in">
                <font>
                   <Font name="System Bold" size="20.0" />

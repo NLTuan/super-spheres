@@ -81,7 +81,9 @@ public abstract class Body extends Sphere{
         return this.name;
     }
     public void update(double deltaTime){
-        trail.update(this);
+        if(this.trail != null && trail.isActive){
+            trail.update(this);
+        }
         acceleration = force.scaleVector3D(1/mass);
         velocity.addToCurrentVector3D(acceleration.scaleVector3D(deltaTime));
         position.addToCurrentVector3D(velocity.scaleVector3D(deltaTime));
@@ -170,6 +172,9 @@ public abstract class Body extends Sphere{
     public String getName() {
         return name.get();
     }
+    public Trail getTrail(){
+        return  this.trail;
+    }
     public void setName(String name) {
         this.name.setValue(name);
         this.nameLabel.setTextTocheck(getName());
@@ -186,5 +191,21 @@ public abstract class Body extends Sphere{
             return 0;}
         double mu = Physics.G * bodyCentral.getMass();
         return Math.sqrt(mu / distance);
+    }
+
+    /**
+     * This method remove the current instance from the target group
+     */
+    public void  removeBody(){
+        SimulationMainPageController controller = SimulationMainPageController.getLastInstance();
+        ListViewBodies.listView.getItems().remove(listViewBodies.hBoxEntry);
+        this.trail.setActive(false);
+        controller.getGroupRootNode().getChildren().removeAll(this.trail.trailParticles);
+        this.trail.trailParticles.clear();
+        controller.getBodyHandler().getBodies().remove(this);
+        controller.getGroupRootNode().getChildren().remove(this);
+        if(this.nameLabel != null){controller.getGroupRootNode().getChildren().remove(this.nameLabel);}
+        logger.info("Group^root node children after removing body" + controller.getGroupRootNode().getChildren());
+
     }
 }

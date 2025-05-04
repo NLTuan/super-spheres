@@ -115,7 +115,7 @@ public class CameraControlsHandler {
          Math.pitch(radPitch):
          */
 
-
+            vector3DMoveVector = new Vector3D(0, 0, 0);
 
             Vector3D vector3DForward = new Vector3D(
                     Math.sin(radYaw) * Math.cos(radPitch),
@@ -207,6 +207,7 @@ public class CameraControlsHandler {
     
     private int value;
     public void handleCamera(Scene scene) {
+        if(scene == null) return;
         if (isMovementAllow && this.camera != null) {
             scene.setOnMousePressed(event -> {
                 if (event.getButton() == MouseButton.SECONDARY) {
@@ -314,6 +315,8 @@ public class CameraControlsHandler {
     public void setFollowBody(Body followBody) {
         this.followBody = followBody;
     }
-    
-    
+
+    public Set<KeyCode> getActiveKeys() {
+        return activeKeys;
+    }
 }

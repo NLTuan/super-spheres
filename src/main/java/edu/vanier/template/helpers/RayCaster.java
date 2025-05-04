@@ -28,7 +28,7 @@ public class RayCaster {
     }
 
     /**
-     * This subclass is the result of the closet planet
+     * This subclass is the result of the closet planet being hit by the ray cast.
      * @author Josue
      */
     public  static  class RayCastResult{

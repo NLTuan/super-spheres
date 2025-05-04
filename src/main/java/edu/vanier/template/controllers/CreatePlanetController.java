@@ -2,6 +2,7 @@ package edu.vanier.template.controllers;
 
 import edu.vanier.template.helpers.BuildInBodies;
 import edu.vanier.template.helpers.RotationClass;
+import edu.vanier.template.helpers.ScalePlanet;
 import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.Body;
 import edu.vanier.template.sim.Planet;
@@ -134,12 +135,16 @@ public class CreatePlanetController {
                     body = new Planet(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
 
                     rotationClassForBody.addBody(body, rotationRate);
+                    body.getTrail().setActive(false);
+                    body.getTrail().setTrailColor(Color.WHITE);
                 } else {
                     body = new Star(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
+                    body.getTrail().setActive(false);
                     rotationClassForBody.addBody(body, rotationRate);
                 }
                 BuildInBodies buildInBodies = new BuildInBodies(body);
                 buildInBodies.applyTextures(bodyTexture);
+                ScalePlanet.prepareForTilePane(body);
                 simulationController.getTilePanePlanets().getChildren().add(body);
 
                 button.getScene().getWindow().hide();

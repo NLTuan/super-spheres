@@ -4,6 +4,7 @@ import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.helpers.BuildInBodies;
 import edu.vanier.template.helpers.GarbageCollector;
 import edu.vanier.template.helpers.RotationClass;
+import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
 import javafx.scene.Group;
 import org.slf4j.Logger;
@@ -11,18 +12,74 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Vector;
 
 public class SolarSystemAssets {
     private final static Logger logger = LoggerFactory.getLogger(SolarSystemAssets.class);
-    private List<Body> solarSystemBodies = new ArrayList<>();
-
-    private  GarbageCollector garbageCollector;
+    public static List<Body> solarSystemBodies = new ArrayList<>();
 
 
+
+
+    public void loadAsteroidBelts(Group rootNode, BodyHandler bodyHandler){
+      //  rootNode.getChildren().clear();
+       // bodyHandler.getBodies().clear();
+
+        Body sun = new Star(
+                new Vector3D(0, 0, 0),
+                new Vector3D(0, 0, 0),
+                1000000, 600
+        );
+        sun.setName("Sun");
+        BuildInBodies.applyTextures(sun, "Sun");
+        rootNode.getChildren().add(sun);
+        bodyHandler.add(sun);
+
+        Random random = new Random();
+        int asteroidCount = 200;
+
+        // to make it represent the soalr system that we did earlier
+
+        double innerRadius = 2500; // this is after mars
+        double outerRadius = 3500;
+        double asteroidSpread  = 100; // how its spread
+
+
+        for (int i = 0; i < asteroidCount; i++) {
+
+            double distance = innerRadius + random.nextDouble() * (outerRadius - innerRadius);
+            double angler = random.nextDouble() * 2 * Math.PI;
+
+            double yPosition = (random.nextDouble() - 0.5) * asteroidSpread;
+            Vector3D vector3DPosition = new Vector3D(
+                    distance * Math.cos(angler),
+                    yPosition,
+                    distance * Math.sin(angler)
+            );
+            double orbitalVelocity = Math.sqrt(Physics.G * sun.mass / distance);
+            // calculations for the orbitVelocity
+            Vector3D velocity = new Vector3D(- orbitalVelocity * Math.sin(angler) *(0.95 + random.nextDouble() * 0.1),
+                    0,
+                    orbitalVelocity * Math.cos(angler) * (0.95 + random.nextDouble() * 0.1)
+            );
+            Body bodyAsteroid = new Planet(
+                    vector3DPosition,
+                    0.1 + random.nextDouble() * 0.9,
+                    2 + random.nextDouble() * 5
+            );
+            bodyAsteroid.setVelocity(velocity);
+            rootNode.getChildren().add(bodyAsteroid);
+            bodyHandler.add(bodyAsteroid);
+            solarSystemBodies.add(bodyAsteroid);
+        }
+        RotationClass rotationClass = new RotationClass();
+        rotationClass.addBody(sun,50);
+
+    }
     public void loadAssets(Group rootNode, BodyHandler bodyHandler) {
-        garbageCollector = new GarbageCollector(rootNode, bodyHandler);
-        garbageCollector.clearAll();
+       // rootNode.getChildren().clear();
+       // bodyHandler.getBodies().clear();
 
         logger.info("We are loading assets");
         Star sun = new Star(

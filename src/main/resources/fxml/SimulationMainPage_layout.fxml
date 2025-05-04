@@ -24,7 +24,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="vboxMainRootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1014.0" style="-fx-border-color: white;">
          <children>
@@ -56,16 +56,16 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <HBox fx:id="hboxRootToolBar" alignment="CENTER" layoutX="5.0" layoutY="513.0" prefHeight="110.0" prefWidth="866.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="512.0">
+                  <HBox fx:id="hboxRootToolBar" alignment="CENTER" layoutX="5.0" layoutY="513.0" prefHeight="110.0" prefWidth="866.0" visible="false" AnchorPane.bottomAnchor="0.0">
                      <children>
                         <AnchorPane fx:id="anchorPaneToolBarKit" opacity="0.63" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TitledPane fx:id="tiltPanePlanets" alignment="TOP_LEFT" contentDisplay="RIGHT" opacity="0.65" prefHeight="209.0" prefWidth="866.0" style="-fx-border-color: white;" text="Celestial Bodies" textAlignment="CENTER">
+                              <TitledPane fx:id="tiltPanePlanets" alignment="TOP_LEFT" contentDisplay="RIGHT" opacity="0.65" prefHeight="209.0" prefWidth="866.0" style="-fx-border-color: white;" text="Celestial Bodies" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="Arial Black" size="14.0" />
                                  </font>
                                  <content>
-                                    <TilePane fx:id="tilePanePlanets" prefHeight="73.0" prefWidth="856.0" tileAlignment="TOP_LEFT">
+                                    <TilePane fx:id="tilePanePlanets" alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="856.0">
                                        <children>
                                           <VBox fx:id="vBoxCustomizeButton" alignment="CENTER" prefHeight="68.0" prefWidth="50.0">
                                              <children>
@@ -291,7 +291,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox fx:id="vBoxSimulatedBodies" layoutX="26.0" layoutY="249.0" prefHeight="225.0" prefWidth="504.0" visible="false" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="249.0">
+                  <VBox fx:id="vBoxSimulatedBodies" layoutX="26.0" layoutY="300.0" prefHeight="183.0" prefWidth="504.0" visible="false" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="300.0">
                      <children>
                         <Label prefHeight="43.0" prefWidth="216.0" text="       Simulated Bodies" textFill="WHITE">
                            <font>

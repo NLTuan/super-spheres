@@ -11,6 +11,8 @@ import edu.vanier.template.ui.MainApp;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -139,27 +141,41 @@ public class SimulationMainPageController {
     public  static SimulationMainPageController getLastInstance(){return currentInstance;}
     public PerspectiveCamera getCamera(){return this.camera;}
     public Group getGroupRootNode(){return  this.groupRootNode;}
+    public BodyHandler getBodyHandler(){return this.bodyHandler;}
     public void loadTemplate(String templateName){
+        pauseSimulation();
         if(garbageCollector == null){
             garbageCollector = new GarbageCollector(groupRootNode, bodyHandler);
         }
+        groupRootNode.getChildren().clear();
+        RotationClass.clearAllRotations();
+        bodyHandler.getBodies().clear();
         garbageCollector.clearAll();
+
 
         switch (templateName){
             case "empty":
                 //nothing cuz its empty
             case "solarSystem":
                 if(solarSystemAssets == null){
+
                     solarSystemAssets =  new SolarSystemAssets();
                 }
                 solarSystemAssets.loadAssets(groupRootNode,bodyHandler);
                 break;
+            case "asteroidBelt":
 
+                    if(solarSystemAssets == null){
+                        solarSystemAssets =  new SolarSystemAssets();
+                    }
+                    solarSystemAssets.loadAsteroidBelts(groupRootNode,bodyHandler);
+                    break;
         }
+        unPauseSimulation();
     }
     double count = 1.0;
     double count2 = 1.0;
-    
+
     double timeConstant = 10;
 
     public void handlerButtonSetting() {
@@ -191,6 +207,8 @@ public class SimulationMainPageController {
 
     //add event to exit button
     public  void handleExitButton(){
+        groupRootNode.getChildren().clear();
+        bodyHandler.getBodies().clear();
         vboxSetting.setVisible(false);
         vboxSetting.setManaged(false);
         this.vboxCameraControls.setVisible(false);
@@ -307,6 +325,10 @@ public class SimulationMainPageController {
         simulationSpeedSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             timeConstant = newVal.doubleValue();
         });
+        tilePanePlanets.setHgap(5);
+        tilePanePlanets.setVgap(5);
+        tilePanePlanets.setPadding(new Insets(5));
+
     }
     public void handlerSaveButtonEvent(){
 
@@ -477,16 +499,19 @@ animationTimer1.start();
                 throw new RuntimeException(e);
             }
         });
+
         //Handler
         handlerCameraButtonEvent();
         handlerSimulationSpeedButtonEvent();
-        handlePlanetCreationButtonEvent();
         initializeBinding();
         setSubSceneSimulation();
         handlerTitlePaneEvent();
         handleCamera();
+        handlePlanetCreationButtonEvent();
 
         setupBodies();
+        //Initalize scale :
+
         setupAnimationTimer();
         animationTimer.start();
     }

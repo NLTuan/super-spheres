@@ -91,8 +91,9 @@ public class DragAndDropSystem {
 
     public void transferToSimulation(){
         if(draggedObject != null && cameraControlsHandler != null){
+            ScalePlanet.prepareForSimulation(draggedObject);
             this.targetGroup.getChildren().add(draggedObject);
-            this.putObjectInFrontOfCamera(draggedObject,400);
+            this.putObjectInFrontOfCamera(draggedObject,500);
             Body cloneDragged = draggedObject;
             this.DropHandler(cloneDragged);
             draggedObject = null;
@@ -178,7 +179,8 @@ public class DragAndDropSystem {
 
     public void putObjectInFrontOfCamera(Shape3D shape3D, double distanceFromCamera) {
         PerspectiveCamera perspectiveCamera = cameraControlsHandler.getCamera();
-        Point3D point3DCameraPosition = targetGroup.sceneToLocal(perspectiveCamera.localToScene(0, 0, 0));
+       Point3D point3DCameraPosition = targetGroup.sceneToLocal(perspectiveCamera.localToScene(0, 0, 0));
+       // Point3D point3DCameraPosition = new Point3D(perspectiveCamera.getTranslateX(), perspectiveCamera.getTranslateY(), perspectiveCamera.getTranslateZ());
         Point3D point3DLookVector = cameraControlsHandler.getLookVector();
 
         // Get the radius if the shape is a Sphere
@@ -189,7 +191,7 @@ public class DragAndDropSystem {
 
         // Calculate spawn position accounting for object's radius
         Point3D point3DSpawnPosition = point3DCameraPosition.add(
-                point3DLookVector.multiply(distanceFromCamera + radius)
+                point3DLookVector.multiply(distanceFromCamera).add(radius,-radius,0)
         );
 
         if(shape3D != null) {
