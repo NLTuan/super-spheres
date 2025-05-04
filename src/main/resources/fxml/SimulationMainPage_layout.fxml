@@ -24,7 +24,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="mainRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="vboxMainRootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1014.0" style="-fx-border-color: white;">
          <children>
@@ -65,7 +65,7 @@
                                     <Font name="Arial Black" size="14.0" />
                                  </font>
                                  <content>
-                                    <TilePane fx:id="tilePanePlanets" prefHeight="73.0" prefWidth="856.0" tileAlignment="TOP_LEFT">
+                                    <TilePane fx:id="tilePanePlanets" alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="856.0">
                                        <children>
                                           <VBox fx:id="vBoxCustomizeButton" alignment="CENTER" prefHeight="68.0" prefWidth="50.0">
                                              <children>

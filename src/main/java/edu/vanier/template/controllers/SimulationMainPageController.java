@@ -11,6 +11,8 @@ import edu.vanier.template.ui.MainApp;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -307,6 +309,10 @@ public class SimulationMainPageController {
         simulationSpeedSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             timeConstant = newVal.doubleValue();
         });
+        tilePanePlanets.setHgap(5);
+        tilePanePlanets.setVgap(5);
+        tilePanePlanets.setPadding(new Insets(5));
+
     }
     public void handlerSaveButtonEvent(){
 
@@ -477,6 +483,7 @@ animationTimer1.start();
                 throw new RuntimeException(e);
             }
         });
+
         //Handler
         handlerCameraButtonEvent();
         handlerSimulationSpeedButtonEvent();
@@ -487,6 +494,8 @@ animationTimer1.start();
         handleCamera();
 
         setupBodies();
+        //Initalize scale :
+
         setupAnimationTimer();
         animationTimer.start();
     }

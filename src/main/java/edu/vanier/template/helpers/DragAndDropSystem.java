@@ -91,6 +91,7 @@ public class DragAndDropSystem {
 
     public void transferToSimulation(){
         if(draggedObject != null && cameraControlsHandler != null){
+            ScalePlanet.prepareForSimulation(draggedObject);
             this.targetGroup.getChildren().add(draggedObject);
             this.putObjectInFrontOfCamera(draggedObject,500);
             Body cloneDragged = draggedObject;
