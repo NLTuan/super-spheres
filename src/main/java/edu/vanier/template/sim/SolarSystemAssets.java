@@ -23,13 +23,13 @@ public class SolarSystemAssets {
 
 
     public void loadAsteroidBelts(Group rootNode, BodyHandler bodyHandler){
-        rootNode.getChildren().clear();
-        bodyHandler.getBodies().clear();
+      //  rootNode.getChildren().clear();
+       // bodyHandler.getBodies().clear();
 
         Body sun = new Star(
                 new Vector3D(0, 0, 0),
                 new Vector3D(0, 0, 0),
-                10000, 170
+                1000000, 600
         );
         sun.setName("Sun");
         BuildInBodies.applyTextures(sun, "Sun");
@@ -37,39 +37,49 @@ public class SolarSystemAssets {
         bodyHandler.add(sun);
 
         Random random = new Random();
-        for (int i = 0; i < 50; i++) {
-            double distance = 300 + random.nextDouble() * 200;
-            double angle = random.nextDouble() * 2 * Math.PI;
+        int asteroidCount = 200;
 
-            Vector3D position = new Vector3D(
-                    distance * Math.cos(angle),
-                    0,
-                    distance * Math.sin(angle)
-            );
+        // to make it represent the soalr system that we did earlier
 
-            double orbitalVelocity = Math.sqrt(Physics.G * sun.getMass() / distance);
-            Vector3D velocity = new Vector3D(
-                    0,
-                    0,
-                    -orbitalVelocity * (0.9 + random.nextDouble() * 0.2) // Some variation
-            );
+        double innerRadius = 2500; // this is after mars
+        double outerRadius = 3500;
+        double asteroidSpread  = 100; // how its spread
 
-            Body asteroid = new Planet(
-                    position,
-                    velocity,
-                    1,
-                    5 + random.nextDouble() * 5
+
+        for (int i = 0; i < asteroidCount; i++) {
+
+            double distance = innerRadius + random.nextDouble() * (outerRadius - innerRadius);
+            double angler = random.nextDouble() * 2 * Math.PI;
+
+            double yPosition = (random.nextDouble() - 0.5) * asteroidSpread;
+            Vector3D vector3DPosition = new Vector3D(
+                    distance * Math.cos(angler),
+                    yPosition,
+                    distance * Math.sin(angler)
             );
-            asteroid.setName("Asteroid " + (i+1));
-            BuildInBodies.applyTextures(asteroid, "Moon");
-           rootNode.getChildren().add(asteroid);
-            bodyHandler.add(asteroid);
+            double orbitalVelocity = Math.sqrt(Physics.G * sun.mass / distance);
+            // calculations for the orbitVelocity
+            Vector3D velocity = new Vector3D(- orbitalVelocity * Math.sin(angler) *(0.95 + random.nextDouble() * 0.1),
+                    0,
+                    orbitalVelocity * Math.cos(angler) * (0.95 + random.nextDouble() * 0.1)
+            );
+            Body bodyAsteroid = new Planet(
+                    vector3DPosition,
+                    0.1 + random.nextDouble() * 0.9,
+                    2 + random.nextDouble() * 5
+            );
+            bodyAsteroid.setVelocity(velocity);
+            rootNode.getChildren().add(bodyAsteroid);
+            bodyHandler.add(bodyAsteroid);
+            solarSystemBodies.add(bodyAsteroid);
         }
+        RotationClass rotationClass = new RotationClass();
+        rotationClass.addBody(sun,50);
 
     }
     public void loadAssets(Group rootNode, BodyHandler bodyHandler) {
-        rootNode.getChildren().clear();
-        bodyHandler.getBodies().clear();
+       // rootNode.getChildren().clear();
+       // bodyHandler.getBodies().clear();
 
         logger.info("We are loading assets");
         Star sun = new Star(
