@@ -115,7 +115,7 @@ public class CameraControlsHandler {
          Math.pitch(radPitch):
          */
 
-
+            vector3DMoveVector = new Vector3D(0, 0, 0);
 
             Vector3D vector3DForward = new Vector3D(
                     Math.sin(radYaw) * Math.cos(radPitch),
@@ -315,6 +315,8 @@ public class CameraControlsHandler {
     public void setFollowBody(Body followBody) {
         this.followBody = followBody;
     }
-    
-    
+
+    public Set<KeyCode> getActiveKeys() {
+        return activeKeys;
+    }
 }

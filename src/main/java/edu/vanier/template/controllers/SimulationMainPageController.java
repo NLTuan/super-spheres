@@ -503,11 +503,11 @@ animationTimer1.start();
         //Handler
         handlerCameraButtonEvent();
         handlerSimulationSpeedButtonEvent();
-        handlePlanetCreationButtonEvent();
         initializeBinding();
         setSubSceneSimulation();
         handlerTitlePaneEvent();
         handleCamera();
+        handlePlanetCreationButtonEvent();
 
         setupBodies();
         //Initalize scale :

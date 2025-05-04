@@ -56,11 +56,11 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <HBox fx:id="hboxRootToolBar" alignment="CENTER" layoutX="5.0" layoutY="513.0" prefHeight="110.0" prefWidth="866.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="512.0">
+                  <HBox fx:id="hboxRootToolBar" alignment="CENTER" layoutX="5.0" layoutY="513.0" prefHeight="110.0" prefWidth="866.0" visible="false" AnchorPane.bottomAnchor="0.0">
                      <children>
                         <AnchorPane fx:id="anchorPaneToolBarKit" opacity="0.63" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TitledPane fx:id="tiltPanePlanets" alignment="TOP_LEFT" contentDisplay="RIGHT" opacity="0.65" prefHeight="209.0" prefWidth="866.0" style="-fx-border-color: white;" text="Celestial Bodies" textAlignment="CENTER">
+                              <TitledPane fx:id="tiltPanePlanets" alignment="TOP_LEFT" contentDisplay="RIGHT" opacity="0.65" prefHeight="209.0" prefWidth="866.0" style="-fx-border-color: white;" text="Celestial Bodies" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="Arial Black" size="14.0" />
                                  </font>
@@ -291,7 +291,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox fx:id="vBoxSimulatedBodies" layoutX="26.0" layoutY="249.0" prefHeight="225.0" prefWidth="504.0" visible="false" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="249.0">
+                  <VBox fx:id="vBoxSimulatedBodies" layoutX="26.0" layoutY="300.0" prefHeight="183.0" prefWidth="504.0" visible="false" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="300.0">
                      <children>
                         <Label prefHeight="43.0" prefWidth="216.0" text="       Simulated Bodies" textFill="WHITE">
                            <font>
