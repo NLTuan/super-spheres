@@ -81,7 +81,9 @@ public abstract class Body extends Sphere{
         return this.name;
     }
     public void update(double deltaTime){
-        trail.update(this);
+        if(this.trail != null && trail.isActive){
+            trail.update(this);
+        }
         acceleration = force.scaleVector3D(1/mass);
         velocity.addToCurrentVector3D(acceleration.scaleVector3D(deltaTime));
         position.addToCurrentVector3D(velocity.scaleVector3D(deltaTime));

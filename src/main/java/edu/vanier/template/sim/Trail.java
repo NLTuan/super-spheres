@@ -47,13 +47,21 @@ public class Trail {
             particle.setTranslateX(followBody.getTranslateX());
             particle.setTranslateY(followBody.getTranslateY());
             particle.setTranslateZ(followBody.getTranslateZ());
-            
-            Group parentNode = (Group) followBody.getParent();
-            parentNode.getChildren().add(particle);
 
+            Group parentNode = null;
+            Node node = followBody.getParent();
+            if(node instanceof  Group){
+                parentNode = (Group) node;
+            }
+            if(parentNode != null) {
+                parentNode.getChildren().add(particle);
+            }else {
+                internalClock += 1;
+            }
         }
-        internalClock += 1;
+
     }
+
 
     public void setTrailColor(Color newColor) {
         this.phongMaterialTrail.setDiffuseColor(newColor);

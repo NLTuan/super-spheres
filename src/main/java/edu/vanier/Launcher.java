@@ -24,7 +24,7 @@ public class Launcher {
         //      multiple main methods simultaneously (depending on the context).         
 
         //NOTE: Comment out the following line if you would like to execute 
-        //      another class' main method.  
+        //      another class' main method.
         MainApp.main(args);
         //--
         // Uncomment the following line to run the Driver's main method.

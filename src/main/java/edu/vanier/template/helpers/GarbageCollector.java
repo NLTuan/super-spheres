@@ -25,6 +25,7 @@ public class GarbageCollector {
 
     public void clearAll(){
         SimulationMainPageController.getLastInstance().pauseSimulation();
+        ListViewBodies.listView.getItems().clear();
         SolarSystemAssets.solarSystemBodies.clear();
         List<Shape3D> allBodies = new ArrayList<>(bodyHandler.getBodies());
         for (Shape3D shape3D : allBodies){
