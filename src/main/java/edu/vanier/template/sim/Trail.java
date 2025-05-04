@@ -18,9 +18,9 @@ import javafx.scene.shape.Sphere;
 public class Trail {
     ArrayList<Sphere> trailParticles = new ArrayList<>();
         
-    int frequency = 3;
+    int frequency = 2;
     int internalClock = 0;
-    int maxParticles = 50;
+    int maxParticles = 100;
     
     Color trailColor;
     
@@ -37,7 +37,7 @@ public class Trail {
                 trailParticles.remove(0);
             }
             
-            Sphere particle = new Sphere(5);
+            Sphere particle = new Sphere(30);
             PhongMaterial material = new PhongMaterial();
             
             material.setDiffuseColor(Color.rgb(
