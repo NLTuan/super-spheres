@@ -6,6 +6,7 @@ import edu.vanier.template.sim.Body;
 import edu.vanier.template.sim.CameraControlsHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -41,6 +42,7 @@ public class ListViewBodies {
 
     }
     public HBox createBodyEntries(){
+        sphere.getTrail().setActive(false);
         HBox hBoxEntryContainer = new HBox(15);
         hBoxEntryContainer.setAlignment(Pos.CENTER_LEFT);
         hBoxEntryContainer.setPadding(new Insets(8,15,8,15));
@@ -91,6 +93,18 @@ public class ListViewBodies {
         hBoxTrailsControls.setAlignment(Pos.CENTER_RIGHT);
 
         CheckBox trailCheckBox = new CheckBox("Trail");
+        trailCheckBox.selectedProperty().addListener((obs,wasSelected,isSelected)->{
+            this.sphere.getTrail().setActive(isSelected);
+
+            if(!isSelected && sphere.getTrail() != null){
+                Group  parent = (Group) sphere.getParent();
+                if(parent!= null){
+                    parent.getChildren().removeAll(sphere.getTrail().getTrailParticles());
+                }
+                sphere.getTrail().getTrailParticles().clear();
+            }
+        });
+
         trailCheckBox.setSelected(false);
         trailCheckBox.setStyle("-fx-text-fill: white");
 

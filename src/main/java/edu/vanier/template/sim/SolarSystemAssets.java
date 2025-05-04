@@ -4,6 +4,7 @@ import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.helpers.BuildInBodies;
 import edu.vanier.template.helpers.GarbageCollector;
 import edu.vanier.template.helpers.RotationClass;
+import edu.vanier.template.math.Physics;
 import edu.vanier.template.math.Vector3D;
 import javafx.scene.Group;
 import org.slf4j.Logger;
@@ -11,22 +12,64 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Vector;
 
 public class SolarSystemAssets {
     private final static Logger logger = LoggerFactory.getLogger(SolarSystemAssets.class);
-    private List<Body> solarSystemBodies = new ArrayList<>();
+    public static List<Body> solarSystemBodies = new ArrayList<>();
 
-    private  GarbageCollector garbageCollector;
+
 
 
     public void loadAsteroidBelts(Group rootNode, BodyHandler bodyHandler){
+        rootNode.getChildren().clear();
         bodyHandler.getBodies().clear();
+
+        Body sun = new Star(
+                new Vector3D(0, 0, 0),
+                new Vector3D(0, 0, 0),
+                10000, 170
+        );
+        sun.setName("Sun");
+        BuildInBodies.applyTextures(sun, "Sun");
+        rootNode.getChildren().add(sun);
+        bodyHandler.add(sun);
+
+        Random random = new Random();
+        for (int i = 0; i < 50; i++) {
+            double distance = 300 + random.nextDouble() * 200;
+            double angle = random.nextDouble() * 2 * Math.PI;
+
+            Vector3D position = new Vector3D(
+                    distance * Math.cos(angle),
+                    0,
+                    distance * Math.sin(angle)
+            );
+
+            double orbitalVelocity = Math.sqrt(Physics.G * sun.getMass() / distance);
+            Vector3D velocity = new Vector3D(
+                    0,
+                    0,
+                    -orbitalVelocity * (0.9 + random.nextDouble() * 0.2) // Some variation
+            );
+
+            Body asteroid = new Planet(
+                    position,
+                    velocity,
+                    1,
+                    5 + random.nextDouble() * 5
+            );
+            asteroid.setName("Asteroid " + (i+1));
+            BuildInBodies.applyTextures(asteroid, "Moon");
+           rootNode.getChildren().add(asteroid);
+            bodyHandler.add(asteroid);
+        }
 
     }
     public void loadAssets(Group rootNode, BodyHandler bodyHandler) {
-        garbageCollector = new GarbageCollector(rootNode, bodyHandler);
-        garbageCollector.clearAll();
+        rootNode.getChildren().clear();
+        bodyHandler.getBodies().clear();
 
         logger.info("We are loading assets");
         Star sun = new Star(

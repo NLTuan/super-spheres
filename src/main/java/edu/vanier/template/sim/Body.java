@@ -203,6 +203,7 @@ public abstract class Body extends Sphere{
         controller.getBodyHandler().getBodies().remove(this);
         controller.getGroupRootNode().getChildren().remove(this);
         if(this.nameLabel != null){controller.getGroupRootNode().getChildren().remove(this.nameLabel);}
+        logger.info("Group^root node children after removing body" + controller.getGroupRootNode().getChildren());
 
     }
 }

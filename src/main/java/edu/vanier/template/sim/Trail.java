@@ -67,4 +67,8 @@ public class Trail {
     public void setActive(boolean activeState){
         this.isActive = activeState;
     }
+
+    public ArrayList<Sphere> getTrailParticles() {
+        return trailParticles;
+    }
 }

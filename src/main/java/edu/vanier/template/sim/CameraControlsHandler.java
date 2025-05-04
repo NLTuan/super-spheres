@@ -207,6 +207,7 @@ public class CameraControlsHandler {
     
     private int value;
     public void handleCamera(Scene scene) {
+        if(scene == null) return;
         if (isMovementAllow && this.camera != null) {
             scene.setOnMousePressed(event -> {
                 if (event.getButton() == MouseButton.SECONDARY) {
