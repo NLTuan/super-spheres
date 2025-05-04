@@ -29,7 +29,7 @@ public class GarbageCollector {
         List<Shape3D> allBodies = new ArrayList<>(bodyHandler.getBodies());
         for (Shape3D shape3D : allBodies){
             if(shape3D instanceof Body){
-                ((Body) shape3D).removeBody();
+                removeBodyCompletely((Body) shape3D);
             }
         }
         groupRootNode.getChildren().clear();
