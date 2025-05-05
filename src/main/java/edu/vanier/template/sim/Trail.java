@@ -7,16 +7,10 @@ import javafx.scene.SubScene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
-import javax.swing.plaf.metal.MetalIconFactory;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
- *
- * @author letua
+ * Trail object attached to a Body
+ * @author Le Tuan Huy Nguyen
  */
 public class Trail {
     ArrayList<Sphere> trailParticles = new ArrayList<>();
@@ -35,7 +29,10 @@ public class Trail {
         phongMaterialTrail = new PhongMaterial(this.colorTrail);
     }
     
-    
+    /**
+     * Add and remove trail particles accordingly
+     * @param followBody the body that the trail is attached to
+     */
     public void update(Body followBody) {
         if( !isActive || followBody == null) return;
         if (internalClock % frequency == 0){
@@ -65,8 +62,11 @@ public class Trail {
         }
 
     }
-
-
+    
+    /**
+     * Set the color of the trail
+     * @param newColor the new color to set to
+     */
     public void setTrailColor(Color newColor) {
         this.phongMaterialTrail.setDiffuseColor(newColor);
         this.phongMaterialTrail.setSpecularColor(colorTrail);

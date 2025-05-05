@@ -1,9 +1,6 @@
 package edu.vanier.template.sim;
 
-import edu.vanier.template.controllers.TemplateSelectionController;
 import edu.vanier.template.math.Vector3D;
-import javafx.animation.AnimationTimer;
-import javafx.geometry.Point2D;
 import javafx.geometry.Point3D;
 import javafx.scene.*;
 import javafx.scene.input.KeyCode;
@@ -16,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 /**
  * @author Josue

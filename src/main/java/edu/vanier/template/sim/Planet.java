@@ -2,6 +2,10 @@ package edu.vanier.template.sim;
 
 import edu.vanier.template.math.Vector3D;
 
+/**
+ * Planet extension of Body
+ * @author Le Tuan Huy Nguyen
+ */
 public class Planet extends Body{
 
     public Planet(Vector3D position, double mass, double radius) {

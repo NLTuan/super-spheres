@@ -13,19 +13,13 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Vector;
 
 public class SolarSystemAssets {
     private final static Logger logger = LoggerFactory.getLogger(SolarSystemAssets.class);
     public static List<Body> solarSystemBodies = new ArrayList<>();
 
-
-
-
     public void loadAsteroidBelts(Group rootNode, BodyHandler bodyHandler){
-      //  rootNode.getChildren().clear();
-       // bodyHandler.getBodies().clear();
-
+        
         Body sun = new Star(
                 new Vector3D(0, 0, 0),
                 new Vector3D(0, 0, 0),

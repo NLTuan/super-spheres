@@ -346,10 +346,6 @@ public class SimulationMainPageController {
     }
 
     public void handleCamera() {
-        Box box = new Box(25, 25, 20);
-        box.setMaterial(new PhongMaterial(Color.RED));
-        groupRootNode.getChildren().add(box);
-
         this.camera.setTranslateZ(-1000);
         this.camera.setFarClip(2000000000);
         this.camera.setNearClip(0.1);

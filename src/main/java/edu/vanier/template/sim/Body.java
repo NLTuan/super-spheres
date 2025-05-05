@@ -20,8 +20,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
- * @author letua
+ * Gravitational physics object, carries a mass and is controlled by other Bodys
+ * @author Le Tuan Huy Nguyen
  */
 public abstract class Body extends Sphere{
     private final static Logger logger = LoggerFactory.getLogger(Body.class);
@@ -77,11 +77,15 @@ public abstract class Body extends Sphere{
         createNameLabel();
     }
 
-
-
     public  StringProperty getNameProperty(){
         return this.name;
     }
+    
+    /**
+     * Called every frame by the main animationTimer loop, moves updates the velocity
+     * and position vectors. Also updates the trail if it is activated.
+     * @param deltaTime time passed since last frame in seconds
+     */
     public void update(double deltaTime){
         System.out.println(trail.isActive);
         if(this.trail != null && trail.isActive){
@@ -95,6 +99,11 @@ public abstract class Body extends Sphere{
         setTranslateY(position.getY());
         setTranslateZ(position.getZ());
     }
+    
+    /**
+     * Apply a force on this object
+     * @param force the force being applied
+     */
     public void addForce(Vector3D force){
         this.force = this.force.addVector3D(force);
     }
