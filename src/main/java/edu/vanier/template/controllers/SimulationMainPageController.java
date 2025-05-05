@@ -490,6 +490,7 @@ animationTimer1.start();
         if (buttonSettingSave != null) buttonSettingSave.setOnAction(event -> handlerSaveButtonEvent());
         buttonSettingLoad.setOnAction(event -> {
             try {
+                garbageCollector.clearAll();
                 HandlerSettingLoad();
             } catch (IOException e) {
                 throw new RuntimeException(e);
