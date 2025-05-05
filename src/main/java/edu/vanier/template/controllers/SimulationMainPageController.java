@@ -404,6 +404,40 @@ public class SimulationMainPageController {
 
         DragAndDropSystem dragAndDropSystem = new DragAndDropSystem(tilePanePlanets, this.groupRootNode, this.subSceneSimulation, cameraControlsHandler, hboxRootToolBar, textFieldVelocity, vboxInputVelocity, bodyHandler);
         dragAndDropSystem.DragAndDropHandler();
+
+        Planet planet = new Planet(new Vector3D(-650 , 0, .01), new Vector3D(0, 0, -12.28), 100.0, 10);
+
+        Planet planet2 = new Planet(new Vector3D(0  , 0, 0), new Vector3D(0,0,0),10000, 170);
+
+        Rotate yRotate = new Rotate(0, Rotate.Y_AXIS);
+        Rotate yRotate2 = new Rotate(0, Rotate.Y_AXIS)
+                ;
+
+        planet.getTransforms().add(yRotate);
+        planet2.getTransforms().add(yRotate2);
+AnimationTimer animationTimer1 = new AnimationTimer() {
+    @Override
+    public void handle(long now) {
+        double dt = (now - prevTimeRotation) / 1E9;
+        RotationClass.updateAllRotations(dt);
+
+        count += 10;
+        count2 += 0.05;
+        yRotate.setAngle(count);
+        yRotate2.setAngle(count2);
+
+        prevTimeRotation = now;
+        if (count >= 360 ) count = 0;
+    }
+};
+animationTimer1.start();
+
+        BuildInBodies buildInBodies = new BuildInBodies(planet);
+//        BuildInBodies buildInBodies1 = new BuildInBodies(planet2);
+      //  buildInBodies2.applyTextures("Sun");
+      
+      planet.removeBody();
+      planet2.removeBody();
     }
     
     public void spawnPlanet(double x1,double y1, double z1,double x2,double y2, double z2, int mass, int size,int angle, String texture){
