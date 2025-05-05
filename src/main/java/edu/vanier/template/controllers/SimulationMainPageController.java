@@ -332,7 +332,6 @@ public class SimulationMainPageController {
 
     }
     public void handlerSaveButtonEvent(){
-        System.out.println("saving");
         try {
             // Write to file
             writePlanetsToFile(bodyHandler.getBodies(), "src/main/resources/planets.txt");
@@ -491,6 +490,8 @@ animationTimer1.start();
             try {
                 garbageCollector.clearAll();
                 HandlerSettingLoad();
+                pauseSimulation();
+                unPauseSimulation();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -16,7 +16,20 @@ public class Planet extends Body{
         super(position, velocity, mass, radius, divisions);
     }
 
-    public Planet(Vector3D position, Vector3D velocity, double mass, double d) {
-        super(position, velocity, mass, d);
+    public Planet(Vector3D position, Vector3D velocity, double mass, double radius) {
+        super(position, velocity, mass, radius);
     }
+
+
+    public String toSave() {
+        String name = getName();
+        return "Body{" +
+                "position=" + position +
+                ", velocity=" + velocity +
+                ", acceleration=" + acceleration +
+                ", force=" + force +
+                ", mass=" + mass +
+                ", name="+ name +
+                ", size" + +
+                '}';}
 }

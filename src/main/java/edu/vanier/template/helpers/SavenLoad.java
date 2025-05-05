@@ -3,6 +3,7 @@ import edu.vanier.template.math.Vector3D;
 import edu.vanier.template.sim.Body;
 import edu.vanier.template.sim.Planet;
 import edu.vanier.template.sim.BodyHandler;
+import edu.vanier.template.sim.Star;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape3D;
 
@@ -23,7 +24,7 @@ public class SavenLoad {
     public static void writePlanetsToFile(ArrayList<Body> planets, String filePath) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Body planet : planets) {
-                writer.write(planet.toString());
+                writer.write(planet.toSave());
                 writer.newLine(); // Add a newline after each planet
             }
         }
@@ -33,22 +34,27 @@ public class SavenLoad {
     public static void loadFileSaver(Group rootNode, BodyHandler bodyHandler, String file) throws IOException {
 
         ArrayList<Planet> planets = readPlanetsFromFile(file);
-        // Pluto
-        /*
-        Planet pluto = new Planet(
-                new Vector3D(-7200 - 600, 0, 0),
-                new Vector3D(0, 0, 0),
-                1,     // Mass
-                10     // Size
-        );
-        pluto.setVelocity(new Vector3D(0, 0, -pluto.vOrbital(sun, 7200 + 600)));
-        */
-
         RotationClass rotationClass = new RotationClass();
-        // Add to scene and physics
+        Body sun = new Star(
+                new Vector3D(0, 0, 0),
+                new Vector3D(0, 0, 0),
+                1000000, 600
+        );
+        sun.setName("Sun");
+        BuildInBodies.applyTextures(sun, "Sun");
+        rootNode.getChildren().add(sun);
+        bodyHandler.add(sun);
+        rotationClass.addBody(sun,50);
+
+
+        //adding the assets to the system
         rootNode.getChildren().addAll(planets);
         for(Planet planet : planets){
+            System.out.println("planet");
             bodyHandler.add(planet);
+            String name = planet.getName();
+            System.out.println(name);
+            BuildInBodies.applyTextures(planet, name);
             rotationClass.addBody(planet, 50);
         }
 
@@ -76,6 +82,7 @@ public class SavenLoad {
             Pattern positionPattern = Pattern.compile("position=Vector3D\\{x=([-\\d.]+), y=([-\\d.]+), z=([-\\d.]+)\\}");
             Pattern velocityPattern = Pattern.compile("velocity=Vector3D\\{x=([-\\d.]+), y=([-\\d.]+), z=([-\\d.]+)\\}");
             Pattern massPattern = Pattern.compile("mass=([-\\d.]+)");
+            Pattern namePattern = Pattern.compile("name=([^,\\\\}]+)");
 
             // Extract position
             Matcher posMatcher = positionPattern.matcher(line);
@@ -99,8 +106,16 @@ public class SavenLoad {
             Matcher massMatcher = massPattern.matcher(line);
             if (!massMatcher.find()) return null;
             double mass = Double.parseDouble(massMatcher.group(1));
+            Matcher nameMatcher = namePattern.matcher(line);
+            Planet planet = new Planet(position, velocity, mass, 15);
 
-            return new Planet(position, velocity, mass, 15);
+            if (nameMatcher.find()) {
+                String name = nameMatcher.group(1);
+                planet.setName(name);
+            } else {
+                System.out.println("No match found.");
+            }
+            return planet;
         }
     }
 

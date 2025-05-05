@@ -159,6 +159,19 @@ public abstract class Body extends Sphere{
                 '}';
     }
 
+    public String toSave() {
+        String name = getName();
+        return "Body{" +
+                "position=" + position +
+                ", velocity=" + velocity +
+                ", acceleration=" + acceleration +
+                ", force=" + force +
+                ", mass=" + mass +
+                ", name="+ name +
+                ", size=" +
+                '}';}
+
+
     private void createNameLabel(){
         this.nameLabel = new Text3D( this.name.getName()!= null ? this.getName(): "Planet", Color.WHITE, this,SimulationMainPageController.getLastInstance().getCamera());
         this.nameLabel.setVisible(false);
