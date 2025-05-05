@@ -134,9 +134,10 @@ public class CreatePlanetController {
                 if (isPlanet) {
                     body = new Planet(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
 
+                    
                     rotationClassForBody.addBody(body, rotationRate);
-                    body.getTrail().setActive(false);
-                    body.getTrail().setTrailColor(Color.WHITE);
+//                    body.getTrail().setActive(false);
+//                    body.getTrail().setTrailColor(Color.WHITE);
                 } else {
                     body = new Star(new Vector3D(0, 0, 0), new Vector3D(0, 0, 0), mass, radius);
                     body.getTrail().setActive(false);

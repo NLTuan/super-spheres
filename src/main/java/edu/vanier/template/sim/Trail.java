@@ -27,10 +27,12 @@ public class Trail {
 
     boolean isActive = true;
 
-    private Color colorTrail = Color.WHITE;
-    public PhongMaterial phongMaterialTrail = new PhongMaterial(this.colorTrail);
+    private Color colorTrail;
+    public PhongMaterial phongMaterialTrail;
     
     public Trail(){
+        colorTrail = Color.WHITE;
+        phongMaterialTrail = new PhongMaterial(this.colorTrail);
     }
     
     

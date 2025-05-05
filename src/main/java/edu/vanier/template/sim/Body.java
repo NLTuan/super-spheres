@@ -65,6 +65,8 @@ public abstract class Body extends Sphere{
 
     public Body(Vector3D position, Vector3D velocity, double mass, double radius) {
         super(radius);
+        System.out.println("created");
+
         this.trail = new Trail();
         this.listViewBodies = new ListViewBodies("No name",this);
         setDepthTest(DepthTest.ENABLE);
@@ -81,6 +83,7 @@ public abstract class Body extends Sphere{
         return this.name;
     }
     public void update(double deltaTime){
+        System.out.println(trail.isActive);
         if(this.trail != null && trail.isActive){
             trail.update(this);
         }
