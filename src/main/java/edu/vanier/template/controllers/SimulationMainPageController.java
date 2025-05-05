@@ -143,6 +143,7 @@ public class SimulationMainPageController {
     public PerspectiveCamera getCamera(){return this.camera;}
     public Group getGroupRootNode(){return  this.groupRootNode;}
     public BodyHandler getBodyHandler(){return this.bodyHandler;}
+    public VBox getVboxStats(){return vboxPlanetStatistic;}
     public void loadTemplate(String templateName){
         pauseSimulation();
         if(garbageCollector == null){

@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Circle;
@@ -62,6 +63,11 @@ public class ListViewBodies {
         textFieldName.setStyle("-fx-text-fill: white; -fx-font-size: 14 " );
         textFieldName.setPrefWidth(60);
         textFieldName.setPrefHeight(20);
+        textFieldName.setStyle("-fx-opacity: 7.5");
+        textFieldName.setOnAction(actionEvent ->{
+            String name = textFieldName.getText();
+            sphere.setName(name);
+        });
 
         hBoxNameControls.getChildren().addAll(this.shape3DCloned,labelShowName,textFieldName, checkBoxShowName);
 
@@ -149,6 +155,19 @@ public class ListViewBodies {
                         System.out.println("now following" + sphere.getName());
                         cameraHandler.setFocused(true);
                         cameraHandler.setFollowBody(sphere);
+                        SimulationMainPageController simulationMainPageController = SimulationMainPageController.getLastInstance();
+                        VBox vBoxstats = simulationMainPageController.getVboxStats();
+                         if(cameraHandler.isFocused()){
+
+                             vBoxstats.setVisible(true);
+                             vBoxstats.setManaged(true);
+                             //simulationMainPageController.ge
+                         }else{
+                             vBoxstats.setVisible(false);
+                             vBoxstats.setManaged(false);
+
+                         }
+
                     }
                 }
             }

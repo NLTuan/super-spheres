@@ -39,6 +39,7 @@ public class Text3D extends Group {
      * @param camera ,the camera of the 3D world
      */
     public Text3D(String text, Color color,Body parentBody, PerspectiveCamera camera) {
+        if(camera == null) return;
         this.textTocheck = text; // place holder because im going to use it in build visilazation
 
         this.parentBody = parentBody;
