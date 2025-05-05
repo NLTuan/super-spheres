@@ -279,7 +279,7 @@
                               <Font name="Dubai Regular" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="ButtonExitSave" mnemonicParsing="false" prefHeight="30.0" prefWidth="133.0" style="-fx-background-color: #171717; -fx-background-radius: 10;" text="Save" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="buttonSettingSave" mnemonicParsing="false" prefHeight="30.0" prefWidth="133.0" style="-fx-background-color: #171717; -fx-background-radius: 10;" text="Save" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Dubai Regular" size="14.0" />
                            </font>
