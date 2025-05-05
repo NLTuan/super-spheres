@@ -38,3 +38,18 @@ application {
 ## IDEs and JDK
 
 This project template was tested with `Apache NetBeans 2`, IntelliJ Community Edition 2024.2.02, and `JDK 22`.
+
+## How to Use
+
+First create a user account using the sign up button, then log in using the newly created user creditentials.
+
+Once sign in, select a template either (empty, asteroids field or solar system).
+
+Functionality:
+- Camera button gives the ability to change the camera speed.
+- Setting button gives the ability to exit the scene, save the planets and star and load the previous save.
+- The + button at the bottom right allows the user to create new planets and stars
+- the pause and unpause button allows the user to pause the animation and start it.
+- the planet button allows the user to change the speed of the animation example 1x, 10x, 100x
+
+
