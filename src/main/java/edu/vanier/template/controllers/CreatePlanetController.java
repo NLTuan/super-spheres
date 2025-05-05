@@ -70,6 +70,7 @@ public class CreatePlanetController {
         });
 
         radiusSlider.setValue(40);
+        massSlider.setValue(50);
 
         rotationSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             rotationClassForBody = new RotationClass();
@@ -125,6 +126,7 @@ public class CreatePlanetController {
     @FXML
     private void handleCreateButton() {
         button.setOnAction(event -> {
+
                 double mass = massSlider.getValue();
                 double radius = radiusSlider.getValue();
                 //double velocity = rotationSlider.getValue();
@@ -147,7 +149,7 @@ public class CreatePlanetController {
                 buildInBodies.applyTextures(bodyTexture);
                 ScalePlanet.prepareForTilePane(body);
                 simulationController.getTilePanePlanets().getChildren().add(body);
-
+                isPlanet = true;
                 button.getScene().getWindow().hide();
         });
     }
@@ -167,6 +169,7 @@ public class CreatePlanetController {
            radiusSlider.setMax(1200);
            massSlider.setMin(1500);
            massSlider.setMax(3000);
+           rotationSlider.setValue(1);
        });
     }
 
@@ -185,8 +188,10 @@ public class CreatePlanetController {
             radiusSlider.setMin(10);
             radiusSlider.setMax(200);
             massSlider.setMin(10);
-            massSlider.setMax(1500);
+            massSlider.setMax(500);
             radiusSlider.setValue(40);
+            massSlider.setValue(50);
+            rotationSlider.setValue(1);
         });
     }
 
