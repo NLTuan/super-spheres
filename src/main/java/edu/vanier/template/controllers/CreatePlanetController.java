@@ -34,8 +34,8 @@ public class CreatePlanetController {
     private Button starButton;
     @FXML
     private Button planetButton;
-    @FXML
-    private boolean isPlanet;
+
+    private boolean isPlanet = true;
     private SimulationMainPageController simulationController;
     @FXML
     private Slider rotationSlider;
@@ -62,14 +62,14 @@ public class CreatePlanetController {
 
         radiusSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (isPlanet) {
-                textureBodySphere.setRadius(newValue.doubleValue()*0.4);
+                textureBodySphere.setRadius(newValue.doubleValue()*0.8);
             } else {
                 textureBodySphere.setRadius(newValue.doubleValue()*0.2);
             }
 
         });
 
-        radiusSlider.setValue(300);
+        radiusSlider.setValue(40);
 
         rotationSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             rotationClassForBody = new RotationClass();
@@ -182,10 +182,10 @@ public class CreatePlanetController {
             isPlanet = true;
 
             radiusSlider.setMin(10);
-            radiusSlider.setMax(600);
+            radiusSlider.setMax(200);
             massSlider.setMin(10);
             massSlider.setMax(1500);
-            radiusSlider.setValue(300);
+            radiusSlider.setValue(40);
         });
     }
 

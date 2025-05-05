@@ -15,7 +15,7 @@
    <children>
       <HBox alignment="CENTER" layoutX="441.0" layoutY="-2.0" prefHeight="665.0" prefWidth="398.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="441.0" AnchorPane.rightAnchor="-5.684341886080802E-14" AnchorPane.topAnchor="0.0">
          <children>
-            <Sphere fx:id="textureBodySphere" radius="30.0" />
+            <Sphere fx:id="textureBodySphere" radius="32.0" />
          </children>
       </HBox>
       <HBox prefHeight="477.0" prefWidth="417.0" AnchorPane.bottomAnchor="39.99999999999994" AnchorPane.leftAnchor="5.684341886080802E-14" AnchorPane.rightAnchor="386.00000000000006" AnchorPane.topAnchor="0.0">
@@ -60,7 +60,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Slider fx:id="radiusSlider" majorTickUnit="100.0" max="600.0" min="10.0" minorTickCount="4" prefHeight="38.0" prefWidth="415.0" showTickLabels="true" showTickMarks="true" />
+                              <Slider fx:id="radiusSlider" majorTickUnit="100.0" max="200.0" min="10.0" minorTickCount="4" prefHeight="38.0" prefWidth="415.0" showTickLabels="true" showTickMarks="true" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
