@@ -129,6 +129,7 @@ public class SimulationMainPageController {
     
     private AnimationTimer animationTimer;
     private long prevTime = System.nanoTime();
+    private long prevTimeRotation = System.nanoTime();
 
     private BodyHandler bodyHandler;
     private SolarSystemAssets solarSystemAssets;
@@ -376,7 +377,6 @@ public class SimulationMainPageController {
             public void handle(long now) {
                 double dt = (now - prevTime) / 1E9;
                 cameraControlsHandler.updateMovement(dt);
-                RotationClass.updateAllRotations(dt);
                 bodyHandler.update(dt * timeConstant);
                 prevTime = now;
 
