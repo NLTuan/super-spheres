@@ -29,7 +29,6 @@ public class SavenLoad {
         }
     }
 
-    private GarbageCollector garbageCollector;
 
     public static void loadFileSaver(Group rootNode, BodyHandler bodyHandler, String file) throws IOException {
 

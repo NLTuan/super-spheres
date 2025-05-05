@@ -332,7 +332,7 @@ public class SimulationMainPageController {
 
     }
     public void handlerSaveButtonEvent(){
-
+        System.out.println("saving");
         try {
             // Write to file
             writePlanetsToFile(bodyHandler.getBodies(), "src/main/resources/planets.txt");
@@ -483,9 +483,13 @@ animationTimer1.start();
         buttonSimulatedBodies.setOnAction(event -> {handleButtonSimulatedBodies();});
         buttonSetBackOrigin.setOnAction(event -> cameraControlsHandler.reset());
 
-        if (buttonSettingSave != null) buttonSettingSave.setOnAction(event -> handlerSaveButtonEvent());
+        buttonSettingSave.setOnAction(event -> {
+            System.out.println("save soon");
+            handlerSaveButtonEvent();
+        });
         buttonSettingLoad.setOnAction(event -> {
             try {
+                garbageCollector.clearAll();
                 HandlerSettingLoad();
             } catch (IOException e) {
                 throw new RuntimeException(e);
