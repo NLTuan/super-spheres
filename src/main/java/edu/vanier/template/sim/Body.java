@@ -87,7 +87,7 @@ public abstract class Body extends Sphere{
      * @param deltaTime time passed since last frame in seconds
      */
     public void update(double deltaTime){
-        System.out.println(trail.isActive);
+        //System.out.println(trail.isActive);
         if(this.trail != null && trail.isActive){
             trail.update(this);
         }
