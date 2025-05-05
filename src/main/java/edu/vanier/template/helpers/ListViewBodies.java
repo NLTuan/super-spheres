@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Circle;
@@ -155,18 +154,6 @@ public class ListViewBodies {
                         System.out.println("now following" + sphere.getName());
                         cameraHandler.setFocused(true);
                         cameraHandler.setFollowBody(sphere);
-                        SimulationMainPageController simulationMainPageController = SimulationMainPageController.getLastInstance();
-                        VBox vBoxstats = simulationMainPageController.getVboxStats();
-                         if(cameraHandler.isFocused()){
-
-                             vBoxstats.setVisible(true);
-                             vBoxstats.setManaged(true);
-                             //simulationMainPageController.ge
-                         }else{
-                             vBoxstats.setVisible(false);
-                             vBoxstats.setManaged(false);
-
-                         }
 
                     }
                 }

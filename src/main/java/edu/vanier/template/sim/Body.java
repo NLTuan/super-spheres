@@ -42,7 +42,7 @@ public abstract class Body extends Sphere{
     public Body(Vector3D position, double mass, double radius) {
         super(radius);
         this.trail = new Trail();
-       this.listViewBodies = new ListViewBodies("No name",this);
+        this.listViewBodies = new ListViewBodies("No name",this);
         setDepthTest(DepthTest.ENABLE);
         this.position = position;
         velocity = new Vector3D(0, 0, 0);
@@ -68,7 +68,7 @@ public abstract class Body extends Sphere{
         System.out.println("created");
 
         this.trail = new Trail();
-      this.listViewBodies = new ListViewBodies("No name",this);
+        this.listViewBodies = new ListViewBodies("No name",this);
         setDepthTest(DepthTest.ENABLE);
         this.position = position;
         this.velocity = velocity;
@@ -174,9 +174,7 @@ public abstract class Body extends Sphere{
 
 
     private void createNameLabel(){
-        SimulationMainPageController controller = new SimulationMainPageController().getLastInstance();
-        if(controller == null) return;
-        this.nameLabel = new Text3D( this.name.getName()!= null ? this.getName(): "Planet", Color.WHITE, this,controller.getCamera());
+        this.nameLabel = new Text3D( this.name.getName()!= null ? this.getName(): "Planet", Color.WHITE, this,SimulationMainPageController.getLastInstance().getCamera());
         this.nameLabel.setVisible(false);
         this.nameLabel.setManaged(false);
         /*name.addListener((obs, oldVal, newVal)-> {
@@ -227,7 +225,6 @@ public abstract class Body extends Sphere{
      */
     public void  removeBody(){
         SimulationMainPageController controller = SimulationMainPageController.getLastInstance();
-        if(controller == null) return;
         ListViewBodies.listView.getItems().remove(listViewBodies.hBoxEntry);
         this.trail.setActive(false);
         controller.getGroupRootNode().getChildren().removeAll(this.trail.trailParticles);
