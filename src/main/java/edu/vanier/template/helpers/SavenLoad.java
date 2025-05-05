@@ -82,6 +82,7 @@ public class SavenLoad {
             Pattern positionPattern = Pattern.compile("position=Vector3D\\{x=([-\\d.]+), y=([-\\d.]+), z=([-\\d.]+)\\}");
             Pattern velocityPattern = Pattern.compile("velocity=Vector3D\\{x=([-\\d.]+), y=([-\\d.]+), z=([-\\d.]+)\\}");
             Pattern massPattern = Pattern.compile("mass=([-\\d.]+)");
+            Pattern radiusPattern = Pattern.compile("mass=([-\\d.]+)");
             Pattern namePattern = Pattern.compile("name=([^,\\\\}]+)");
 
             // Extract position
@@ -106,8 +107,18 @@ public class SavenLoad {
             Matcher massMatcher = massPattern.matcher(line);
             if (!massMatcher.find()) return null;
             double mass = Double.parseDouble(massMatcher.group(1));
+
+            // Extracting radius
+            Matcher radiusMatcher = radiusPattern.matcher(line);
+            if (!radiusMatcher.find()) return null;
+            double radius = Double.parseDouble(massMatcher.group(1));
+
+            //creating planet
+            Planet planet = new Planet(position, velocity, mass, radius);
+
+            // Extract name
             Matcher nameMatcher = namePattern.matcher(line);
-            Planet planet = new Planet(position, velocity, mass, 15);
+
 
             if (nameMatcher.find()) {
                 String name = nameMatcher.group(1);

@@ -21,6 +21,7 @@ public class Planet extends Body{
     }
 
 
+
     public String toSave() {
         String name = getName();
         return "Body{" +
@@ -30,6 +31,6 @@ public class Planet extends Body{
                 ", force=" + force +
                 ", mass=" + mass +
                 ", name="+ name +
-                ", size" + +
+                ", radius=" + this.getRadius()+
                 '}';}
 }

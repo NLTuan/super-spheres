@@ -161,6 +161,7 @@ public abstract class Body extends Sphere{
 
     public String toSave() {
         String name = getName();
+        Double radius = getRadius();
         return "Body{" +
                 "position=" + position +
                 ", velocity=" + velocity +
@@ -168,7 +169,7 @@ public abstract class Body extends Sphere{
                 ", force=" + force +
                 ", mass=" + mass +
                 ", name="+ name +
-                ", size=" +
+                ", radius=" + radius+
                 '}';}
 
 
@@ -197,6 +198,7 @@ public abstract class Body extends Sphere{
     public String getName() {
         return name.get();
     }
+
     public Trail getTrail(){
         return  this.trail;
     }
